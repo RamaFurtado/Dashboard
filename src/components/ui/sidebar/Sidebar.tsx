@@ -200,6 +200,7 @@ export default function PersistentDrawerLeft() {
         </List>
       </Drawer>
       <Main open={open}>
+        {/* acá hay que traer a dashboardSection y pasarle la sección actual usando el estado global */}
       </Main>
     </Box>
   );
