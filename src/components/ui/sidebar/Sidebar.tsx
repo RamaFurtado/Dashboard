@@ -16,8 +16,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import CategoryIcon from '@mui/icons-material/Category';
@@ -77,6 +76,25 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------CODIGO POR NOSOTROS------------------------------------------------
+
+const dashboardSection = (seccionActual: string) => {
+
+  switch (seccionActual) {
+    case 'inicio':
+      return <SeccionInicio />
+    case 'productos':
+      return <SeccionProductos />
+    case 'categorias':
+      return <SeccionCategorias />
+    case 'promociones':
+      return <SeccionPromociones />
+    case 'empresa':
+      return <SeccionEmpresa />
+    case 'usuarios':
+      return <SeccionUsuarios />
+  }
+}
+
 
 interface IDashboardItem {
   text: string,
@@ -181,7 +199,8 @@ export default function PersistentDrawerLeft() {
           ))}
         </List>
       </Drawer>
-      <Main open={open}>      </Main>
+      <Main open={open}>
+      </Main>
     </Box>
   );
 }
