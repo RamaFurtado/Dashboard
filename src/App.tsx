@@ -1,13 +1,13 @@
 import { Box } from '@mui/material';
-import Sidebar from './components/ui/sidebar/Sidebar.tsx';
+import PersistentDrawerLeft from './components/ui/Sidebar/Sidebar.tsx';
 
 
 function App() {
   return (
     <Box sx={{ display: 'flex' }}>
-      <Sidebar /> {}
+      <PersistentDrawerLeft /> { }
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        {}
+        { }
       </Box>
     </Box>
   );
