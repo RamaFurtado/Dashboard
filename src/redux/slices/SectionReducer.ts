@@ -12,11 +12,11 @@ export const SectionReducer = createSlice({
     name: "SectionReducer",
     initialState,
     reducers: {
-        setSectionActual(state, action: PayloadAction<string>) {
+        setCurrentSection(state, action: PayloadAction<string>) {
             state.sectionActual = action.payload
         }
     }
 })
 
-export const { setSectionActual } = SectionReducer.actions
+export const { setCurrentSection } = SectionReducer.actions
 export default SectionReducer.reducer

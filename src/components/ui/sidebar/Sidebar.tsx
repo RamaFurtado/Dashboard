@@ -23,6 +23,8 @@ import CategoryIcon from '@mui/icons-material/Category';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import DomainIcon from '@mui/icons-material/Domain';
 import GroupIcon from '@mui/icons-material/Group';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { setCurrentSection } from '../../../redux/slices/SectionReducer';
 
 const drawerWidth = 240;
 
@@ -77,21 +79,29 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------CODIGO POR NOSOTROS------------------------------------------------
 
+
+
 const dashboardSection = (seccionActual: string) => {
 
   switch (seccionActual) {
-    case 'inicio':
-      return <SeccionInicio />
-    case 'productos':
-      return <SeccionProductos />
-    case 'categorias':
-      return <SeccionCategorias />
-    case 'promociones':
-      return <SeccionPromociones />
-    case 'empresa':
-      return <SeccionEmpresa />
-    case 'usuarios':
-      return <SeccionUsuarios />
+    case 'Inicio':
+      return <h2>inicio</h2>
+    // return <SeccionInicio />
+    case 'Productos':
+      return <h2>productos</h2>
+    // return <SeccionProductos />
+    case 'Categorias':
+      return <h2>categorias</h2>
+    // return <SeccionCategorias />
+    case 'Promociones':
+      return <h2>promociones</h2>
+    // return <SeccionPromociones />
+    case 'Empresa':
+      return <h2>empresa</h2>
+    // return <SeccionEmpresa />
+    case 'Usuarios':
+      return <h2>Usuarios</h2>
+    // return <SeccionUsuarios />
   }
 }
 
@@ -140,12 +150,26 @@ export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  const currentSection: string = useAppSelector((state) => state.sectionReducer.sectionActual);
+  const dispatch = useAppDispatch();
+
+  const [section, setSection] = React.useState<string>(currentSection);
+
+  React.useEffect(() => {
+    setSection(currentSection)
+  }, [currentSection])
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleSectionChange = (newSection: string) => {
+    setSection(newSection)
+    dispatch(setCurrentSection(newSection));
   };
 
   return (
@@ -187,8 +211,8 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {dashboardItems.list.map(({ text, icon }, index) => (
-            <ListItem key={text} disablePadding>
+          {dashboardItems.list.map(({ text, icon }) => (
+            <ListItem onClick={() => { handleSectionChange(text); console.log(text); }} key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   {icon}
@@ -200,7 +224,7 @@ export default function PersistentDrawerLeft() {
         </List>
       </Drawer>
       <Main open={open}>
-        {/* acá hay que traer a dashboardSection y pasarle la sección actual usando el estado global */}
+        {dashboardSection(section)}
       </Main>
     </Box>
   );
