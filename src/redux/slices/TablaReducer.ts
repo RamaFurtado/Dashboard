@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Definimos una interfaz genérica para los datos de la tabla
 interface ITableData<T> {
-  data: T[]; // Datos de la tabla
+  dataTable: T[]; // Datos de la tabla
   elementActive: null | T; // Elemento activo seleccionado
 }
 
 // Estado inicial del slice
 const initialState: ITableData<any> = {
-  data: [], // Inicialmente la tabla está vacía
+  dataTable: [], // Inicialmente la tabla está vacía
   elementActive: null, // No hay ningún elemento activo seleccionado inicialmente
 };
 
@@ -19,7 +19,7 @@ const TablaReducer = createSlice({
   reducers: {
     // Reducer para establecer los datos de la tabla
     setDataTable<T>(state: ITableData<T>, action: PayloadAction<T[]>) {
-      state.data = action.payload; // Actualizamos los datos de la tabla con los datos proporcionados
+      state.dataTable = action.payload; // Actualizamos los datos de la tabla con los datos proporcionados
     },
     // Reducer para establecer el elemento activo
     setElementActive<T>(state: ITableData<T>, action: PayloadAction<T>) {

@@ -1,10 +1,34 @@
 {
-    "products": [
-        {
-            "id": 1,
-            "name": "Coca Cola",
-            "price": 1000,
-            "stock": 10
-        }
-    ]
+  "products": [
+    {
+      "id": 1,
+      "name": "Coca Cola",
+      "price": 1000,
+      "description": "Coca Cola 2L",
+      "category": 1,
+      "image": "https://i5.walmartimages.com/seo/Coca-Cola-Soda-Pop-2-Liters-Bottle_276fc3fd-fb2b-4c06-a277-5960a7e56495.c49f20b917881d57ead19e24bbad7b23.jpeg",
+      "stock": 10
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Bebidas"
+    }
+  ],
+  "sales": [
+    {
+      "id": 1
+    }
+  ],
+  "company": [
+    {
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1
+    }
+  ]
 }
