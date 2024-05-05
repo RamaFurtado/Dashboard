@@ -1,10 +1,12 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import SectionReducer from "./slices/SectionReducer";
+import TableReducer from "./slices/TablaReducer";
 
 export const store = configureStore({
   reducer: {
     sectionReducer: SectionReducer,
+    tableReducer: TableReducer,
   },
 });
 
