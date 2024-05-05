@@ -5,7 +5,7 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
-    sectionActual: "inicio",
+    sectionActual: "Inicio",
 }
 
 export const SectionReducer = createSlice({

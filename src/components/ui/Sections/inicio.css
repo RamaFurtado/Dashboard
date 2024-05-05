@@ -1,22 +1,27 @@
 .charts {
-    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    border-radius: 5px;
-    box-sizing: border-box;
     height: 50vh;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
 }
 
-.charts h2 {
-    margin: 0;
+.box {
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
-.inicio-section {
+.charts h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: #252525;
+}
+
+#chart-container {
     display: flex;
     align-items: center;
-    gap: 30px;
-    margin-top: 30px;
+    gap: 25px;
     width: 100%;
 }

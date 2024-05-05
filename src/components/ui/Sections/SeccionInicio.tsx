@@ -2,7 +2,26 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, LinearScale, CategorySca
 import { Pie, Line } from "react-chartjs-2";
 import "./inicio.css";
 
-export const SeccionInicio = () => {
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import * as React from 'react';
+
+
+import { useAppDispatch } from '../../../hooks/redux';
+import { setCurrentSection } from '../../../redux/slices/SectionReducer';
+
+interface ISeccionInicio {
+    setSection: (state: string) => void;
+
+}
+
+export const SeccionInicio = ({ setSection }: ISeccionInicio) => {
     ChartJS.register(
         ArcElement,
         Tooltip,
@@ -125,17 +144,85 @@ export const SeccionInicio = () => {
         },
     };
 
+    // const currentSection: string = useAppSelector((state) => state.sectionReducer.sectionActual);
+    const dispatch = useAppDispatch();
+    const handleSectionChange = (newSection: string) => {
+        setSection(newSection)
+        dispatch(setCurrentSection(newSection));
+    };
+
+    function generate(element: React.ReactElement) {
+        return [1, 2, 3, 4, 5].map((value) =>
+            React.cloneElement(element, {
+                key: value,
+            }),
+        );
+    }
+
+    const [dense, setDense] = React.useState(false);
+    const [secondary, setSecondary] = React.useState(true);
+
+    const productos = [
+        {
+            nombre: "Pizza Muzzarella",
+            descripcion: "Clásica pizza de muzzarella",
+        },
+        {
+            nombre: "Lomo Completo",
+            descripcion: "Bifes de lomo, mayo casera, huevo, jamón, queso, tomate y lechuga",
+        },
+        {
+            nombre: "Hamburguesa Clásica",
+            descripcion: "Medallón de carne con queso mozzarella, lechuga, tomate, cebolla y papas",
+        },
+        {
+            nombre: "Lomo Criollo",
+            descripcion: "Bifes de lomo, mayo casera, huevo, jamón, queso y salsa criolla",
+        },
+        {
+            nombre: "Pizza Napolitana",
+            descripcion: "Pizza con rodajas de tomate y queso rallado"
+        }
+    ]
+
     return (
         <div id="seccion-inicio" >
-            <div className="inicio-section">
-                <div className="charts" style={{ width: "40vw" }}>
+            <h2 >Resumen</h2>
+            <div id="chart-container">
+                <div className="charts box" style={{ width: "40vw" }}>
                     <h2>Ventas por sucursal</h2>
                     <Line data={lineData} options={lineOptions} />
                 </div>
-                < div className="charts" style={{ width: "25vw" }} >
+                < div className="charts box" style={{ width: "25vw" }} >
                     <h2>Ventas por semana</h2>
                     <Pie data={pieData} options={pieOptions} />
                 </div >
+            </div>
+            <div>
+                <h2>Productos más vendidos</h2>
+                <List dense={dense}>
+                    {productos.map(({ nombre, descripcion }) => { // Remove duplicate identifier 'string'
+                        return (
+                            <ListItem
+                                secondaryAction={
+                                    <IconButton onClick={() => handleSectionChange("Productos")} edge="end" aria-label="edit">
+                                        <ModeEditIcon />
+                                    </IconButton>
+                                }
+                            >
+                                <ListItemAvatar>
+                                    <Avatar>
+                                        <ShoppingBagIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={nombre} // Use the correct variable name 'nombre'
+                                    secondary={secondary ? descripcion : null} // Provide an initializer for the shorthand property 'descripcion'
+                                />
+                            </ListItem>
+                        );
+                    })}
+                </List>
             </div>
         </div >
     )
