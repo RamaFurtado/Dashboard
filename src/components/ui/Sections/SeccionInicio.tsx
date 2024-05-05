@@ -151,14 +151,6 @@ export const SeccionInicio = ({ setSection }: ISeccionInicio) => {
         dispatch(setCurrentSection(newSection));
     };
 
-    function generate(element: React.ReactElement) {
-        return [1, 2, 3, 4, 5].map((value) =>
-            React.cloneElement(element, {
-                key: value,
-            }),
-        );
-    }
-
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(true);
 

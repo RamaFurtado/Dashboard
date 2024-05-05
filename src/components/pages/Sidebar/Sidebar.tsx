@@ -17,6 +17,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+
+import Collapse from '@mui/material/Collapse';
+
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import CategoryIcon from '@mui/icons-material/Category';
@@ -83,12 +88,31 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 interface IDashboardItem {
   text: string,
   icon: JSX.Element,
+  subcategory?: IDashboardItem[]
 }
 
 interface IDashboard {
   list: IDashboardItem[]
 }
 
+const subcategorias = [
+  {
+    text: 'Hamburguesas',
+    icon: <ShoppingBagIcon />
+  },
+  {
+    text: 'Pizzas',
+    icon: <ShoppingBagIcon />
+  },
+  {
+    text: 'Lomos',
+    icon: <ShoppingBagIcon />
+  },
+  {
+    text: 'Bebidas',
+    icon: <ShoppingBagIcon />
+  }
+]
 const dashboardItems: IDashboard = {
   list: [
     {
@@ -101,7 +125,8 @@ const dashboardItems: IDashboard = {
     },
     {
       text: 'Categorías',
-      icon: <CategoryIcon />
+      icon: <CategoryIcon />,
+      subcategory: subcategorias
     },
     {
       text: 'Promociones',
@@ -118,11 +143,13 @@ const dashboardItems: IDashboard = {
   ]
 }
 
+
 //-------------------------------------------------------------------------------------------------------------
 
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const [openNested, setOpenNested] = React.useState(false);
 
   // --------------------------------- CARGAR ESTADO 'SECTION' -------------------------------
   const currentSection: string = useAppSelector((state) => state.sectionReducer.sectionActual);
@@ -168,6 +195,9 @@ export default function PersistentDrawerLeft() {
     setOpen(true);
   };
 
+  const handleNestedOpen = () => {
+    setOpenNested(!openNested);
+  };
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -212,17 +242,35 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {dashboardItems.list.map(({ text, icon }) => (
-            <ListItem onClick={() => { handleSectionChange(text); }} key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {icon}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
+          {dashboardItems.list.map(({ text, icon, subcategory }) => (
+            <div key={text}>
+              <ListItem onClick={() => handleSectionChange(text)} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {icon}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                  {subcategory && subcategory?.length > 0 ? openNested ? <ExpandLess onClick={handleNestedOpen} /> : <ExpandMore onClick={handleNestedOpen} /> : null}
+                </ListItemButton>
+              </ListItem>
+              {subcategory && subcategory.length > 0 && (
+                <Collapse in={openNested} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {subcategory.map(({ text: subText, icon: subIcon }) => (
+                      <ListItemButton key={subText} sx={{ pl: 4 }}>
+                        <ListItemIcon>
+                          {subIcon}
+                        </ListItemIcon>
+                        <ListItemText primary={subText} />
+                      </ListItemButton>
+                    ))}
+                  </List>
+                </Collapse>
+              )}
+            </div>
           ))}
         </List>
+
       </Drawer>
       <Main style={{ marginTop: '36px' }} open={open}>
         {dashboardSection(section)}
