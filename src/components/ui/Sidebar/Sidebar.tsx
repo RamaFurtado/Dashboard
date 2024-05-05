@@ -31,11 +31,11 @@ import GroupIcon from "@mui/icons-material/Group";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { setCurrentSection } from "../../../redux/slices/SectionReducer";
 import { SeccionInicio } from "../../pages/Inicio/SeccionInicio";
-// import { SeccionProductos } from "../../pages/Productos/SeccionProductos";
-// import { SeccionCategorias } from "../../pages/Categorias/SeccionCategorias";
-// import { SeccionPromociones } from "../../pages/Promociones/SeccionPromociones";
-// import { SeccionEmpresa } from "../../pages/Empresa/SeccionEmpresa";
-// import { SeccionUsuarios } from "../../pages/Usuarios/SeccionUsuarios";
+import  SeccionProductos from "../../pages/Productos/SeccionProductos";
+import SeccionCategorias from "../../pages/Categorias/SeccionCategorias";
+import SeccionPromociones from "../../pages/Promociones/SeccionPromociones";
+import SeccionEmpresa from "../../pages/Empresa/SeccionEmpresa";
+import SeccionUsuarios from "../../pages/Usuarios/SeccionUsuarios";
 
 const drawerWidth = 240;
 
@@ -179,19 +179,19 @@ export default function PersistentDrawerLeft() {
         return <SeccionInicio setSection={setSection} />;
       case "Productos":
         // return <h2>productos</h2>;
-      return <SeccionProductos />
+        return <SeccionProductos />;
       case "Categorías":
         // return <h2>categorias</h2>;
-      return <SeccionCategorias />
+        return <SeccionCategorias />;
       case "Promociones":
         // return <h2>promociones</h2>;
-      return <SeccionPromociones />
+        return <SeccionPromociones />;
       case "Empresa":
         // return <h2>empresa</h2>;
-      return <SeccionEmpresa />
+        return <SeccionEmpresa />;
       case "Usuarios":
         // return <h2>Usuarios</h2>;
-      return <SeccionUsuarios />
+        return <SeccionUsuarios />;
     }
   };
   // -----------------------------------------------------
