@@ -192,7 +192,7 @@ export const SeccionInicio = ({ setSection }: ISeccionInicio) => {
             </div>
             <div>
                 <h2>Productos más vendidos</h2>
-                <List dense={dense}>
+                <List dense={dense}> {/* Aca tira un warnign el navegador */}
                     {productos.map(({ nombre, descripcion }) => { // Remove duplicate identifier 'string'
                         return (
                             <ListItem
