@@ -1,13 +1,14 @@
-import { Label, Person } from '@mui/icons-material';
-import React, { useEffect, useState } from 'react'
-import { ProductoService } from '../../../services/ProductoService';
-import { useAppDispatch } from '../../../hooks/redux';
-import { IProducto } from '../../../types/IProducto';
+import { Label, Person } from "@mui/icons-material";
+import React, { useEffect, useState } from "react";
+import { ProductoService } from "../../../services/ProductoService";
+import { useAppDispatch } from "../../../hooks/redux";
+import { IProducto } from "../../../types/IProducto";
 import Swal from "sweetalert2";
-import { setDataTable } from '../../../redux/slices/TablaReducer';
-import { Button } from 'react-bootstrap';
-import { CircularProgress } from '@mui/material';
-import TableGeneric from '../../ui/TableGeneric/TableGeneric';
+import { setDataTable } from "../../../redux/slices/TablaReducer";
+import { Button } from "react-bootstrap";
+import { CircularProgress } from "@mui/material";
+import TableGeneric from "../../ui/TableGeneric/TableGeneric";
+import { ModalProducto } from "../../ui/modals/ModalPersona/ModalProducto";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -15,40 +16,39 @@ export const SeccionProductos = () => {
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  const productoService = new ProductoService(API_URL+"/products");
+  const productoService = new ProductoService(API_URL + "/products");
   const dispatch = useAppDispatch();
 
   const ColumnsProducto = [
     {
-        label: "id",
-        key: "id",
-        render: (producto: IProducto) => (producto?.id ? producto.id : 0),
+      label: "id",
+      key: "id",
+      render: (producto: IProducto) => (producto?.id ? producto.id : 0),
     },
-    {label: "Nombre", key: "name"},
-    {label: "Precio", key: "price"},
-    {label: "Descripción", key: "description"},
-    {label: "Categoría", key: "category"},
-    {label: "Imagen", key: "image"},
-    {label: "Stock", key: "stock"},
-    
+    { label: "Nombre", key: "name" },
+    { label: "Precio", key: "price" },
+    { label: "Descripción", key: "description" },
+    { label: "Categoría", key: "category" },
+    { label: "Imagen", key: "image" },
+    { label: "Stock", key: "stock" },
   ];
 
   const handleDelete = async (id: number) => {
     Swal.fire({
-        title: "¿Estas seguro?",
-        text: `¿Seguro que quieres eliminar?`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Si, Eliminar!",
-        cancelButtonText: "Cancelar",
-    }).then( async(result) => {
-        if (result.isConfirmed) {
-            await productoService.delete(id).then(() => {
-                getProducto();
-            });
-        }
+      title: "¿Estas seguro?",
+      text: `¿Seguro que quieres eliminar?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Eliminar!",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await productoService.delete(id).then(() => {
+          getProducto();
+        });
+      }
     });
   };
 
@@ -64,9 +64,9 @@ export const SeccionProductos = () => {
     getProducto();
   }, []);
 
-
-    return (
-        <div>
+  return (
+    <>
+      <div>
         <div
           style={{
             padding: ".4rem",
@@ -110,6 +110,11 @@ export const SeccionProductos = () => {
           />
         )}
       </div>
-  )
-}
-
+      <ModalProducto
+        getProductos={getProducto}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
+    </>
+  );
+};
