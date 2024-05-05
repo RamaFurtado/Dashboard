@@ -1,4 +1,4 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, LinearScale, CategoryScale, PointElement, LineElement, Title } from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, LinearScale, CategoryScale, PointElement, LineElement, Title, ChartOptions } from "chart.js";
 import { Pie, Line } from "react-chartjs-2";
 import "./inicio.css";
 
@@ -183,11 +183,11 @@ export const SeccionInicio = ({ setSection }: ISeccionInicio) => {
             <div id="chart-container">
                 <div className="charts box" style={{ width: "40vw" }}>
                     <h2>Ventas por sucursal</h2>
-                    <Line data={lineData} options={lineOptions} />
+                    <Line data={lineData} options={lineOptions as ChartOptions<'line'>} />
                 </div>
                 < div className="charts box" style={{ width: "25vw" }} >
                     <h2>Ventas por semana</h2>
-                    <Pie data={pieData} options={pieOptions} />
+                    <Pie data={pieData} options={pieOptions as ChartOptions<'pie'>} />
                 </div >
             </div>
             <div>
