@@ -11,11 +11,11 @@ import TableGeneric from '../../ui/TableGeneric/TableGeneric';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const SeccionProductos = () => {
+export const SeccionProductos = () => {
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  const productoService = new ProductoService(API_URL + "/productos");
+  const productoService = new ProductoService(API_URL+"/products");
   const dispatch = useAppDispatch();
 
   const ColumnsProducto = [
@@ -43,9 +43,9 @@ const SeccionProductos = () => {
         cancelButtonColor: "#d33",
         confirmButtonText: "Si, Eliminar!",
         cancelButtonText: "Cancelar",
-    }).then((result) => {
+    }).then( async(result) => {
         if (result.isConfirmed) {
-            productoService.delete(id).then(() => {
+            await productoService.delete(id).then(() => {
                 getProducto();
             });
         }
@@ -113,4 +113,3 @@ const SeccionProductos = () => {
   )
 }
 
-export default SeccionProductos
