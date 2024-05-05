@@ -30,7 +30,7 @@ import DomainIcon from '@mui/icons-material/Domain';
 import GroupIcon from '@mui/icons-material/Group';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { setCurrentSection } from '../../../redux/slices/SectionReducer';
-import { SeccionInicio } from '../../ui/Sections/SeccionInicio';
+import { SeccionInicio } from '../../ui/Sections/Inicio/SeccionInicio';
 
 const drawerWidth = 240;
 

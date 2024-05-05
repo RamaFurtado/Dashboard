@@ -13,8 +13,8 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import * as React from 'react';
 
 
-import { useAppDispatch } from '../../../hooks/redux';
-import { setCurrentSection } from '../../../redux/slices/SectionReducer';
+import { useAppDispatch } from '../../../../hooks/redux';
+import { setCurrentSection } from '../../../../redux/slices/SectionReducer';
 
 interface ISeccionInicio {
     setSection: (state: string) => void;
