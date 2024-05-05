@@ -30,12 +30,12 @@ import DomainIcon from "@mui/icons-material/Domain";
 import GroupIcon from "@mui/icons-material/Group";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { setCurrentSection } from "../../../redux/slices/SectionReducer";
-import { SeccionInicio } from "../../ui/Sections/Inicio/SeccionInicio";
-import { SeccionProductos } from "../../ui/Sections/Productos/SeccionProductos";
-import { SeccionCategorias } from "../../ui/Sections/Categorias/SeccionCategorias";
-import { SeccionPromociones } from "../../ui/Sections/Promociones/SeccionPromociones";
-import { SeccionEmpresa } from "../../ui/Sections/Empresa/SeccionEmpresa";
-import { SeccionUsuarios } from "../../ui/Sections/Usuarios/SeccionUsuarios";
+import { SeccionInicio } from "../../pages/Inicio/SeccionInicio";
+import { SeccionProductos } from "../../pages/Productos/SeccionProductos";
+import { SeccionCategorias } from "../../pages/Categorias/SeccionCategorias";
+import { SeccionPromociones } from "../../pages/Promociones/SeccionPromociones";
+import { SeccionEmpresa } from "../../pages/Empresa/SeccionEmpresa";
+import { SeccionUsuarios } from "../../pages/Usuarios/SeccionUsuarios";
 
 const drawerWidth = 240;
 

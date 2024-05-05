@@ -1,5 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Box } from '@mui/material';
-import PersistentDrawerLeft from './components/pages/Sidebar/Sidebar.tsx';
+import PersistentDrawerLeft from './components/ui/Sidebar/Sidebar.tsx';
 
 
 function App() {
