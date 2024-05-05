@@ -25,6 +25,7 @@ import DomainIcon from '@mui/icons-material/Domain';
 import GroupIcon from '@mui/icons-material/Group';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { setCurrentSection } from '../../../redux/slices/SectionReducer';
+import { SeccionInicio } from '../Sections/SeccionInicio';
 
 const drawerWidth = 240;
 
@@ -85,12 +86,12 @@ const dashboardSection = (seccionActual: string) => {
 
   switch (seccionActual) {
     case 'Inicio':
-      return <h2>inicio</h2>
-    // return <SeccionInicio />
+      // return <h2>inicio</h2>
+      return <SeccionInicio />
     case 'Productos':
       return <h2>productos</h2>
     // return <SeccionProductos />
-    case 'Categorias':
+    case 'Categorías':
       return <h2>categorias</h2>
     // return <SeccionCategorias />
     case 'Promociones':
@@ -150,6 +151,7 @@ export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  // --------------------------------- CARGAR ESTADO 'SECTION' -------------------------------
   const currentSection: string = useAppSelector((state) => state.sectionReducer.sectionActual);
   const dispatch = useAppDispatch();
 
@@ -159,6 +161,12 @@ export default function PersistentDrawerLeft() {
     setSection(currentSection)
   }, [currentSection])
 
+  const handleSectionChange = (newSection: string) => {
+    setSection(newSection)
+    dispatch(setCurrentSection(newSection));
+  };
+  // -----------------------------------------------------
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -167,10 +175,6 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
-  const handleSectionChange = (newSection: string) => {
-    setSection(newSection)
-    dispatch(setCurrentSection(newSection));
-  };
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -223,9 +227,9 @@ export default function PersistentDrawerLeft() {
           ))}
         </List>
       </Drawer>
-      <Main open={open}>
+      <Main style={{ marginTop: '36px' }} open={open}>
         {dashboardSection(section)}
       </Main>
-    </Box>
+    </Box >
   );
 }
