@@ -31,11 +31,11 @@ import GroupIcon from "@mui/icons-material/Group";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { setCurrentSection } from "../../../redux/slices/SectionReducer";
 import { SeccionInicio } from "../../pages/Inicio/SeccionInicio";
-import  SeccionProductos from "../../pages/Productos/SeccionProductos";
-import SeccionCategorias from "../../pages/Categorias/SeccionCategorias";
-import SeccionPromociones from "../../pages/Promociones/SeccionPromociones";
-import SeccionEmpresa from "../../pages/Empresa/SeccionEmpresa";
-import SeccionUsuarios from "../../pages/Usuarios/SeccionUsuarios";
+import { SeccionProductos } from "../../pages/Productos/SeccionProductos";
+import { SeccionCategorias } from "../../pages/Categorias/SeccionCategorias";
+import { SeccionPromociones } from "../../pages/Promociones/SeccionPromociones";
+import { SeccionEmpresa } from "../../pages/Empresa/SeccionEmpresa";
+import { SeccionUsuarios } from "../../pages/Usuarios/SeccionUsuarios";
 
 const drawerWidth = 240;
 
@@ -200,9 +200,7 @@ export default function PersistentDrawerLeft() {
     setOpen(true);
   };
 
-  const handleNestedOpen = () => {
-    setOpenNested(!openNested);
-  };
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -253,7 +251,11 @@ export default function PersistentDrawerLeft() {
           {dashboardItems.list.map(({ text, icon, subcategory }) => (
             <div key={text}>
               <ListItem
-                onClick={() => handleSectionChange(text)}
+                onClick={() => {
+                  if (subcategory) setOpenNested(!openNested);
+                  else handleSectionChange(text)
+                }
+                }
                 disablePadding
               >
                 <ListItemButton>
@@ -261,9 +263,9 @@ export default function PersistentDrawerLeft() {
                   <ListItemText primary={text} />
                   {subcategory && subcategory?.length > 0 ? (
                     openNested ? (
-                      <ExpandLess onClick={handleNestedOpen} />
+                      <ExpandLess />
                     ) : (
-                      <ExpandMore onClick={handleNestedOpen} />
+                      <ExpandMore />
                     )
                   ) : null}
                 </ListItemButton>

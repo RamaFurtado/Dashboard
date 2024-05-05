@@ -1,8 +1,6 @@
 
-const SeccionCategorias = () => {
+export const SeccionCategorias = () => {
   return (
     <div>SeccionCategorias</div>
   )
 }
-
-export default SeccionCategorias
