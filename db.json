@@ -96,7 +96,9 @@
   "company": [
     {
       "id": 1,
-      "name": "Rotisería"
+      "name": "Rotisería",
+      "description": "Rotiseria San Valentin",
+      "cuit": "123456789"
     }
   ],
   "users": [
