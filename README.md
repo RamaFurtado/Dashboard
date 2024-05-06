@@ -9,7 +9,7 @@ npm install
 Luego, se puede continuar con la ejecución del proyecto, utilizando los siguientes comandos en simultáneo:
 
 ```
-json-server --watch db.json
+npm run start:server
 ```
 ```
 npm run dev
