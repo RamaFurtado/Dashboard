@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EmpresaService } from "../../../services/EmpresaService";
 import { useAppDispatch } from "../../../hooks/redux";
 import { IEmpresa } from "../../../types/IEmpresa";
@@ -34,7 +34,7 @@ export const SeccionEmpresa = () => {
     },
     {
       label: "CUIT",
-      key: "cuil",
+      key: "cuit",
     }
   ]
 
@@ -61,8 +61,14 @@ export const SeccionEmpresa = () => {
     await empresaService.getAll().then((empresaData) => {
       dispatch(setDataTable(empresaData));
       setLoading(false);
+      console.log(empresaData);
     });
   };
+
+  useEffect(() => {
+    setLoading(true);
+    getEmpresa();
+  }, []);
 
   return (
     <>
