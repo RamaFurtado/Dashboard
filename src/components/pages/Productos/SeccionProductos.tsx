@@ -1,4 +1,3 @@
-import { Label, Person } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { ProductoService } from "../../../services/ProductoService";
 import { useAppDispatch } from "../../../hooks/redux";
@@ -8,7 +7,7 @@ import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { Button } from "react-bootstrap";
 import { CircularProgress } from "@mui/material";
 import TableGeneric from "../../ui/TableGeneric/TableGeneric";
-import { ModalProducto } from "../../ui/modals/ModalPersona/ModalProducto";
+import { ModalProducto } from "../../ui/modals/ModalProducto/ModalProducto";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
