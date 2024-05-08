@@ -29,6 +29,7 @@ export const ModalProducto = ({
     category: '',
     image: '',
     stock: 0,
+    actions: '',
   };
 
   const actualDate: string = new Date().toISOString().split('T')[0];
