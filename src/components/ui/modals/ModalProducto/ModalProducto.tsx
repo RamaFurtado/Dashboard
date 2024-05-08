@@ -33,6 +33,8 @@ export const ModalProducto = ({
     active: true,
   };
 
+  const [active, setActive] = React.useState<boolean>(true);
+
   const actualDate: string = new Date().toISOString().split('T')[0];
   // Debes definir la lógica para tu servicio API de productos
   const apiProducto = new ProductoService(API_URL + '/products');

@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { Table } from "react-bootstrap";
 import { ButtonsTable } from "../ButtonsTable/ButtonsTable";
+import { SwitchButton } from "../ButtonsTable/Switch";
 
 interface ITableColumn<T> {
   label: string;
@@ -23,7 +24,7 @@ export interface ITableProps<T> {
   setOpenModal: (state: boolean) => void;
 }
 
-export const TableGeneric = <T extends { id: any }>({
+export const TableGeneric = <T extends { id: number }>({
   columns,
   handleDelete,
   setOpenModal,
@@ -94,12 +95,8 @@ export const TableGeneric = <T extends { id: any }>({
                               />
                             ) : (
                               column.label === "Estado" ? (
-                                row.active === true ? (
-                                  <p>Activo</p>
-                                ) : (
-                                  <p>Inactivo</p>
-                                )
-                                ) : (
+                                <SwitchButton id={row.id} />
+                              ) : (
                                 row[column.key]
                               )
                             )}
