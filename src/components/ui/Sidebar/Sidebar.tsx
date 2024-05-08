@@ -163,6 +163,7 @@ export default function PersistentDrawerLeft() {
 
   const [section, setSection] = React.useState<string>("Inicio");
 
+  //Actualiza el estado de redux de 'currentSection' al cambiar de sección
   React.useEffect(() => {
     setSection(currentSection);
   }, [currentSection]);
@@ -172,25 +173,20 @@ export default function PersistentDrawerLeft() {
     dispatch(setCurrentSection(newSection));
   };
 
+  // renderiza componentes en función del estado actual
   const dashboardSection = (seccionActual: string) => {
     switch (seccionActual) {
       case "Inicio":
-        // return <h2>Inicio</h2>;
         return <SeccionInicio setSection={setSection} />;
       case "Productos":
-        // return <h2>productos</h2>;
         return <SeccionProductos />;
       case "Categorías":
-        // return <h2>categorias</h2>;
         return <SeccionCategorias />;
       case "Promociones":
-        // return <h2>promociones</h2>;
         return <SeccionPromociones />;
       case "Empresa":
-        // return <h2>empresa</h2>;
         return <SeccionEmpresa />;
       case "Usuarios":
-        // return <h2>Usuarios</h2>;
         return <SeccionUsuarios />;
     }
   };
@@ -208,7 +204,7 @@ export default function PersistentDrawerLeft() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar style={{ zIndex: 100 }} position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -225,6 +221,7 @@ export default function PersistentDrawerLeft() {
         </Toolbar>
       </AppBar>
       <Drawer
+        style={{ zIndex: 100 }}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -248,40 +245,18 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {dashboardItems.list.map(({ text, icon, subcategory }) => (
-            <div key={text}>
+          {/* recorre y renderiza la lista de secciones */}
+          {dashboardItems.list.map(({ text, icon }, index) => (
+            <div key={index}>
               <ListItem
-                onClick={() => {
-                  if (subcategory) setOpenNested(!openNested);
-                  else handleSectionChange(text)
-                }
-                }
+                onClick={() => { handleSectionChange(text) }}
                 disablePadding
               >
                 <ListItemButton>
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText primary={text} />
-                  {subcategory && subcategory?.length > 0 ? (
-                    openNested ? (
-                      <ExpandLess />
-                    ) : (
-                      <ExpandMore />
-                    )
-                  ) : null}
                 </ListItemButton>
               </ListItem>
-              {subcategory && subcategory.length > 0 && (
-                <Collapse in={openNested} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    {subcategory.map(({ text: subText, icon: subIcon }) => (
-                      <ListItemButton key={subText} sx={{ pl: 4 }}>
-                        <ListItemIcon>{subIcon}</ListItemIcon>
-                        <ListItemText primary={subText} />
-                      </ListItemButton>
-                    ))}
-                  </List>
-                </Collapse>
-              )}
             </div>
           ))}
         </List>

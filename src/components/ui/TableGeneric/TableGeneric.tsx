@@ -9,7 +9,7 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-import { Button, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { ButtonsTable } from "../ButtonsTable/ButtonsTable";
 
 interface ITableColumn<T> {
