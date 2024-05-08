@@ -41,7 +41,7 @@ export const SeccionProductos = () => {
     },
     { label: "Stock", key: "stock" },
     {
-      label: "Acciones",}
+      label: "Acciones", key: "actions"}
   ];
 
   const handleDelete = async (id: number) => {

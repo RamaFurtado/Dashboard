@@ -14,7 +14,7 @@ import { ButtonsTable } from "../ButtonsTable/ButtonsTable";
 
 interface ITableColumn<T> {
   label: string;
-  key?: string;
+  key: string;
   render?: (item: T) => ReactNode;
 }
 export interface ITableProps<T> {
