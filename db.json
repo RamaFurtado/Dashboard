@@ -7,7 +7,8 @@
       "description": "Coca Cola 2L",
       "category": 4,
       "image": "https://i5.walmartimages.com/seo/Coca-Cola-Soda-Pop-2-Liters-Bottle_276fc3fd-fb2b-4c06-a277-5960a7e56495.c49f20b917881d57ead19e24bbad7b23.jpeg",
-      "stock": 10
+      "stock": 10,
+      "active": true
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "description": "Clásica pizza de muzzarella",
       "category": 2,
       "image": "https://pizzafactory.com.ar/wp-content/uploads/2023/01/CLAS-005.jpg",
-      "stock": 5
+      "stock": 5,
+      "active": true
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "description": "Bifes de lomo, mayo casera, huevo, jamón, queso, tomate y lechuga",
       "category": 3,
       "image": "https://www.clarin.com/img/2021/07/26/u-aUfp64d_1256x620__1.jpg",
-      "stock": 3
+      "stock": 3,
+      "active": true
     },
     {
       "id": 4,
@@ -34,7 +37,8 @@
       "description": "Medallón de carne con queso, lechuga, tomate, cebolla y papas",
       "category": 1,
       "image": "https://pronacatqma.com/images/com_yoorecipe/banner_superior/15685_1.jpg",
-      "stock": 7
+      "stock": 7,
+      "active": true
     },
     {
       "id": 5,
@@ -43,7 +47,8 @@
       "description": "Bifes de lomo, mayo casera, huevo, jamón, queso y salsa criolla",
       "category": 3,
       "image": "https://airescriollos.com.ar/wp-content/uploads/2020/11/Sandwich-de-lomito.jpg",
-      "stock": 5
+      "stock": 5,
+      "active": true
     },
     {
       "id": 6,
@@ -52,7 +57,8 @@
       "description": "Pizza con rodajas de tomate y queso rallado",
       "category": 2,
       "image": "https://assets.elgourmet.com/wp-content/uploads/2023/03/8metlvp345_portada-pizza-1024x686.jpg.webp",
-      "stock": 5
+      "stock": 5,
+      "active": true
     }
   ],
   "categories": [

@@ -43,7 +43,7 @@ export const ButtonsTable = <T extends { id: number }>({
       </Button>
       {/* Botón para eliminar el elemento */}
       <Button variant="contained" color="error" onClick={handleDeleteItem}>
-        <span className="material-symbols-outlined">delete_forever</span>
+        <span className="material-symbols-outlined">delete</span>
       </Button>
     </div>
   );

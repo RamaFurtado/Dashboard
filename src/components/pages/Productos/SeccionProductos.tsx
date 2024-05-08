@@ -42,7 +42,8 @@ export const SeccionProductos = () => {
     },
     { label: "Stock", key: "stock" },
     {
-      label: "Acciones",}
+      label: "Acciones",},
+    {label: "Estado", key: "active"},
   ];
 
   const handleDelete = async (id: number) => {
@@ -57,7 +58,7 @@ export const SeccionProductos = () => {
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await productoService.delete(id).then(() => {
+        await productoService.logicDelete(id).then(() => {
           getProducto();
         });
       }
