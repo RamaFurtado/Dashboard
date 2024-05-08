@@ -95,7 +95,7 @@ export const TableGeneric = <T extends { id: number }>({
                               />
                             ) : (
                               column.label === "Estado" ? (
-                                <SwitchButton id={row.id} />
+                                <SwitchButton id={row.id} currentState={row.active} />
                               ) : (
                                 row[column.key]
                               )

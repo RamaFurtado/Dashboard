@@ -5,12 +5,17 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const productoService = new ProductoService(API_URL + '/products');
 
+interface ISwitchButton {
+    id: number;
+    currentState: boolean;
+}
 
-export const SwitchButton = (id: number) => {
+export const SwitchButton = ({ id, currentState }: ISwitchButton) => {
     const [active, setActive] = React.useState<boolean>(true);
 
     const handleClick = () => {
         console.log(active)
+        console.log(id)
         if (active) {
             productoService.logicDelete(id);
         } else {
@@ -20,7 +25,7 @@ export const SwitchButton = (id: number) => {
     }
     return (
         <div>
-            {active ? <Switch onClick={() => { handleClick }} defaultChecked /> : <Switch onClick={() => { handleClick }} />}
+            {currentState ? <Switch onClick={() => { productoService.logicDelete(id); console.log(id) }} defaultChecked /> : <Switch onClick={() => { productoService.logicRestore(id) }} />}
         </div>
     )
 }
