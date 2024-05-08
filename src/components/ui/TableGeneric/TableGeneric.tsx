@@ -95,9 +95,9 @@ export const TableGeneric = <T extends { id: any }>({
                             ) : (
                               column.label === "Estado" ? (
                                 row.active === true ? (
-                                  <p>Inactivo</p>
-                                ) : (
                                   <p>Activo</p>
+                                ) : (
+                                  <p>Inactivo</p>
                                 )
                                 ) : (
                                 row[column.key]
