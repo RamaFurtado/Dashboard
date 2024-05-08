@@ -204,7 +204,7 @@ export default function PersistentDrawerLeft() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar style={{ zIndex: 100 }} position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -221,6 +221,7 @@ export default function PersistentDrawerLeft() {
         </Toolbar>
       </AppBar>
       <Drawer
+        style={{ zIndex: 100 }}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
