@@ -29,7 +29,17 @@ export const SeccionProductos = () => {
     { label: "Precio", key: "price" },
     { label: "Descripción", key: "description" },
     { label: "Categoría", key: "category" },
-    { label: "Imagen", key: "image" },
+    {
+      label: 'Imagen',
+      key: 'image',
+      render: (producto: IProducto) => (
+        <img
+          src={producto.image}
+          alt={producto.name}
+          style={{ maxWidth: '100px', maxHeight: '100px' }}
+        />
+      ),
+    },
     { label: "Stock", key: "stock" },
   ];
 
