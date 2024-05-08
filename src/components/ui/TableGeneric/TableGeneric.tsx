@@ -93,7 +93,15 @@ export const TableGeneric = <T extends { id: any }>({
                                 setOpenModal={setOpenModal}
                               />
                             ) : (
-                              row[column.key]
+                              column.label === "Estado" ? (
+                                row.active === true ? (
+                                  <p>Inactivo</p>
+                                ) : (
+                                  <p>Activo</p>
+                                )
+                                ) : (
+                                row[column.key]
+                              )
                             )}
                           </TableCell>
                         );
