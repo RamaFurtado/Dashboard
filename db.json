@@ -107,6 +107,23 @@
       "name": "Rotisería",
       "description": "Rotiseria San Valentin",
       "cuit": "123456789",
+      "image": "https://th.bing.com/th/id/OIP.WRjr9hMBMLRwGiHGPH3KHQHaHa?w=1000&h=1000&rs=1&pid=ImgDetMain",
+      "active": true
+    }
+  ],
+  "branch": [
+    {
+      "id": 1,
+      "name": "Sucursal 1",
+      "address": "CABA",
+      "image": "https://th.bing.com/th/id/OIP.croD_NtK30YRfd_btojkxgAAAA?rs=1&pid=ImgDetMain",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Sucursal 2",
+      "address": "CABA",
+      "image": "https://th.bing.com/th/id/OIP.croD_NtK30YRfd_btojkxgAAAA?rs=1&pid=ImgDetMain",
       "active": true
     }
   ],
