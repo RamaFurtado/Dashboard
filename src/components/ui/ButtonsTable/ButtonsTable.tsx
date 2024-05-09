@@ -20,14 +20,15 @@ export const ButtonsTable = <T extends { id: number }>({
   const handleModalSelected = () => {
     // Establecer el elemento activo en el estado
     dispatch(setElementActive({ element: el }));
+    
     // Mostrar el modal para editar el elemento
     setOpenModal(true);
   };
 
   // Función para manejar la eliminación de un elemento
-  const handleDeleteItem = () => {
-    handleDelete(el.id); // Llamar a la función handleDelete con el ID del elemento
-  };
+  // const handleDeleteItem = () => {
+  //   handleDelete(el.id); // Llamar a la función handleDelete con el ID del elemento
+  // };
 
   return (
     <div
@@ -42,9 +43,9 @@ export const ButtonsTable = <T extends { id: number }>({
         <span className="material-symbols-outlined">edit</span>
       </Button>
       {/* Botón para eliminar el elemento */}
-      <Button variant="contained" color="error" onClick={handleDeleteItem}>
+      {/* <Button variant="contained" color="error" onClick={handleDeleteItem}>
         <span className="material-symbols-outlined">delete</span>
-      </Button>
+      </Button> */}
     </div>
   );
 };

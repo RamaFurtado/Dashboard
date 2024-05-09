@@ -6,4 +6,6 @@ export interface IPromocion{
     until: string;
     description: string;
     price: number;
+    actions: string;
+    active: boolean;
 }

@@ -3,4 +3,6 @@ export interface IEmpresa{
     name: string
     description: string
     cuit: number
+    actions: string;
+    active: boolean;
 }

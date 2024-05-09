@@ -27,7 +27,9 @@ export const SeccionUsuarios = () => {
     {
       label: "Nombre",
       key: "name",
-    }
+    },
+    { label: "Acciones", key: "actions",},
+    {label: "Estado", key: "active"}
   ]
 
   const handleDelete = async (id: number) => {

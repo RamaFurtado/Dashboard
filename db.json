@@ -87,7 +87,8 @@
       "since": "2024-02-13",
       "until": "2024-02-15",
       "description": "El descuento que se hace por San Valentín, un día antes y un día después",
-      "price": 2000
+      "price": 2000,
+      "active": true
     },
     {
       "id": 2,
@@ -96,7 +97,8 @@
       "since": "2024-03-13",
       "until": "2024-03-16",
       "description": "¡Disfruta de un combo especial de pizza!",
-      "price": 3000
+      "price": 3000,
+      "active": true
     }
   ],
   "company": [
@@ -104,13 +106,15 @@
       "id": 1,
       "name": "Rotisería",
       "description": "Rotiseria San Valentin",
-      "cuit": "123456789"
+      "cuit": "123456789",
+      "active": true
     }
   ],
   "users": [
     {
       "id": 1,
-      "name": "Admin"
+      "name": "Admin",
+      "active": true
     }
   ]
 }

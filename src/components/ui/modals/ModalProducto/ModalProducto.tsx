@@ -10,6 +10,8 @@ import "./modal.css"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+const productoService = new ProductoService(API_URL + '/products');
+
 interface IModalProducto {
   getProductos: Function; // Función para obtener los productos
   openModal: boolean;
@@ -49,6 +51,16 @@ export const ModalProducto = ({
     dispatch(removeElementActive());
   };
 
+  // const handleSubmit = async (values: IProducto) => {
+  //   if (elementActive) {
+  //     await productoService.put(elementActive.id, values);
+  //   } else {
+  //     await productoService.post(values);
+  //   }
+  //   getProductos();
+  //   handleClose();
+  // };
+
   return (
     <div>
       <Modal
@@ -82,10 +94,10 @@ export const ModalProducto = ({
               // Enviar los datos al servidor al enviar el formulario
               if (elementActive) {
                 // Aquí debes usar tu servicio API de productos para actualizar un producto existente
-                // await apiProducto.put(elementActive?.id, values);
+                await productoService.put(elementActive.id, values);
               } else {
                 // Aquí debes usar tu servicio API de productos para agregar un nuevo producto
-                // await apiProducto.post(values);
+                await productoService.post(values);
               }
               // Obtener los productos actualizados y cerrar el modal
               getProductos();
@@ -138,7 +150,7 @@ export const ModalProducto = ({
                   </div>
                   {/* Botón para enviar el formulario */}
                   <div className="d-flex justify-content-end">
-                    <Button variant="success" type="submit">
+                    <Button variant="success" type="submit" >
                       Enviar
                     </Button>
                   </div>

@@ -54,6 +54,8 @@ export const SeccionPromociones = () => {
       label: "Precio",
       key: "price",
     },
+    { label: "Acciones", key: "actions",},
+    {label: "Estado", key: "active"}
   ];
 
   const handleDelete = async (id: number) => {

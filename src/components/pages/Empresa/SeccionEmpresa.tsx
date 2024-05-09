@@ -35,7 +35,9 @@ export const SeccionEmpresa = () => {
     {
       label: "CUIT",
       key: "cuit",
-    }
+    },
+    { label: "Acciones", key: "actions",},
+    {label: "Estado", key: "active"}
   ]
 
   const handleDelete = async (id: number) => {
