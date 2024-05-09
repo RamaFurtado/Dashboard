@@ -20,6 +20,7 @@ export const SwitchButton = ({ id, currentState }: ISwitchButton) => {
 
   const handleClick = async () => {
     setLoader(true); // Activar el loader antes de las operaciones asincrónicas
+    setMessage("");
     try {
       if (active) {
         await productoService.logicDelete(id);
