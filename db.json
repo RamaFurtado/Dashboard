@@ -117,14 +117,16 @@
       "name": "Sucursal 1",
       "address": "CABA",
       "image": "https://th.bing.com/th/id/OIP.croD_NtK30YRfd_btojkxgAAAA?rs=1&pid=ImgDetMain",
-      "active": true
+      "active": true,
+      "company": 1
     },
     {
       "id": 2,
       "name": "Sucursal 2",
       "address": "CABA",
       "image": "https://th.bing.com/th/id/OIP.croD_NtK30YRfd_btojkxgAAAA?rs=1&pid=ImgDetMain",
-      "active": true
+      "active": true,
+      "company": 1
     }
   ],
   "users": [

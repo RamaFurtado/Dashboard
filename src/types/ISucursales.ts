@@ -4,4 +4,5 @@ export interface ISucursales {
     address: string
     image: string
     active: boolean
+    company: number
 }
