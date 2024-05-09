@@ -15,7 +15,7 @@ function App() {
             <Box sx={{ display: 'flex' }}>
               <PersistentDrawerLeft />
               <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                {/* Aquí iría el contenido principal */}
+                {}
               </Box>
             </Box>
           }

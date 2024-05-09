@@ -8,16 +8,15 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // Aquí puedes agregar la lógica de autenticación
-    // Si la autenticación es exitosa, navega a "/app"
+    
     navigate('/app');
   };
 
   return (
     <div className={styles.containerLogin}>
       <div className={styles.containerForm}>
-        <span style={{ fontSize: '10vh' }} className="material-symbols-outlined">
-          person
+        <span style={{ fontSize: '9vh' }} className="material-symbols-outlined">
+          Bienvenido
         </span>
         <Form>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
