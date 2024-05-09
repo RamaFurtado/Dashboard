@@ -131,6 +131,8 @@ export function SeccionCategorias() {
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader">
       {categories.map((category) => (
+        // Se crea un componente CategoryItem para cada categoría para poder manejar la apertura y cierre propia de cada botón
+        // padding agrega una sangría para diferenciar categorías de subcategorías
         <CategoryItem key={category.id} category={category} padding={2} />
       ))}
     </List>

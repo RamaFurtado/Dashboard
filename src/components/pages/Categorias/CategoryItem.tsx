@@ -22,16 +22,18 @@ export const CategoryItem: React.FC<CategoryItemProps> = ({ category, padding })
 
     return (
         <>
+            {/* ListItemButton es un botón común que puede tener o no flecha de subcategorías */}
             <ListItemButton sx={{ pl: padding }} onClick={handleClick}>
                 <ListItemIcon>
                     <GridViewOutlinedIcon />
                 </ListItemIcon>
                 <ListItemText primary={category.name} />
+                {/* Si existe subcategoría, agrega un icono de flecha de subcategorías */}
                 {category.subcategories && category.subcategories.length > 0
                     ? open ? <ExpandLess /> : <ExpandMore /> : null
                 }
             </ListItemButton>
-            {/* Si existe subcategoría, agrega un componente colapsable basado en el botón de arriba */}
+            {/* Si existe subcategoría, agrega el componente colapsable con las subcategorías basado en el botón de arriba */}
             {category.subcategories && category.subcategories.length > 0 && (
                 <>
                     <Collapse in={open} timeout="auto" unmountOnExit>
