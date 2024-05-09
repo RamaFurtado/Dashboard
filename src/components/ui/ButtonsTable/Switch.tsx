@@ -46,7 +46,6 @@ export const SwitchButton = ({ id, currentState }: ISwitchButton) => {
                     onChange={() => handleClick()}
                 />
             )}
-      {/* {currentState ? <Switch onClick={() => { handleClick() }} defaultChecked /> : <Switch onClick={() => { handleClick() }} />} */}
     </div>
   );
 };
