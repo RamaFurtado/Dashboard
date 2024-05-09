@@ -6,4 +6,6 @@ export interface IProducto {
     category: string;
     image: string;
     stock: number;
+    actions: string;
+    active: boolean;
 }

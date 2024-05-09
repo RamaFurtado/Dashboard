@@ -6,6 +6,7 @@ import { IProducto } from '../../../../types/IProducto';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { removeElementActive } from '../../../../redux/slices/TablaReducer';
 import { ProductoService } from '../../../../services/ProductoService';
+import "./modal.css"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -28,7 +29,11 @@ export const ModalProducto = ({
     category: '',
     image: '',
     stock: 0,
+    actions: '',
+    active: true,
   };
+
+  const [active, setActive] = React.useState<boolean>(true);
 
   const actualDate: string = new Date().toISOString().split('T')[0];
   // Debes definir la lógica para tu servicio API de productos
@@ -70,7 +75,6 @@ export const ModalProducto = ({
               category: Yup.string().required('Campo requerido'),
               image: Yup.string().required('Campo requerido'),
               stock: Yup.number().required('Campo requerido').min(0, 'El stock debe ser mayor o igual a 0'),
-              // Puedes agregar más validaciones según sea necesario para los otros campos
             })}
             initialValues={elementActive ? elementActive : initialValues}
             enableReinitialize={true}

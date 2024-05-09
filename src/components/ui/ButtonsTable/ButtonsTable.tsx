@@ -4,7 +4,7 @@ import { setElementActive } from "../../../redux/slices/TablaReducer";
 
 // Define una interfaz genérica para los props del componente
 interface IButtonsTable<T> {
-  el: T; // Elemento de cualquier tipo
+  el: T; // Elemento de cualquier tipo,
   handleDelete: (id: number) => void; // Función para manejar la eliminación de un elemento
   setOpenModal: (state: boolean) => void; // Función para manejar la eliminación de un elemento
 }
@@ -43,7 +43,7 @@ export const ButtonsTable = <T extends { id: number }>({
       </Button>
       {/* Botón para eliminar el elemento */}
       <Button variant="contained" color="error" onClick={handleDeleteItem}>
-        <span className="material-symbols-outlined">delete_forever</span>
+        <span className="material-symbols-outlined">delete</span>
       </Button>
     </div>
   );

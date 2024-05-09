@@ -9,8 +9,9 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-import { Button, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { ButtonsTable } from "../ButtonsTable/ButtonsTable";
+import { SwitchButton } from "../ButtonsTable/Switch";
 
 interface ITableColumn<T> {
   label: string;
@@ -23,7 +24,7 @@ export interface ITableProps<T> {
   setOpenModal: (state: boolean) => void;
 }
 
-export const TableGeneric = <T extends { id: any }>({
+export const TableGeneric = <T extends { id: number }>({
   columns,
   handleDelete,
   setOpenModal,
@@ -93,7 +94,11 @@ export const TableGeneric = <T extends { id: any }>({
                                 setOpenModal={setOpenModal}
                               />
                             ) : (
-                              row[column.key]
+                              column.label === "Estado" ? (
+                                <SwitchButton id={row.id} currentState={row.active} />
+                              ) : (
+                                row[column.key]
+                              )
                             )}
                           </TableCell>
                         );

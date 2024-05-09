@@ -24,8 +24,15 @@ export const SeccionPromociones = () => {
       render: (promocion: IPromocion) => (promocion?.id ? promocion.id : 0),
     },
     {
-      label: "Imagen",
-      key: "image",
+      label: 'Imagen',
+      key: 'image',
+      render: (promocion: IPromocion) => (
+        <img
+          src={promocion.image}
+          alt={promocion.name}
+          style={{ maxWidth: '100px', maxHeight: '100px' }}
+        />
+      ),
     },
     {
       label: "Nombre",
