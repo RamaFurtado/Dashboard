@@ -9,7 +9,7 @@ import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import React from 'react';
 import { ICategories } from '../../../types/ICategories';
 import { List } from '@mui/material';
-// import "./category.css";
+import "./category.css";
 
 interface CategoryItemProps {
     category: ICategories,
