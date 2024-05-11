@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { Button } from "react-bootstrap";
 import { CircularProgress } from "@mui/material";
-import TableGeneric from "../../ui/TableGeneric/TableGeneric";
+import TableGeneric from "../../ui/GenericTable/GenericTable";
 import { UsuarioService } from "../../../services/UsuarioService";
 
 
