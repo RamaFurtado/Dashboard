@@ -35,6 +35,7 @@ import DomainIcon from "@mui/icons-material/Domain";
 import GroupIcon from "@mui/icons-material/Group";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Collapse } from "@mui/material";
+import SeccionSucursal from "../../pages/Sucursal/SeccionSucursal";
 
 const drawerWidth = 240;
 

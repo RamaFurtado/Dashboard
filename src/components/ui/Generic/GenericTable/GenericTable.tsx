@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
-import { useAppSelector } from "../../../hooks/redux";
-import { ButtonsTable } from "../ButtonsTable/ButtonsTable";
-import { SwitchButton } from "../ButtonsTable/Switch";
+import { useAppSelector } from "../../../../hooks/redux";
+import { ButtonsTable } from "../../ButtonsTable/ButtonsTable";
+import { SwitchButton } from "../../ButtonsTable/Switch";
 
 import {
   IconButton,

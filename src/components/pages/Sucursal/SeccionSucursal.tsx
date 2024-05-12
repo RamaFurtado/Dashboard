@@ -1,29 +1,27 @@
 import { useEffect, useState } from "react";
-import { EmpresaService } from "../../../services/EmpresaService";
+import Swal from "sweetalert2";
+import { SucursalService } from "../../../services/SucursalService";
 import { useAppDispatch } from "../../../hooks/redux";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
-import { IEmpresa } from "../../../types/IEmpresa";
-import Swal from "sweetalert2";
 import { Loader } from "../../ui/Loader/Loader";
 import { GenericCards } from "../../ui/Generic/GenericCards/GenericCard";
+import { ISucursales } from "../../../types/ISucursal";
 import { useNavigate } from "react-router-dom";
 
-
 const API_URL = import.meta.env.VITE_API_URL;
+const SeccionSucursal = () => {
 
-export const SeccionEmpresa = () => {
   const navigate = useNavigate();
-
+  
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  const empresaService = new EmpresaService(API_URL + "/company");
+  const sucursalSevice = new SucursalService(API_URL + "/branch");
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    navigate('/companies/branches')
+    navigate('/app')
   }
-
   const handleDelete = async (id: number) => {
     Swal.fire({
       title: "¿Estas seguro?",
@@ -36,23 +34,23 @@ export const SeccionEmpresa = () => {
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await empresaService.delete(id).then(() => {
-          getEmpresa();
+        await sucursalSevice.delete(id).then(() => {
+          getSucursal();
         });
       }
     });
   };
 
-  const getEmpresa = async () => {
-    await empresaService.getAll().then((empresaData) => {
-      dispatch(setDataTable(empresaData));
+  const getSucursal = async () => {
+    await sucursalSevice.getAll().then((sucursalData) => {
+      dispatch(setDataTable(sucursalData));
       setLoading(false);
     });
   };
 
   useEffect(() => {
     setLoading(true);
-    getEmpresa();
+    getSucursal();
   }, []);
 
   return (
@@ -65,26 +63,21 @@ export const SeccionEmpresa = () => {
             justifyContent: "flex-end",
             width: "90%",
           }}
-        >
-
-        </div>
+        ></div>
         {/* Mostrar indicador de carga mientras se cargan los datos */}
         {loading ? (
           <Loader />
         ) : (
           // Mostrar la tabla de personas una vez que los datos se han cargado
-          <GenericCards<IEmpresa>
+          <GenericCards<ISucursales>
             handleClick={handleClick}
             handleDelete={handleDelete}
             setOpenModal={setOpenModal}
-            />
+          />
         )}
       </div>
-      {/* <ModalEmpresa
-        getProductos={getEmpresa}
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-      /> */}
     </>
   );
-}
+};
+
+export default SeccionSucursal;
