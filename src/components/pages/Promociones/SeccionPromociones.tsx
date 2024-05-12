@@ -4,7 +4,7 @@ import { IPromocion } from "../../../types/IPromociones";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { useAppDispatch } from "../../../hooks/redux";
 import Swal from "sweetalert2";
-import { ModalProducto } from "../../ui/modals/ModalProducto/ModalProducto";
+import { ModalInsumo } from "../../ui/modals/ModalArticulos/ModalInsumos";
 // import { GenericModal } from "../../ui/modals/GenericModal";
 import GenericTable from "../../ui/GenericTable/GenericTable";
 import { Loader } from "../../ui/Loader/Loader";
@@ -114,8 +114,8 @@ export const SeccionPromociones = () => {
           />
         )}
       </div>
-      <ModalProducto
-        getProductos={() => { console.log('cargar promociones') }}
+      <ModalInsumo
+        getInsumos={() => { console.log('cargar promociones') }}
         openModal={openModal}
         setOpenModal={setOpenModal}
       />

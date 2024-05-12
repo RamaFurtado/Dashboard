@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { ProductoService } from "../../../services/ProductoService";
-import { useAppDispatch } from "../../../hooks/redux";
-import { setDataTable } from "../../../redux/slices/TablaReducer";
-import { IProducto } from "../../../types/IProducto";
+import { ManufacturadoService } from "../../../../services/ManufacturadoService";
+import { useAppDispatch } from "../../../../hooks/redux";
+import { setDataTable } from "../../../../redux/slices/TablaReducer";
+import { IManufacturado } from "../../../../types/IManufacturado";
 import Swal from "sweetalert2";
 import * as Yup from 'yup';
-import GenericTable from "../../ui/GenericTable/GenericTable";
-import { Loader } from "../../ui/Loader/Loader";
-import { GenericModal } from "../../ui/modals/GenericModal";
-// import { ModalProducto } from "../../ui/modals/ModalProducto/ModalProducto";
+import GenericTable from "../../../ui/GenericTable/GenericTable";
+import { Loader } from "../../../ui/Loader/Loader";
+import { GenericModal } from "../../../ui/modals/GenericModal";
+// import { ModalManufacturado } from "../../ui/modals/ModalManufacturado/ModalManufacturado";
 
-import "./productos.css";
+import "./manufacturados.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const SeccionProductos = () => {
+export const SeccionManufacturados = () => {
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  const productoService = new ProductoService(API_URL + "/products");
+  const manufacturadoService = new ManufacturadoService(API_URL + "/manufactured");
   const dispatch = useAppDispatch();
 
   // Necesario para establecer las columnas de la tabla genérica
-  const ColumnsProducto = [
+  const ColumnsManufacturado = [
     {
       label: "id",
       key: "id",
-      render: (producto: IProducto) => (producto?.id ? producto.id : 0),
+      render: (manufacturado: IManufacturado) => (manufacturado?.id ? manufacturado.id : 0),
     },
     { label: "Nombre", key: "name" },
     { label: "Precio", key: "price" },
@@ -35,10 +35,10 @@ export const SeccionProductos = () => {
     {
       label: 'Imagen',
       key: 'image',
-      render: (producto: IProducto) => (
+      render: (manufacturado: IManufacturado) => (
         <img
-          src={producto.image}
-          alt={producto.name}
+          src={manufacturado.image}
+          alt={manufacturado.name}
           style={{ maxWidth: '100px', maxHeight: '100px' }}
         />
       ),
@@ -50,8 +50,8 @@ export const SeccionProductos = () => {
     { label: "Estado", key: "active" },
   ];
 
-  // Necesario para el modal genérico con productos
-  const initialValues: IProducto = {
+  // Necesario para el modal genérico con manufacturados
+  const initialValues: IManufacturado = {
     id: 0,
     name: '',
     price: 0,
@@ -63,7 +63,7 @@ export const SeccionProductos = () => {
     active: true,
   };
 
-  //validación del formulario específico para productos
+  //validación del formulario específico para manufacturados
   const validationSchema = Yup.object({
     name: Yup.string().required('Campo requerido'),
     price: Yup.number().required('Campo requerido').min(0, 'El precio debe ser mayor o igual a 0'),
@@ -73,7 +73,7 @@ export const SeccionProductos = () => {
     stock: Yup.number().required('Campo requerido').min(0, 'El stock debe ser mayor o igual a 0'),
   }) as Yup.ObjectSchema<object>;
 
-  // Traducción de los placeholders del formulario de productos
+  // Traducción de los placeholders del formulario de manufacturados
   const translatedPlaceholder = {
     name: 'Nombre',
     price: 'Precio',
@@ -110,24 +110,24 @@ export const SeccionProductos = () => {
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await productoService.logicDelete(id).then(() => {
-          getProducto();
+        await manufacturadoService.logicDelete(id).then(() => {
+          getManufacturado();
         });
       }
     });
   };
 
-  const getProducto = async () => {
-    await productoService.getAll().then((productoData) => {
-      // console.log(productoData)
-      dispatch(setDataTable(productoData));
+  const getManufacturado = async () => {
+    await manufacturadoService.getAll().then((manufacturadoData) => {
+      // console.log(manufacturadoData)
+      dispatch(setDataTable(manufacturadoData));
       setLoading(false);
     });
   };
 
   useEffect(() => {
     setLoading(true);
-    getProducto();
+    getManufacturado();
   }, []);
 
   return (
@@ -138,23 +138,23 @@ export const SeccionProductos = () => {
       ) : (
         // Mostrar la tabla de personas una vez que los datos se han cargado
         <div style={{ height: "85vh" }}>
-          <GenericTable<IProducto>
+          <GenericTable<IManufacturado>
             handleDelete={handleDelete}
-            columns={ColumnsProducto}
+            columns={ColumnsManufacturado}
             setOpenModal={setOpenModal}
           />
         </div>
       )}
       <GenericModal
-        modalTitle={"Producto"}
+        modalTitle={"Manufacturado"}
         formDetails={formDetails}
         openModal={openModal}
         setOpenModal={setOpenModal}
-        route="products"
-        getItems={getProducto} />
+        route="manufactured"
+        getItems={getManufacturado} />
 
-      {/* <ModalProducto Modal individual de productos
-        getProductos={getProducto}
+      {/* <ModalManufacturado Modal individual de manufacturados
+        getManufacturados={getManufacturado}
         openModal={openModal}
         setOpenModal={setOpenModal}
       /> */}

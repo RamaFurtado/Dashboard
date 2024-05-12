@@ -1,17 +1,7 @@
 {
-  "products": [
+  "manufactured": [
     {
       "id": 1,
-      "name": "Coca Cola",
-      "price": 1000,
-      "description": "Coca Cola 2L",
-      "category": 4,
-      "image": "https://i5.walmartimages.com/seo/Coca-Cola-Soda-Pop-2-Liters-Bottle_276fc3fd-fb2b-4c06-a277-5960a7e56495.c49f20b917881d57ead19e24bbad7b23.jpeg",
-      "stock": 10,
-      "active": true
-    },
-    {
-      "id": 2,
       "name": "Pizza Muzzarella",
       "price": 5000,
       "description": "Clásica pizza de muzzarella",
@@ -21,7 +11,7 @@
       "active": true
     },
     {
-      "id": 3,
+      "id": 2,
       "name": "Lomo completo",
       "price": 6000,
       "description": "Bifes de lomo, mayo casera, huevo, jamón, queso, tomate y lechuga",
@@ -31,7 +21,7 @@
       "active": true
     },
     {
-      "id": 4,
+      "id": 3,
       "name": "Hamburguesa Clásica",
       "price": 4000,
       "description": "Medallón de carne con queso, lechuga, tomate, cebolla y papas",
@@ -41,7 +31,7 @@
       "active": true
     },
     {
-      "id": 5,
+      "id": 4,
       "name": "Lomo Criollo",
       "price": 6000,
       "description": "Bifes de lomo, mayo casera, huevo, jamón, queso y salsa criolla",
@@ -51,13 +41,25 @@
       "active": true
     },
     {
-      "id": 6,
+      "id": 5,
       "name": "Pizza Napolitana",
       "price": 5000,
       "description": "Pizza con rodajas de tomate y queso rallado",
       "category": 2,
       "image": "https://assets.elgourmet.com/wp-content/uploads/2023/03/8metlvp345_portada-pizza-1024x686.jpg.webp",
       "stock": 5,
+      "active": true
+    }
+  ],
+  "supplies": [
+    {
+      "id": 1,
+      "name": "Coca Cola",
+      "price": 1000,
+      "description": "Coca Cola 2L",
+      "category": 4,
+      "image": "https://i5.walmartimages.com/seo/Coca-Cola-Soda-Pop-2-Liters-Bottle_276fc3fd-fb2b-4c06-a277-5960a7e56495.c49f20b917881d57ead19e24bbad7b23.jpeg",
+      "stock": 10,
       "active": true
     }
   ],

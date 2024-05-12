@@ -1,8 +1,8 @@
-import { IProducto } from "../types/IProducto";
+import { IManufacturado } from "../types/IManufacturado";
 import { BackendClient } from "./BackendClient";
 
 
-export class ProductoService extends BackendClient<IProducto> {
+export class ManufacturadoService extends BackendClient<IManufacturado> {
 
     // Método para dada de baja lógica de un elemento por su ID
     async logicDelete(id: number): Promise<void> {

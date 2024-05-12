@@ -1,8 +1,8 @@
 import React from 'react';
-import { IProducto } from '../../../../types/IProducto';
+import { IManufacturado } from '../../../../types/IManufacturado';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { removeElementActive } from '../../../../redux/slices/TablaReducer';
-import { ProductoService } from '../../../../services/ProductoService';
+import { ManufacturadoService } from '../../../../services/ManufacturadoService';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
@@ -11,20 +11,20 @@ import "../modal.css"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const productoService = new ProductoService(API_URL + '/products');
+const manufacturadoService = new ManufacturadoService(API_URL + '/manufactured');
 
-interface IModalProducto {
-  getProductos: Function; // Función para obtener los productos
+interface IModalManufacturado {
+  getManufacturados: Function; // Función para obtener los manufacturados
   openModal: boolean;
   setOpenModal: (state: boolean) => void;
 }
 
-export const ModalProducto = ({
-  getProductos,
+export const ModalManufacturado = ({
+  getManufacturados,
   openModal,
   setOpenModal,
-}: IModalProducto) => {
-  const initialValues: IProducto = {
+}: IModalManufacturado) => {
+  const initialValues: IManufacturado = {
     id: 0,
     name: '',
     price: 0,
@@ -39,8 +39,8 @@ export const ModalProducto = ({
   const [active, setActive] = React.useState<boolean>(true);
 
   const actualDate: string = new Date().toISOString().split('T')[0];
-  // Debes definir la lógica para tu servicio API de productos
-  const apiProducto = new ProductoService(API_URL + '/products');
+  // Debes definir la lógica para tu servicio API de manufacturados
+  const apiManufacturado = new ManufacturadoService(API_URL + '/products');
 
   const elementActive = useAppSelector(
     (state) => state.tableReducer.elementActive
@@ -52,13 +52,13 @@ export const ModalProducto = ({
     dispatch(removeElementActive());
   };
 
-  // const handleSubmit = async (values: IProducto) => {
+  // const handleSubmit = async (values: IManufacturado) => {
   //   if (elementActive) {
-  //     await productoService.put(elementActive.id, values);
+  //     await manufacturadoService.put(elementActive.id, values);
   //   } else {
-  //     await productoService.post(values);
+  //     await manufacturadoService.post(values);
   //   }
-  //   getProductos();
+  //   getManufacturados();
   //   handleClose();
   // };
 
@@ -74,9 +74,9 @@ export const ModalProducto = ({
       >
         <Modal.Header closeButton>
           {elementActive ? (
-            <Modal.Title>Editar un producto:</Modal.Title>
+            <Modal.Title>Editar un manufacturado:</Modal.Title>
           ) : (
-            <Modal.Title>Añadir un producto:</Modal.Title>
+            <Modal.Title>Añadir un manufacturado:</Modal.Title>
           )}
         </Modal.Header>
         <Modal.Body>
@@ -91,17 +91,17 @@ export const ModalProducto = ({
             })}
             initialValues={elementActive ? elementActive : initialValues}
             enableReinitialize={true}
-            onSubmit={async (values: IProducto) => {
+            onSubmit={async (values: IManufacturado) => {
               // Enviar los datos al servidor al enviar el formulario
               if (elementActive) {
-                // Aquí debes usar tu servicio API de productos para actualizar un producto existente
-                await productoService.put(elementActive.id, values);
+                // Aquí debes usar tu servicio API de manufacturados para actualizar un manufacturado existente
+                await manufacturadoService.put(elementActive.id, values);
               } else {
-                // Aquí debes usar tu servicio API de productos para agregar un nuevo producto
-                await productoService.post(values);
+                // Aquí debes usar tu servicio API de manufacturados para agregar un nuevo manufacturado
+                await manufacturadoService.post(values);
               }
-              // Obtener los productos actualizados y cerrar el modal
-              getProductos();
+              // Obtener los manufacturados actualizados y cerrar el modal
+              getManufacturados();
               handleClose();
             }}
           >

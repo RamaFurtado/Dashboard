@@ -1,4 +1,4 @@
-export interface IProducto {
+export interface IInsumo {
     id: number;
     name: string;
     price: number;

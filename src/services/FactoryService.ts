@@ -1,21 +1,31 @@
 import { EmpresaService } from "./EmpresaService";
-import { ProductoService } from "./ProductoService";
+import { InsumoService } from "./InsumoService";
+import { ManufacturadoService } from "./ManufacturadoService";
 import { PromocionService } from "./PromocionService";
 import { UsuarioService } from "./UsuarioService";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const routes: { [key: string]: any } = {
-    products: ProductoService,
-    promotions: PromocionService,
-    company: EmpresaService,
-    user: UsuarioService,
-}
+const getServiceClass = (route: string) => {
+  switch (route) {
+    case "company":
+      return EmpresaService;
+    case "manufactured":
+      return ManufacturadoService;
+    case "supplies":
+      return InsumoService;
+    case "sales":
+      return PromocionService;
+    case "users":
+      return UsuarioService;
+    default:
+      throw new Error(`Ruta no válida: ${route}`);
+  }
+};
 
-// Factory Service funciona llamando al servicio correspondiente 
-// según la ruta que se le pase por parámetro
 export class FactoryService {
-    static createService(route: string) {
-        return new routes[route](API_URL + '/' + route);
-    }
+  static createService(route: string) {
+    const ServiceClass = getServiceClass(route);
+    return new ServiceClass(API_URL + "/" + route);
+  }
 }

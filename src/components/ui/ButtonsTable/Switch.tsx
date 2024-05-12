@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { ProductoService } from "../../../services/ProductoService";
+import { InsumoService } from "../../../services/InsumoService"; // HACER GENÉRICO
 
 import Switch from "@mui/material/Switch";
 import { CircularProgress } from "@mui/material";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const productoService = new ProductoService(API_URL + "/products");
+const insumoService = new InsumoService(API_URL + "/supplies");
 
 interface ISwitchButton {
   id: number;
@@ -25,11 +25,11 @@ export const SwitchButton = ({ id, currentState }: ISwitchButton) => {
     setMessage("");
     try {
       if (active) {
-        await productoService.logicDelete(id);
+        await insumoService.logicDelete(id);
         setMessage("Inactivo");
         console.log("Dada de baja correcta");
       } else {
-        await productoService.logicRestore(id);
+        await insumoService.logicRestore(id);
         setMessage("Activo");
         console.log("Dada de alta correcta");
       }

@@ -2,7 +2,9 @@ import * as React from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { setCurrentSection } from "../../../redux/slices/SectionReducer";
 import { SeccionInicio } from "../../pages/Inicio/SeccionInicio";
-import { SeccionProductos } from "../../pages/Productos/SeccionProductos";
+// import { SeccionArticulos } from "../../pages/Articulos/SeccionArticulos";
+import { SeccionInsumos } from "../../pages/Articulos/Insumos/SeccionInsumos";
+import { SeccionManufacturados } from "../../pages/Articulos/Manufacturados/SeccionManufacturados";
 import { SeccionCategorias } from "../../pages/Categorias/SeccionCategorias";
 import { SeccionPromociones } from "../../pages/Promociones/SeccionPromociones";
 import { SeccionEmpresa } from "../../pages/Empresa/SeccionEmpresa";
@@ -31,6 +33,8 @@ import CategoryIcon from "@mui/icons-material/Category";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import DomainIcon from "@mui/icons-material/Domain";
 import GroupIcon from "@mui/icons-material/Group";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { Collapse } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -88,31 +92,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 interface IDashboardItem {
   text: string;
   icon: JSX.Element;
-  subcategory?: IDashboardItem[];
+  subItems?: IDashboardItem[];
 }
 
 interface IDashboard {
   list: IDashboardItem[];
 }
 
-const subcategorias = [
-  {
-    text: "Hamburguesas",
-    icon: <ShoppingBagIcon />,
-  },
-  {
-    text: "Pizzas",
-    icon: <ShoppingBagIcon />,
-  },
-  {
-    text: "Lomos",
-    icon: <ShoppingBagIcon />,
-  },
-  {
-    text: "Bebidas",
-    icon: <ShoppingBagIcon />,
-  },
-];
 const dashboardItems: IDashboard = {
   list: [
     {
@@ -120,13 +106,22 @@ const dashboardItems: IDashboard = {
       icon: <DashboardIcon />,
     },
     {
-      text: "Productos",
+      text: "Artículos",
       icon: <ShoppingBagIcon />,
+      subItems: [
+        {
+          text: "Manufacturados",
+          icon: <ShoppingBagIcon />,
+        },
+        {
+          text: "Insumos",
+          icon: <ShoppingBagIcon />,
+        },
+      ],
     },
     {
       text: "Categorías",
       icon: <CategoryIcon />,
-      subcategory: subcategorias,
     },
     {
       text: "Promociones",
@@ -148,7 +143,16 @@ const dashboardItems: IDashboard = {
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
-  const [openNested, setOpenNested] = React.useState(false);
+  const [openSubMenu, setOpenSubMenu] = React.useState<{
+    [key: string]: boolean;
+  }>({});
+
+  const handleSubMenuClick = (text: string) => {
+    setOpenSubMenu((prevState) => ({
+      ...prevState,
+      [text]: !prevState[text],
+    }));
+  };
 
   // --------------------------------- CARGAR ESTADO 'SECTION' -------------------------------
   const currentSection: string = useAppSelector(
@@ -173,8 +177,13 @@ export default function PersistentDrawerLeft() {
     switch (seccionActual) {
       case "Inicio":
         return <SeccionInicio setSection={setSection} />;
-      case "Productos":
-        return <SeccionProductos />;
+      case "Artículos":
+        return <h2>Artículos</h2>
+        // Renderizar dos botones que redirijan a las secciones Manufacturados e Insumos.
+      case "Manufacturados":
+        return <SeccionManufacturados />;
+      case "Insumos":
+        return <SeccionInsumos />;
       case "Categorías":
         return <SeccionCategorias />;
       case "Promociones":
@@ -190,7 +199,6 @@ export default function PersistentDrawerLeft() {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -241,17 +249,43 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
           {/* recorre y renderiza la lista de secciones */}
-          {dashboardItems.list.map(({ text, icon }, index) => (
+          {dashboardItems.list.map(({ text, icon, subItems }, index) => (
             <div key={index}>
               <ListItem
-                onClick={() => { handleSectionChange(text) }}
+                onClick={() => {
+                  handleSectionChange(text);
+                  if (subItems) {
+                    handleSubMenuClick(text);
+                  }
+                }}
                 disablePadding
               >
                 <ListItemButton>
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText primary={text} />
+                  {subItems &&
+                    (openSubMenu[text] ? <ExpandLess /> : <ExpandMore />)}
                 </ListItemButton>
               </ListItem>
+              {subItems && (
+                <Collapse in={openSubMenu[text]} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {subItems.map((subItem, subIndex) => (
+                      <ListItem
+                        key={`${index}-${subIndex}`}
+                        onClick={() => handleSectionChange(subItem.text)}
+                        disablePadding
+                        sx={{ pl: 4 }}
+                      >
+                        <ListItemButton>
+                          <ListItemIcon>{subItem.icon}</ListItemIcon>
+                          <ListItemText primary={subItem.text} />
+                        </ListItemButton>
+                      </ListItem>
+                    ))}
+                  </List>
+                </Collapse>
+              )}
             </div>
           ))}
         </List>
