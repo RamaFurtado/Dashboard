@@ -104,7 +104,7 @@ export const GenericTable = <T extends { id: number }>({
   //useEffect va a estar escuchando el estado 'dataTable' para actualizar los datos de las filas con los datos de la tabla
   useEffect(() => {
     const filteredRows = dataTable.filter((row) =>
-      Object.values(row).some((value) =>
+      Object.values(row).some((value: any) =>
         value.toString().toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
