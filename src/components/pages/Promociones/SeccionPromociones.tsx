@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { PromocionService } from "../../../services/PromocionService";
 import { IPromocion } from "../../../types/IPromociones";
-import Swal from "sweetalert2";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { useAppDispatch } from "../../../hooks/redux";
+import Swal from "sweetalert2";
 import { ModalProducto } from "../../ui/modals/ModalProducto/ModalProducto";
-import { CircularProgress } from "@mui/material";
-import TableGeneric from "../../ui/GenericTable/GenericTable";
+// import { GenericModal } from "../../ui/modals/GenericModal";
+import GenericTable from "../../ui/GenericTable/GenericTable";
 import { Loader } from "../../ui/Loader/Loader";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -107,7 +107,7 @@ export const SeccionPromociones = () => {
           <Loader />
         ) : (
           // Mostrar la tabla de personas una vez que los datos se han cargado
-          <TableGeneric<IPromocion>
+          <GenericTable<IPromocion>
             handleDelete={handleDelete}
             columns={ColumnsPromocion}
             setOpenModal={setOpenModal}

@@ -1,6 +1,7 @@
-import { Button, IconButton } from "@mui/material";
 import { useAppDispatch } from "../../../hooks/redux";
 import { setElementActive } from "../../../redux/slices/TablaReducer";
+
+import { Button, IconButton } from "@mui/material";
 import { Edit, EditAttributes, EditAttributesRounded, EditNotifications, EditRounded } from "@mui/icons-material";
 
 // Define una interfaz genérica para los props del componente

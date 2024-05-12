@@ -1,6 +1,10 @@
 import { ReactNode, useEffect, useState } from "react";
 import { useAppSelector } from "../../../hooks/redux";
+import { ButtonsTable } from "../ButtonsTable/ButtonsTable";
+import { SwitchButton } from "../ButtonsTable/Switch";
+
 import {
+  IconButton,
   Paper,
   TableBody,
   TableCell,
@@ -9,9 +13,51 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
+import { styled, alpha } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
+import SearchIcon from "@mui/icons-material/Search";
+import AddIcon from "@mui/icons-material/Add";
 import { Table } from "react-bootstrap";
-import { ButtonsTable } from "../ButtonsTable/ButtonsTable";
-import { SwitchButton } from "../ButtonsTable/Switch";
+
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(1),
+    width: "auto",
+  },
+}));
+
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch",
+      },
+    },
+  },
+}));
 
 interface ITableColumn<T> {
   label: string;
@@ -24,13 +70,18 @@ export interface ITableProps<T> {
   setOpenModal: (state: boolean) => void;
 }
 
-export const TableGeneric = <T extends { id: number }>({
+export const GenericTable = <T extends { id: number }>({
   columns,
   handleDelete,
   setOpenModal,
 }: ITableProps<T>) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
 
   //Cambiar de pagina desde donde estoy parado
   const handleChangePage = (_: unknown, newPage: number) => {
@@ -52,8 +103,13 @@ export const TableGeneric = <T extends { id: number }>({
 
   //useEffect va a estar escuchando el estado 'dataTable' para actualizar los datos de las filas con los datos de la tabla
   useEffect(() => {
-    setRows(dataTable);
-  }, [dataTable]);
+    const filteredRows = dataTable.filter((row) =>
+      Object.values(row).some((value) =>
+        value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+    setRows(filteredRows);
+  }, [dataTable, searchTerm]);
 
   return (
     <div
@@ -68,8 +124,44 @@ export const TableGeneric = <T extends { id: number }>({
         marginTop: "3vh",
       }}
     >
-      {/* Botón para abrir el modal de agregar persona */}
-      < button onClick={() => { setOpenModal(true); }}>Agregar</button>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "1rem",
+          marginBottom: "1rem",
+        }}
+      >
+        <Search
+          style={{
+            flexGrow: 1,
+            marginLeft: "1rem",
+            marginRight: "1rem",
+            backgroundColor: "#f0f0f0",
+          }}
+        >
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            value={searchTerm}
+            onChange={handleSearch}
+            placeholder="Buscar..."
+            inputProps={{ "aria-label": "search" }}
+          />
+        </Search>
+        <IconButton
+          color="primary"
+          aria-label="add"
+          onClick={() => {
+            setOpenModal(true);
+          }}
+        >
+          <AddIcon />
+        </IconButton>
+      </div>
       <Paper sx={{ width: "90%", overflow: "hidden" }}>
         <TableContainer sx={{ maxHeight: "70vh" }}>
           <Table aria-label="sticky table">
@@ -99,12 +191,13 @@ export const TableGeneric = <T extends { id: number }>({
                                 handleDelete={handleDelete}
                                 setOpenModal={setOpenModal}
                               />
+                            ) : column.label === "Estado" ? (
+                              <SwitchButton
+                                id={row.id}
+                                currentState={row.active}
+                              />
                             ) : (
-                              column.label === "Estado" ? (
-                                <SwitchButton id={row.id} currentState={row.active} />
-                              ) : (
-                                row[column.key]
-                              )
+                              row[column.key]
                             )}
                           </TableCell>
                         );
@@ -125,8 +218,8 @@ export const TableGeneric = <T extends { id: number }>({
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-    </div >
+    </div>
   );
 };
 
-export default TableGeneric;
+export default GenericTable;

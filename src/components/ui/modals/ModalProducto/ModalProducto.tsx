@@ -1,11 +1,12 @@
 import React from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
-import { Formik, Field } from 'formik';
-import * as Yup from 'yup';
 import { IProducto } from '../../../../types/IProducto';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { removeElementActive } from '../../../../redux/slices/TablaReducer';
 import { ProductoService } from '../../../../services/ProductoService';
+import { Formik, Field } from 'formik';
+import * as Yup from 'yup';
+
+import { Modal, Button, Form } from 'react-bootstrap';
 import "../modal.css"
 
 const API_URL = import.meta.env.VITE_API_URL;

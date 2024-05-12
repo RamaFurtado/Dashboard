@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { EmpresaService } from "../../../services/EmpresaService";
 import { useAppDispatch } from "../../../hooks/redux";
+import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { IEmpresa } from "../../../types/IEmpresa";
 import Swal from "sweetalert2";
-import { setDataTable } from "../../../redux/slices/TablaReducer";
-import { Button } from "react-bootstrap";
-import { CircularProgress } from "@mui/material";
-import TableGeneric from "../../ui/GenericTable/GenericTable";
+import GenericTable from "../../ui/GenericTable/GenericTable";
 import { Loader } from "../../ui/Loader/Loader";
 
 
@@ -91,7 +89,7 @@ export const SeccionEmpresa = () => {
           <Loader />
         ) : (
           // Mostrar la tabla de personas una vez que los datos se han cargado
-          <TableGeneric<IEmpresa>
+          <GenericTable<IEmpresa>
             handleDelete={handleDelete}
             columns={ColumnsEmpresa}
             setOpenModal={setOpenModal}

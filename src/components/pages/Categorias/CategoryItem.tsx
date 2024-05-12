@@ -1,3 +1,5 @@
+import React from 'react';
+import { ICategories } from '../../../types/ICategories';
 
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -6,8 +8,6 @@ import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
-import React from 'react';
-import { ICategories } from '../../../types/ICategories';
 import { List } from '@mui/material';
 import "./category.css";
 

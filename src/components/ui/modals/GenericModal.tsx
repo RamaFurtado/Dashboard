@@ -1,11 +1,12 @@
 import React from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
-import { Formik, Field } from 'formik';
-import * as Yup from 'yup';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { removeElementActive } from '../../../redux/slices/TablaReducer';
-import "./modal.css"
 import { FactoryService } from '../../../services/FactoryService';
+import { Formik, Field } from 'formik';
+import * as Yup from 'yup';
+
+import { Modal, Button, Form } from 'react-bootstrap';
+import "./modal.css"
 
 interface IModalProps<T> {
     modalTitle: string;

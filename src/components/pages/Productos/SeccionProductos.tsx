@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { ProductoService } from "../../../services/ProductoService";
 import { useAppDispatch } from "../../../hooks/redux";
+import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { IProducto } from "../../../types/IProducto";
 import Swal from "sweetalert2";
-import { setDataTable } from "../../../redux/slices/TablaReducer";
-import TableGeneric from "../../ui/GenericTable/GenericTable";
-import { ModalProducto } from "../../ui/modals/ModalProducto/ModalProducto";
-
 import * as Yup from 'yup';
-import "./SeccionProductos.css";
+import GenericTable from "../../ui/GenericTable/GenericTable";
 import { Loader } from "../../ui/Loader/Loader";
 import { GenericModal } from "../../ui/modals/GenericModal";
+// import { ModalProducto } from "../../ui/modals/ModalProducto/ModalProducto";
+
+import "./productos.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -138,7 +138,7 @@ export const SeccionProductos = () => {
       ) : (
         // Mostrar la tabla de personas una vez que los datos se han cargado
         <div style={{ height: "85vh" }}>
-          <TableGeneric<IProducto>
+          <GenericTable<IProducto>
             handleDelete={handleDelete}
             columns={ColumnsProducto}
             setOpenModal={setOpenModal}

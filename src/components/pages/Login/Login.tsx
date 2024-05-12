@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import styles from './Login.module.css';
+
+import { Button, Form } from 'react-bootstrap';
+import './login.css';
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
@@ -13,17 +14,17 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.containerLogin}>
-      <div className={styles.containerForm}>
-        <span style={{ fontSize: '9vh' }} className="material-symbols-outlined">
+    <div className="containerLogin">
+      <div className="containerForm">
+        <span style={{ fontSize: '9vh' }}>
           Bienvenido
         </span>
         <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group className="mb-3">
             <Form.Label>Usuario</Form.Label>
             <Form.Control type="text" placeholder="Usuario" />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group className="mb-3">
             <Form.Label>Contraseña</Form.Label>
             <Form.Control
               type={showPass ? 'text' : 'password'}

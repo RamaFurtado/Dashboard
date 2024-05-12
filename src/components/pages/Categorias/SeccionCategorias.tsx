@@ -1,7 +1,8 @@
 import * as React from 'react';
-import List from '@mui/material/List';
 import { CategoryItem } from './CategoryItem';
 import { ICategories } from '../../../types/ICategories';
+
+import List from '@mui/material/List';
 
 
 //Poblamos a categorías como si viniera de la base de datos
