@@ -179,7 +179,7 @@ export const SeccionInicio = ({ setSection }: ISeccionInicio) => {
 
     return (
         <div id="seccion-inicio" >
-            <h2 >Resumen</h2>
+            <h2 style={{ fontSize: "22px", margin: "15px 0" }}>Resumen</h2>
             <div id="chart-container">
                 <div className="charts box" style={{ width: "40vw" }}>
                     <h2>Ventas por sucursal</h2>
@@ -191,7 +191,7 @@ export const SeccionInicio = ({ setSection }: ISeccionInicio) => {
                 </div >
             </div>
             <div>
-                <h2>Productos más vendidos</h2>
+                <h2 style={{ fontSize: "22px", marginTop: "15px" }}>Productos más vendidos</h2>
                 <List dense={dense}> {/* Aca tira un warnign el navegador */}
                     {productos.map(({ nombre, descripcion }) => { // Remove duplicate identifier 'string'
                         return (
