@@ -31,6 +31,7 @@ import CategoryIcon from "@mui/icons-material/Category";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import DomainIcon from "@mui/icons-material/Domain";
 import GroupIcon from "@mui/icons-material/Group";
+import SeccionSucursal from "../../pages/Sucursal/SeccionSucursal";
 
 const drawerWidth = 240;
 
@@ -191,7 +192,6 @@ export default function PersistentDrawerLeft() {
     setOpen(true);
   };
 
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -244,7 +244,9 @@ export default function PersistentDrawerLeft() {
           {dashboardItems.list.map(({ text, icon }, index) => (
             <div key={index}>
               <ListItem
-                onClick={() => { handleSectionChange(text) }}
+                onClick={() => {
+                  handleSectionChange(text);
+                }}
                 disablePadding
               >
                 <ListItemButton>

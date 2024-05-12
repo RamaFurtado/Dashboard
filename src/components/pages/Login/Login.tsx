@@ -10,7 +10,7 @@ const Login = () => {
 
   const handleLogin = () => {
     
-    navigate('/app');
+    navigate('/companies');
   };
 
   return (
