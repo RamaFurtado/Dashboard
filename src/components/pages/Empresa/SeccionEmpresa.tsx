@@ -4,8 +4,9 @@ import { useAppDispatch } from "../../../hooks/redux";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { IEmpresa } from "../../../types/IEmpresa";
 import Swal from "sweetalert2";
-import GenericTable from "../../ui/GenericTable/GenericTable";
+import GenericTable from "../../ui/Generic/GenericTable/GenericTable";
 import { Loader } from "../../ui/Loader/Loader";
+import { GenericCard } from "../../ui/Generic/GenericCards/GenericCard";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -17,7 +18,7 @@ export const SeccionEmpresa = () => {
   const empresaService = new EmpresaService(API_URL + "/company");
   const dispatch = useAppDispatch();
 
-  const ColumnsEmpresa = [
+  const AtributeEmpresa = [
     {
       label: "id",
       key: "id",
@@ -62,7 +63,6 @@ export const SeccionEmpresa = () => {
     await empresaService.getAll().then((empresaData) => {
       dispatch(setDataTable(empresaData));
       setLoading(false);
-      console.log(empresaData);
     });
   };
 
@@ -89,11 +89,11 @@ export const SeccionEmpresa = () => {
           <Loader />
         ) : (
           // Mostrar la tabla de personas una vez que los datos se han cargado
-          <GenericTable<IEmpresa>
+          <GenericCard
+            field={AtributeEmpresa}
             handleDelete={handleDelete}
-            columns={ColumnsEmpresa}
             setOpenModal={setOpenModal}
-          />
+            />
         )}
       </div>
       {/* <ModalEmpresa

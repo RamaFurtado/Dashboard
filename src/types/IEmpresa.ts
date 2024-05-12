@@ -6,5 +6,4 @@ export interface IEmpresa{
     image: string;
     actions: string;
     active: boolean;
-    
 }

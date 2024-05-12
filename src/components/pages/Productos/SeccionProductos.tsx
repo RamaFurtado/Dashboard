@@ -5,7 +5,7 @@ import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { IProducto } from "../../../types/IProducto";
 import Swal from "sweetalert2";
 import * as Yup from 'yup';
-import GenericTable from "../../ui/GenericTable/GenericTable";
+import GenericTable from "../../ui/Generic/GenericTable/GenericTable";
 import { Loader } from "../../ui/Loader/Loader";
 import { GenericModal } from "../../ui/modals/GenericModal";
 // import { ModalProducto } from "../../ui/modals/ModalProducto/ModalProducto";

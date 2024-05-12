@@ -6,7 +6,7 @@ import { useAppDispatch } from "../../../hooks/redux";
 import Swal from "sweetalert2";
 import { ModalProducto } from "../../ui/modals/ModalProducto/ModalProducto";
 // import { GenericModal } from "../../ui/modals/GenericModal";
-import GenericTable from "../../ui/GenericTable/GenericTable";
+import GenericTable from "../../ui/Generic/GenericTable/GenericTable";
 import { Loader } from "../../ui/Loader/Loader";
 
 const API_URL = import.meta.env.VITE_API_URL;

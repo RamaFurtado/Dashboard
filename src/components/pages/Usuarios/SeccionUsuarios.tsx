@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../../hooks/redux";
 import { IEmpresa } from "../../../types/IEmpresa";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
-import GenericTable from "../../ui/GenericTable/GenericTable";
+import GenericTable from "../../ui/Generic/GenericTable/GenericTable";
 import { UsuarioService } from "../../../services/UsuarioService";
 import { Loader } from "../../ui/Loader/Loader";
 import Swal from "sweetalert2";
