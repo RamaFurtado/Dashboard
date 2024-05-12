@@ -71,7 +71,7 @@ export const SeccionProductos = () => {
     category: Yup.string().required('Campo requerido'),
     image: Yup.string().required('Campo requerido'),
     stock: Yup.number().required('Campo requerido').min(0, 'El stock debe ser mayor o igual a 0'),
-  })
+  }) as Yup.ObjectSchema<object>;
 
   // Traducción de los placeholders del formulario de productos
   const translatedPlaceholder = {
