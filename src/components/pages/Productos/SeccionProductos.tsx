@@ -4,12 +4,13 @@ import { useAppDispatch } from "../../../hooks/redux";
 import { IProducto } from "../../../types/IProducto";
 import Swal from "sweetalert2";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
-// import { Button } from "react-bootstrap";
-import { CircularProgress } from "@mui/material";
 import TableGeneric from "../../ui/GenericTable/GenericTable";
 import { ModalProducto } from "../../ui/modals/ModalProducto/ModalProducto";
+
+import * as Yup from 'yup';
 import "./SeccionProductos.css";
 import { Loader } from "../../ui/Loader/Loader";
+import { GenericModal } from "../../ui/modals/GenericModal";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -20,6 +21,7 @@ export const SeccionProductos = () => {
   const productoService = new ProductoService(API_URL + "/products");
   const dispatch = useAppDispatch();
 
+  // Necesario para establecer las columnas de la tabla genérica
   const ColumnsProducto = [
     {
       label: "id",
@@ -47,6 +49,54 @@ export const SeccionProductos = () => {
     },
     { label: "Estado", key: "active" },
   ];
+
+  // Necesario para el modal genérico con productos
+  const initialValues: IProducto = {
+    id: 0,
+    name: '',
+    price: 0,
+    description: '',
+    category: '',
+    image: '',
+    stock: 0,
+    actions: '',
+    active: true,
+  };
+
+  //validación del formulario específico para productos
+  const validationSchema = Yup.object({
+    name: Yup.string().required('Campo requerido'),
+    price: Yup.number().required('Campo requerido').min(0, 'El precio debe ser mayor o igual a 0'),
+    description: Yup.string().required('Campo requerido'),
+    category: Yup.string().required('Campo requerido'),
+    image: Yup.string().required('Campo requerido'),
+    stock: Yup.number().required('Campo requerido').min(0, 'El stock debe ser mayor o igual a 0'),
+  })
+
+  // Traducción de los placeholders del formulario de productos
+  const translatedPlaceholder = {
+    name: 'Nombre',
+    price: 'Precio',
+    description: 'Descripción',
+    category: 'Categoría',
+    image: 'Imagen',
+    stock: 'Stock',
+  }
+
+  // Englobamos todas las props referidas al formulario que vamos a pasarle al Modal genérico
+  const formDetails = {
+    validationSchema: validationSchema,
+    initialValues: initialValues,
+    translatedPlaceholder: translatedPlaceholder,
+    formInputType: {
+      name: 'text',
+      price: 'number',
+      description: 'text',
+      category: 'text',
+      image: 'file',
+      stock: 'number',
+    },
+  }
 
   const handleDelete = async (id: number) => {
     Swal.fire({
@@ -95,11 +145,19 @@ export const SeccionProductos = () => {
           />
         </div>
       )}
-      <ModalProducto
+      <GenericModal
+        modalTitle={"Producto"}
+        formDetails={formDetails}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        route="products"
+        getItems={getProducto} />
+
+      {/* <ModalProducto Modal individual de productos
         getProductos={getProducto}
         openModal={openModal}
         setOpenModal={setOpenModal}
-      />
+      /> */}
     </>
   );
 };

@@ -6,7 +6,7 @@ import { IProducto } from '../../../../types/IProducto';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { removeElementActive } from '../../../../redux/slices/TablaReducer';
 import { ProductoService } from '../../../../services/ProductoService';
-import "./modal.css"
+import "../modal.css"
 
 const API_URL = import.meta.env.VITE_API_URL;
 

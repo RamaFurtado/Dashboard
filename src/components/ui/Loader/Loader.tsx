@@ -14,7 +14,7 @@ export const Loader = () => {
             }}
         >
             <CircularProgress color="secondary" />
-            <h2>Cargando...</h2>
+            <h2 style={{ fontSize: "20px" }}>Cargando...</h2>
         </div>
     )
 }
