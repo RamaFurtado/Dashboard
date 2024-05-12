@@ -28,34 +28,34 @@ export const GenericCards = <T extends { id: number }>({
   const dataCard = useAppSelector((state) => state.tableReducer.dataTable);
 
   return (
-    <>
-      {dataCard.map((item) => {
-        console.log(item);
-        return (
-          <Card sx={{ minWidth: 275 }}>
-            <CardContent>
-              <Typography
-                sx={{ fontSize: 14 }}
-                color="text.secondary"
-                gutterBottom
-              >
-                {item.name}
-              </Typography>
-              {/* <img src={item[item.key]} alt={item.name} /> */}
-              <p>Imagen</p>
-              {item.description && (
-                <Typography variant="body2">{item.description}</Typography>
-              )}
-              {item.address && (
-                <Typography variant="body2">{item.address}</Typography>
-              )}
-            </CardContent>
-            <CardActions>
-              <Button size="small" onClick={() => handleClick(item.id)}>Ver mas</Button>
-            </CardActions>
-          </Card>
-        );
-      })}
-    </>
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+      {dataCard.map((item) => (
+        <Card key={item.id} sx={{ width: 'calc(33.33% - 20px)', marginBottom: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', '&:hover': { boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)' } }}>
+          <CardContent>
+            <Typography variant="h5" component="h2" gutterBottom>
+              {item.name}
+            </Typography>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+              <img src="https://via.placeholder.com/150" alt="Imagen" style={{ width: '100px', height: '100px', marginRight: '20px' }} />
+              <div>
+                {item.description && (
+                  <Typography variant="body2" gutterBottom>
+                    Descripción: {item.description}
+                  </Typography>
+                )}
+                {item.address && (
+                  <Typography variant="body2" gutterBottom>
+                    Dirección: {item.address}
+                  </Typography>
+                )}
+              </div>
+            </div>
+          </CardContent>
+          <CardActions>
+            <Button size="small" onClick={() => handleClick(item.id)}>Ver más</Button>
+          </CardActions>
+        </Card>
+      ))}
+    </div>
   );
 };
