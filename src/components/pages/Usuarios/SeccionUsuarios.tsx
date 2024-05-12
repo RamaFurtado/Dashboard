@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../../hooks/redux";
-import { IEmpresa } from "../../../types/IEmpresa";
+import { IUsuario } from "../../../types/IUsuario";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
 import GenericTable from "../../ui/Generic/GenericTable/GenericTable";
 import { UsuarioService } from "../../../services/UsuarioService";
@@ -21,7 +21,7 @@ export const SeccionUsuarios = () => {
     {
       label: "id",
       key: "id",
-      render: (empresa: IEmpresa) => (empresa?.id ? empresa.id : 0),
+      render: (usuario: IUsuario) => (usuario?.id ? usuario.id : 0),
     },
     {
       label: "Nombre",
@@ -54,20 +54,13 @@ export const SeccionUsuarios = () => {
     await usuarioService.getAll().then((usuarioData) => {
       dispatch(setDataTable(usuarioData));
       setLoading(false);
-    });
-  };
-
-  const getEmpresa = async () => {
-    await usuarioService.getAll().then((usuarioData) => {
-      dispatch(setDataTable(usuarioData));
-      setLoading(false);
       console.log(usuarioData);
     });
   };
 
   useEffect(() => {
     setLoading(true);
-    getEmpresa();
+    getUsuario();
   }, []);
 
   return (
@@ -87,15 +80,15 @@ export const SeccionUsuarios = () => {
           <Loader />
         ) : (
           // Mostrar la tabla de personas una vez que los datos se han cargado
-          <GenericTable<IEmpresa>
+          <GenericTable<IUsuario>
             handleDelete={handleDelete}
             columns={ColumnsUsuario}
             setOpenModal={setOpenModal}
           />
         )}
       </div>
-      {/* <ModalEmpresa
-        getProductos={getEmpresa}
+      {/* <ModalUsuario
+        getProductos={getUsuario}
         openModal={openModal}
         setOpenModal={setOpenModal}
       /> */}

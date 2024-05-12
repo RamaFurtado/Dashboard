@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { Modal, Button, Form } from "react-bootstrap";
 import "./modal.css";
 
-interface IModalProps<T> {
+interface IModalProps<T extends { id: number }> {
   modalTitle: string;
   formDetails: {
     initialValues: T;
