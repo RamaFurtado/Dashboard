@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 import { CircularProgress } from "@mui/material";
 import TableGeneric from "../../ui/GenericTable/GenericTable";
 import { UsuarioService } from "../../../services/UsuarioService";
+import { Loader } from "../../ui/Loader/Loader";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -18,7 +19,7 @@ export const SeccionUsuarios = () => {
   const usuarioService = new UsuarioService(API_URL + "/users");
   const dispatch = useAppDispatch();
 
-  const ColumnsUsuario =[
+  const ColumnsUsuario = [
     {
       label: "id",
       key: "id",
@@ -28,8 +29,8 @@ export const SeccionUsuarios = () => {
       label: "Nombre",
       key: "name",
     },
-    { label: "Acciones", key: "actions",},
-    {label: "Estado", key: "active"}
+    { label: "Acciones", key: "actions", },
+    { label: "Estado", key: "active" }
   ]
 
   const handleDelete = async (id: number) => {
@@ -82,32 +83,10 @@ export const SeccionUsuarios = () => {
             width: "90%",
           }}
         >
-          {/* Botón para abrir el modal de agregar persona */}
-          <Button
-            onClick={() => {
-              setOpenModal(true);
-            }}
-            variant="contained"
-          >
-            Agregar
-          </Button>
         </div>
         {/* Mostrar indicador de carga mientras se cargan los datos */}
         {loading ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              width: "100%",
-              gap: "2vh",
-              height: "100%",
-            }}
-          >
-            <CircularProgress color="secondary" />
-            <h2>Cargando...</h2>
-          </div>
+          <Loader />
         ) : (
           // Mostrar la tabla de personas una vez que los datos se han cargado
           <TableGeneric<IEmpresa>

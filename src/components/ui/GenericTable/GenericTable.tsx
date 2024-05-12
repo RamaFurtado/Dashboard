@@ -62,10 +62,16 @@ export const TableGeneric = <T extends { id: number }>({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        height: "100%",
+        flexDirection: "column",
+        gap: "3vh",
+        marginTop: "3vh",
       }}
     >
+      {/* Botón para abrir el modal de agregar persona */}
+      < button onClick={() => { setOpenModal(true); }}>Agregar</button>
       <Paper sx={{ width: "90%", overflow: "hidden" }}>
-        <TableContainer sx={{ maxHeight: "80vh" }}>
+        <TableContainer sx={{ maxHeight: "70vh" }}>
           <Table aria-label="sticky table">
             <TableHead>
               <TableRow>
@@ -119,7 +125,7 @@ export const TableGeneric = <T extends { id: number }>({
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-    </div>
+    </div >
   );
 };
 

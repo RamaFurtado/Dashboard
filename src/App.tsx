@@ -14,9 +14,6 @@ function App() {
           element={
             <Box sx={{ display: 'flex' }}>
               <PersistentDrawerLeft />
-              <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                {}
-              </Box>
             </Box>
           }
         />

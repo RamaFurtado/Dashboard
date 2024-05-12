@@ -4,9 +4,10 @@ import { IPromocion } from "../../../types/IPromociones";
 import Swal from "sweetalert2";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { useAppDispatch } from "../../../hooks/redux";
-import { Button } from "react-bootstrap";
+import { ModalProducto } from "../../ui/modals/ModalProducto/ModalProducto";
 import { CircularProgress } from "@mui/material";
 import TableGeneric from "../../ui/GenericTable/GenericTable";
+import { Loader } from "../../ui/Loader/Loader";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -54,8 +55,8 @@ export const SeccionPromociones = () => {
       label: "Precio",
       key: "price",
     },
-    { label: "Acciones", key: "actions",},
-    {label: "Estado", key: "active"}
+    { label: "Acciones", key: "actions", },
+    { label: "Estado", key: "active" }
   ];
 
   const handleDelete = async (id: number) => {
@@ -100,32 +101,10 @@ export const SeccionPromociones = () => {
             width: "90%",
           }}
         >
-          {/* Botón para abrir el modal de agregar persona */}
-          <Button
-            onClick={() => {
-              setOpenModal(true);
-            }}
-            variant="contained"
-          >
-            Agregar
-          </Button>
         </div>
         {/* Mostrar indicador de carga mientras se cargan los datos */}
         {loading ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              width: "100%",
-              gap: "2vh",
-              height: "100%",
-            }}
-          >
-            <CircularProgress color="secondary" />
-            <h2>Cargando...</h2>
-          </div>
+          <Loader />
         ) : (
           // Mostrar la tabla de personas una vez que los datos se han cargado
           <TableGeneric<IPromocion>
@@ -135,11 +114,11 @@ export const SeccionPromociones = () => {
           />
         )}
       </div>
-      {/* <ModalProducto
-        getProductos={getProducto}
+      <ModalProducto
+        getProductos={() => { console.log('cargar promociones') }}
         openModal={openModal}
         setOpenModal={setOpenModal}
-      /> */}
+      />
     </>
   );
 };

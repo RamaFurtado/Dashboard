@@ -4,10 +4,12 @@ import { useAppDispatch } from "../../../hooks/redux";
 import { IProducto } from "../../../types/IProducto";
 import Swal from "sweetalert2";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 import { CircularProgress } from "@mui/material";
 import TableGeneric from "../../ui/GenericTable/GenericTable";
 import { ModalProducto } from "../../ui/modals/ModalProducto/ModalProducto";
+import "./SeccionProductos.css";
+import { Loader } from "../../ui/Loader/Loader";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -41,8 +43,9 @@ export const SeccionProductos = () => {
     },
     { label: "Stock", key: "stock" },
     {
-      label: "Acciones", key: "actions",},
-    {label: "Estado", key: "active"},
+      label: "Acciones", key: "actions",
+    },
+    { label: "Estado", key: "active" },
   ];
 
   const handleDelete = async (id: number) => {
@@ -66,6 +69,7 @@ export const SeccionProductos = () => {
 
   const getProducto = async () => {
     await productoService.getAll().then((productoData) => {
+      // console.log(productoData)
       dispatch(setDataTable(productoData));
       setLoading(false);
     });
@@ -78,50 +82,19 @@ export const SeccionProductos = () => {
 
   return (
     <>
-      <div>
-        <div
-          style={{
-            padding: ".4rem",
-            display: "flex",
-            justifyContent: "flex-end",
-            width: "90%",
-          }}
-        >
-          {/* Botón para abrir el modal de agregar persona */}
-          <Button
-            onClick={() => {
-              setOpenModal(true);
-            }}
-            variant="contained"
-          >
-            Agregar
-          </Button>
-        </div>
-        {/* Mostrar indicador de carga mientras se cargan los datos */}
-        {loading ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              width: "100%",
-              gap: "2vh",
-              height: "100%",
-            }}
-          >
-            <CircularProgress color="secondary" />
-            <h2>Cargando...</h2>
-          </div>
-        ) : (
-          // Mostrar la tabla de personas una vez que los datos se han cargado
+      {/* Mostrar indicador de carga mientras se cargan los datos */}
+      {loading ? (
+        <Loader />
+      ) : (
+        // Mostrar la tabla de personas una vez que los datos se han cargado
+        <div style={{ height: "85vh" }}>
           <TableGeneric<IProducto>
             handleDelete={handleDelete}
             columns={ColumnsProducto}
             setOpenModal={setOpenModal}
           />
-        )}
-      </div>
+        </div>
+      )}
       <ModalProducto
         getProductos={getProducto}
         openModal={openModal}
