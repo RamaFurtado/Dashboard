@@ -51,7 +51,7 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
         },
     }
     return (
-        <GenericModal
+        <GenericModal<IEmpresa>
             modalTitle="Empresas"
             getItems={getEmpresa}
             openModal={openModal}

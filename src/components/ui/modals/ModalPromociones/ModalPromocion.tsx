@@ -58,7 +58,7 @@ export const ModalPromocion = ({ getPromociones, openModal, setOpenModal }: IMod
         },
     }
     return (
-        <GenericModal
+        <GenericModal<IPromocion>
             openModal={openModal}
             setOpenModal={setOpenModal}
             modalTitle="Promoción"

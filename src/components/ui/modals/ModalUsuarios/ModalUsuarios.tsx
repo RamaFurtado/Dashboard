@@ -38,7 +38,7 @@ export const ModalUsuarios = ({ getUsuarios, openModal, setOpenModal }: IModalUs
         },
     }
     return (
-        <GenericModal
+        <GenericModal<IUsuario>
             modalTitle="Usuario"
             getItems={getUsuarios}
             openModal={openModal}
