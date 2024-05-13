@@ -4,13 +4,13 @@ import { useAppDispatch } from "../../../../hooks/redux";
 import { setDataTable } from "../../../../redux/slices/TablaReducer";
 import { IInsumo } from "../../../../types/IInsumo";
 import Swal from "sweetalert2";
-import * as Yup from 'yup';
 import GenericTable from "../../../ui/Generic/GenericTable/GenericTable";
 import { Loader } from "../../../ui/Loader/Loader";
 import { GenericModal } from "../../../ui/modals/GenericModal";
 // import { ModalInsumo } from "../../ui/modals/ModalInsumo/ModalInsumo";
 
 import "./insumos.css";
+import { ModalInsumo } from "../../../ui/modals/ModalArticulos/ModalInsumos";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -50,53 +50,6 @@ export const SeccionInsumos = () => {
     { label: "Estado", key: "active" },
   ];
 
-  // Necesario para el modal genérico con insumos
-  const initialValues: IInsumo = {
-    id: 0,
-    name: '',
-    price: 0,
-    description: '',
-    category: '',
-    image: '',
-    stock: 0,
-    actions: '',
-    active: true,
-  };
-
-  //validación del formulario específico para insumos
-  const validationSchema = Yup.object({
-    name: Yup.string().required('Campo requerido'),
-    price: Yup.number().required('Campo requerido').min(0, 'El precio debe ser mayor o igual a 0'),
-    description: Yup.string().required('Campo requerido'),
-    category: Yup.string().required('Campo requerido'),
-    image: Yup.string().required('Campo requerido'),
-    stock: Yup.number().required('Campo requerido').min(0, 'El stock debe ser mayor o igual a 0'),
-  }) as Yup.ObjectSchema<object>;
-
-  // Traducción de los placeholders del formulario de insumos
-  const translatedPlaceholder = {
-    name: 'Nombre',
-    price: 'Precio',
-    description: 'Descripción',
-    category: 'Categoría',
-    image: 'Imagen',
-    stock: 'Stock',
-  }
-
-  // Englobamos todas las props referidas al formulario que vamos a pasarle al Modal genérico
-  const formDetails = {
-    validationSchema: validationSchema,
-    initialValues: initialValues,
-    translatedPlaceholder: translatedPlaceholder,
-    formInputType: {
-      name: 'text',
-      price: 'number',
-      description: 'text',
-      category: 'text',
-      image: 'file',
-      stock: 'number',
-    },
-  }
 
   const handleDelete = async (id: number) => {
     Swal.fire({
@@ -145,19 +98,19 @@ export const SeccionInsumos = () => {
           />
         </div>
       )}
-      <GenericModal
+      {/* <GenericModal
         modalTitle={"Insumo"}
         formDetails={formDetails}
         openModal={openModal}
         setOpenModal={setOpenModal}
         route="supplies"
-        getItems={getInsumo} />
+        getItems={getInsumo} /> */}
 
-      {/* <ModalInsumo Modal individual de insumos
+      <ModalInsumo
         getInsumos={getInsumo}
         openModal={openModal}
         setOpenModal={setOpenModal}
-      /> */}
+      />
     </>
   );
 };

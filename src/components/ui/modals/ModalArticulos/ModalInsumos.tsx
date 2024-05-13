@@ -14,7 +14,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const insumoService = new InsumoService(API_URL + '/supplies');
 
 interface IModalInsumo {
-  getInsumos: Function; // Función para obtener los insumos
+  getInsumos: () => void; // Función para obtener los insumos
   openModal: boolean;
   setOpenModal: (state: boolean) => void;
 }

@@ -5,9 +5,9 @@ import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { useAppDispatch } from "../../../hooks/redux";
 import Swal from "sweetalert2";
 import { ModalInsumo } from "../../ui/modals/ModalArticulos/ModalInsumos";
-// import { GenericModal } from "../../ui/modals/GenericModal";
 import GenericTable from "../../ui/Generic/GenericTable/GenericTable";
 import { Loader } from "../../ui/Loader/Loader";
+import { ModalPromocion } from "../../ui/modals/ModalPromociones/ModalPromocion";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -114,11 +114,10 @@ export const SeccionPromociones = () => {
           />
         )}
       </div>
-      <ModalInsumo
-        getInsumos={() => { console.log('cargar promociones') }}
+      <ModalPromocion
         openModal={openModal}
         setOpenModal={setOpenModal}
-      />
+        getPromociones={getPromocion} />
     </>
   );
 };

@@ -77,14 +77,14 @@ export const SeccionEmpresa = () => {
             handleClick={handleClick}
             handleDelete={handleDelete}
             setOpenModal={setOpenModal}
-            />
+          />
         )}
       </div>
-      {/* <ModalEmpresa
-        getProductos={getEmpresa}
+      <ModalEmpresa
+        getEmpresa={getEmpresa}
         openModal={openModal}
         setOpenModal={setOpenModal}
-      /> */}
+      />
     </>
   );
 }
