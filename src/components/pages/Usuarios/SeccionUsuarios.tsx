@@ -6,6 +6,7 @@ import GenericTable from "../../ui/Generic/GenericTable/GenericTable";
 import { UsuarioService } from "../../../services/UsuarioService";
 import { Loader } from "../../ui/Loader/Loader";
 import Swal from "sweetalert2";
+import { ModalUsuarios } from "../../ui/modals/ModalUsuarios/ModalUsuarios";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -87,11 +88,11 @@ export const SeccionUsuarios = () => {
           />
         )}
       </div>
-      {/* <ModalUsuario
-        getProductos={getUsuario}
+      <ModalUsuarios
+        getUsuarios={getUsuario}
         openModal={openModal}
         setOpenModal={setOpenModal}
-      /> */}
+      />
     </>
   );
 }

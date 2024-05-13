@@ -101,7 +101,7 @@ export const GenericModal = <T extends { id: number }>({
                             name={key}
                             type={formDetails.formInputType[key]}
                             placeholder={formDetails.translatedPlaceholder[key]}
-                            // value={values[key]} En caso de tener que cargar los valores para editar, usamos value
+                          // value={values[key]} En caso de tener que cargar los valores para editar, usamos value
                           />
                         )
                     )}

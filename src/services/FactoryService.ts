@@ -2,21 +2,24 @@ import { EmpresaService } from "./EmpresaService";
 import { InsumoService } from "./InsumoService";
 import { ManufacturadoService } from "./ManufacturadoService";
 import { PromocionService } from "./PromocionService";
+import { SucursalService } from "./SucursalService";
 import { UsuarioService } from "./UsuarioService";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const getServiceClass = (route: string) => {
   switch (route) {
-    case "company":
+    case "empresa":
       return EmpresaService;
-    case "manufactured":
+    case "sucursal":
+      return SucursalService;
+    case "manufacturado":
       return ManufacturadoService;
-    case "supplies":
+    case "insumo":
       return InsumoService;
-    case "sales":
+    case "promocion":
       return PromocionService;
-    case "users":
+    case "usuario":
       return UsuarioService;
     default:
       throw new Error(`Ruta no válida: ${route}`);
