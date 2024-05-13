@@ -98,6 +98,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 // ----------------------------------------------CODIGO POR NOSOTROS------------------------------------------------
 
+// Definición de interfaces para los elementos del menú lateral
 interface IDashboardItem {
   text: string;
   icon: JSX.Element;
@@ -108,6 +109,7 @@ interface IDashboard {
   list: IDashboardItem[];
 }
 
+// Definición de los elementos del menú principal y sus submenús
 const dashboardItems: IDashboard = {
   list: [
     {
@@ -149,6 +151,7 @@ const dashboardItems: IDashboard = {
 
 //-------------------------------------------------------------------------------------------------------------
 
+// COMPONENTE PRINCIPAL
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
@@ -164,6 +167,7 @@ export default function PersistentDrawerLeft() {
   };
 
   // --------------------------------- CARGAR ESTADO 'SECTION' -------------------------------
+  // Manejo del estado de la sección actual
   const currentSection: string = useAppSelector(
     (state) => state.sectionReducer.sectionActual
   );
@@ -181,14 +185,14 @@ export default function PersistentDrawerLeft() {
     dispatch(setCurrentSection(newSection));
   };
 
-  // renderiza componentes en función del estado actual
+  // Función para renderizar la sección correspondiente en función del estado actual
   const dashboardSection = (seccionActual: string) => {
     switch (seccionActual) {
       case "Inicio":
         return <SeccionInicio setSection={setSection} />;
       case "Artículos":
         return <h2>Artículos</h2>;
-      // Renderizar dos botones que redirijan a las secciones Manufacturados e Insumos.
+      // TODO: Renderizar dos botones que redirijan a las secciones Manufacturados e Insumos, o no renderizar nada.
       case "Manufacturados":
         return <SeccionManufacturados />;
       case "Insumos":
@@ -204,7 +208,7 @@ export default function PersistentDrawerLeft() {
     }
   };
 
-  // ESTADO PARA DESPLEGABLE "SUCURSALES"
+  // Estado y manejo de la selección de sucursal (menú desplegable)
 
   const [branch, setBranch] = React.useState("");
 
@@ -225,6 +229,7 @@ export default function PersistentDrawerLeft() {
     <Box sx={{ display: "flex", width: "100vw", height: "100vh" }}>
       <CssBaseline />
       <AppBar style={{ zIndex: 1000 }} position="fixed" open={open}>
+        {/* Navbar */}
         <Toolbar>
           <IconButton
             color="inherit"
@@ -240,6 +245,7 @@ export default function PersistentDrawerLeft() {
           </Typography>
         </Toolbar>
       </AppBar>
+      {/* Sidebar */}
       <Drawer
         style={{ zIndex: 100 }}
         sx={{
@@ -264,6 +270,7 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </DrawerHeader>
         <Divider />
+        {/* Usuario y selección de sucursal */}
         <div
           style={{
             display: "flex",
@@ -272,7 +279,13 @@ export default function PersistentDrawerLeft() {
             justifyContent: "center",
           }}
         >
-          <IconButton aria-label="user" color="primary">
+          <IconButton
+            aria-label="user"
+            color="primary"
+            onClick={() => {
+              handleSectionChange("Usuarios");
+            }}
+          >
             <AccountCircle fontSize="large" />
           </IconButton>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
@@ -284,7 +297,7 @@ export default function PersistentDrawerLeft() {
               label="Branch"
               onChange={handleChange}
             >
-              <MenuItem value={10}>Sucursal 1</MenuItem>
+              <MenuItem value={10}>Sucursal 1</MenuItem> {/* TODO: Renderizar sucursales */}
               <MenuItem value={20}>Sucursal 2</MenuItem>
             </Select>
           </FormControl>
