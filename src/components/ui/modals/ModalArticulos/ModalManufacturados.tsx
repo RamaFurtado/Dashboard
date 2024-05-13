@@ -36,11 +36,11 @@ export const ModalManufacturado = ({
     active: true,
   };
 
-  const [active, setActive] = React.useState<boolean>(true);
+  // const [active, setActive] = React.useState<boolean>(true);
 
-  const actualDate: string = new Date().toISOString().split('T')[0];
-  // Debes definir la lógica para tu servicio API de manufacturados
-  const apiManufacturado = new ManufacturadoService(API_URL + '/products');
+  // const actualDate: string = new Date().toISOString().split('T')[0];
+  // // Debes definir la lógica para tu servicio API de manufacturados
+  // const apiManufacturado = new ManufacturadoService(API_URL + '/manufactured');
 
   const elementActive = useAppSelector(
     (state) => state.tableReducer.elementActive

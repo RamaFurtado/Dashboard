@@ -33,9 +33,17 @@ import CategoryIcon from "@mui/icons-material/Category";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import DomainIcon from "@mui/icons-material/Domain";
 import GroupIcon from "@mui/icons-material/Group";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { Collapse } from "@mui/material";
-import SeccionSucursal from "../../pages/Sucursal/SeccionSucursal";
+import { AccountCircle, ExpandLess, ExpandMore } from "@mui/icons-material";
+import {
+  Collapse,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  NativeSelect,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+// import SeccionSucursal from "../../pages/Sucursal/SeccionSucursal";
 
 const drawerWidth = 240;
 
@@ -179,8 +187,8 @@ export default function PersistentDrawerLeft() {
       case "Inicio":
         return <SeccionInicio setSection={setSection} />;
       case "Artículos":
-        return <h2>Artículos</h2>
-        // Renderizar dos botones que redirijan a las secciones Manufacturados e Insumos.
+        return <h2>Artículos</h2>;
+      // Renderizar dos botones que redirijan a las secciones Manufacturados e Insumos.
       case "Manufacturados":
         return <SeccionManufacturados />;
       case "Insumos":
@@ -194,6 +202,14 @@ export default function PersistentDrawerLeft() {
       case "Usuarios":
         return <SeccionUsuarios />;
     }
+  };
+
+  // ESTADO PARA DESPLEGABLE "SUCURSALES"
+
+  const [branch, setBranch] = React.useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setBranch(event.target.value as string);
   };
   // -----------------------------------------------------
 
@@ -247,6 +263,32 @@ export default function PersistentDrawerLeft() {
             )}
           </IconButton>
         </DrawerHeader>
+        <Divider />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+            justifyContent: "center",
+          }}
+        >
+          <IconButton aria-label="user" color="primary">
+            <AccountCircle fontSize="large" />
+          </IconButton>
+          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <InputLabel id="demo-select-small-label">Sucursal</InputLabel>
+            <Select
+              labelId="demo-select-small-label"
+              id="demo-select-small"
+              value={branch}
+              label="Branch"
+              onChange={handleChange}
+            >
+              <MenuItem value={10}>Sucursal 1</MenuItem>
+              <MenuItem value={20}>Sucursal 2</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
         <Divider />
         <List>
           {/* recorre y renderiza la lista de secciones */}

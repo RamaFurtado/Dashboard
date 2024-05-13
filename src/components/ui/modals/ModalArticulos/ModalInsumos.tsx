@@ -36,11 +36,11 @@ export const ModalInsumo = ({
     active: true,
   };
 
-  const [active, setActive] = React.useState<boolean>(true);
+  // const [active, setActive] = React.useState<boolean>(true);
 
-  const actualDate: string = new Date().toISOString().split('T')[0];
-  // Debes definir la lógica para tu servicio API de insumos
-  const apiInsumo = new InsumoService(API_URL + '/supplies');
+  // const actualDate: string = new Date().toISOString().split('T')[0];
+  // // Debes definir la lógica para tu servicio API de insumos
+  // const apiInsumo = new InsumoService(API_URL + '/supplies');
 
   const elementActive = useAppSelector(
     (state) => state.tableReducer.elementActive

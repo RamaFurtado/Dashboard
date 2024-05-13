@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Login from "../components/pages/Login/Login";
 import { Box } from "@mui/material";
 import PersistentDrawerLeft from "../components/ui/Sidebar/Sidebar";
-import SeccionSucursal from "../components/pages/Sucursal/SeccionSucursal";
+// import SeccionSucursal from "../components/pages/Sucursal/SeccionSucursal";
 import { SeccionEmpresa } from "../components/pages/Empresa/SeccionEmpresa";
 
 export const AppRouter = () => {
