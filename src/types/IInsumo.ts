@@ -4,6 +4,7 @@ export interface IInsumo extends IBaseEntity {
     price: number;
     description: string;
     category: string;
+    isIngredient: boolean;
     image: string;
     stock: number;
     actions: string;

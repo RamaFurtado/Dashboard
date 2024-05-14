@@ -58,8 +58,20 @@
       "price": 1000,
       "description": "Coca Cola 2L",
       "category": 4,
+      "isIngredient": false,
       "image": "https://i5.walmartimages.com/seo/Coca-Cola-Soda-Pop-2-Liters-Bottle_276fc3fd-fb2b-4c06-a277-5960a7e56495.c49f20b917881d57ead19e24bbad7b23.jpeg",
       "stock": 10,
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Harina Leudante",
+      "price": 500,
+      "description": "Harina Leudante Pureza UR Vit D",
+      "category": 5,
+      "isIngredient": true,
+      "image": "https://pureza.com.ar/wp-content/uploads/2019/06/Harina-Pureza-Leudante-UR-Vit-D-e1700650871724_2.png",
+      "stock": 5,
       "active": true
     }
   ],
@@ -67,6 +79,23 @@
     {
       "id": 1,
       "name": "Hamburguesas",
+      "subcategories": [
+        {
+          "id": 1,
+          "name": "Hamburguesas Clásicas",
+          "active": true
+        },
+        {
+          "id": 2,
+          "name": "Hamburguesas Veganas",
+          "active": true
+        },
+        {
+          "id": 3,
+          "name": "Hamburguesas Vegetarianas",
+          "active": true
+        }
+      ],
       "active": true
     },
     {
@@ -82,6 +111,28 @@
     {
       "id": 4,
       "name": "Bebidas",
+      "subcategories": [
+        {
+          "id": 1,
+          "name": "Gaseosas",
+          "active": true
+        },
+        {
+          "id": 2,
+          "name": "Cervezas",
+          "active": true
+        },
+        {
+          "id": 3,
+          "name": "Aguas",
+          "active": true
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 5,
+      "name": "Harinas",
       "active": true
     }
   ],

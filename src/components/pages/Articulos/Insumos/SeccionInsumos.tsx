@@ -31,23 +31,25 @@ export const SeccionInsumos = () => {
     { label: "Descripción", key: "description" },
     { label: "Categoría", key: "category" },
     {
-      label: 'Imagen',
-      key: 'image',
+      label: "Es ingrediente",
+      key: "isIngredient",
+      render: (insumo: IInsumo) => (insumo.isIngredient ? "Sí" : "No"),
+    },
+    {
+      label: "Imagen",
+      key: "image",
       render: (insumo: IInsumo) => (
         <img
           src={insumo.image}
           alt={insumo.name}
-          style={{ maxWidth: '100px', maxHeight: '100px' }}
+          style={{ maxWidth: "100px", maxHeight: "100px" }}
         />
       ),
     },
     { label: "Stock", key: "stock" },
-    {
-      label: "Acciones", key: "actions",
-    },
+    { label: "Acciones", key: "actions" },
     { label: "Estado", key: "active" },
   ];
-
 
   const handleDelete = async (id: number) => {
     Swal.fire({

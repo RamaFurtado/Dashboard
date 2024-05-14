@@ -21,6 +21,7 @@ export const ModalInsumo = ({
     price: 0,
     description: '',
     category: '',
+    isIngredient: true,
     image: '',
     stock: 0,
     actions: '',
@@ -33,6 +34,7 @@ export const ModalInsumo = ({
     price: Yup.number().required('Campo requerido'),
     description: Yup.string().required('Campo requerido'),
     category: Yup.string().required('Campo requerido'),
+    isIngredient: Yup.boolean().required('Campo requerido'),
     image: Yup.string().required('Campo requerido'),
     stock: Yup.number().required('Campo requerido'),
   }) as Yup.ObjectSchema<object>;
@@ -52,8 +54,9 @@ export const ModalInsumo = ({
       price: 'number',
       description: 'text',
       category: 'text',
+      isIngredient: 'checkbox',
       image: 'file',
-      stock: 'number'
+      stock: 'number',
     },
   }
   return (
