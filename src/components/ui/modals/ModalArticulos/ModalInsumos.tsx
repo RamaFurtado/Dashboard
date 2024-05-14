@@ -62,7 +62,7 @@ export const ModalInsumo = ({
       getItems={getInsumos}
       openModal={openModal}
       setOpenModal={setOpenModal}
-      route="insumo"
+      route="supplies"
       formDetails={formDetails} />
   )
 }
