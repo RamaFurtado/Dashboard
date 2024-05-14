@@ -66,19 +66,23 @@
   "categories": [
     {
       "id": 1,
-      "name": "Hamburguesas"
+      "name": "Hamburguesas",
+      "active": true
     },
     {
       "id": 2,
-      "name": "Pizzas"
+      "name": "Pizzas",
+      "active": true
     },
     {
       "id": 3,
-      "name": "Lomos"
+      "name": "Lomos",
+      "active": true
     },
     {
       "id": 4,
-      "name": "Bebidas"
+      "name": "Bebidas",
+      "active": true
     }
   ],
   "sales": [

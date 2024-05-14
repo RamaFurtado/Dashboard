@@ -1,141 +1,68 @@
-import * as React from 'react';
-import { CategoryItem } from './CategoryItem';
-import { ICategories } from '../../../types/ICategories';
+import * as React from "react";
+import { CategoryItem } from "./CategoryItem";
+import { useEffect, useState } from "react";
+import { ICategories } from "../../../types/ICategories";
+import List from "@mui/material/List";
+import { IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+// import { Loader } from "../../ui/Loader/Loader";
+import { CategoriaService } from "../../../services/CategoriaService";
 
-import List from '@mui/material/List';
-
-
-//Poblamos a categorías como si viniera de la base de datos
-const categories: ICategories[] = [
-  {
-    id: 1,
-    name: "Hamburguesas",
-    subcategories: [
-      {
-        id: 11,
-        name: "Clásicas",
-      },
-      {
-        id: 12,
-        name: "Veganas",
-        subcategories: [
-          {
-            id: 121,
-            name: "De lentejas",
-          },
-          {
-            id: 122,
-            name: "De garbanzos",
-          },
-        ],
-      },
-      {
-        id: 13,
-        name: "Gourmet",
-        subcategories: [
-          {
-            id: 131,
-            name: "Con fritas",
-          },
-          {
-            id: 132,
-            name: "Con huevo",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Lomos",
-    subcategories: [
-      {
-        id: 21,
-        name: "Completos",
-      },
-      {
-        id: 22,
-        name: "A caballo",
-      },
-      {
-        id: 23,
-        name: "Al plato",
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Empanadas",
-    subcategories: [
-      {
-        id: 31,
-        name: "De carne",
-      },
-      {
-        id: 32,
-        name: "De pollo",
-      },
-      {
-        id: 33,
-        name: "De humita",
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: "Pizzas",
-    subcategories: [
-      {
-        id: 41,
-        name: "Muzas",
-      },
-      {
-        id: 42,
-        name: "Especiales",
-        subcategories: [
-          {
-            id: 421,
-            name: "Con huevo frito",
-          },
-          {
-            id: 422,
-            name: "Con papas fritas",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 5,
-    name: "Bebidas",
-    subcategories: [
-      {
-        id: 51,
-        name: "Gaseosas",
-      },
-      {
-        id: 52,
-        name: "Cervezas",
-      },
-      {
-        id: 53,
-        name: "Vinos",
-      },
-    ],
-  },
-];
-
-
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function SeccionCategorias() {
+  const [categories, setCategories] = useState<ICategories[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const categoriaService = new CategoriaService(API_URL + "/category");
+
+  const getCategoria = async () => {
+    try {
+      const categoriaData = await categoriaService.getAll();
+      setCategories(categoriaData);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error al obtener las categorías:", error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getCategoria();
+  }, []);
 
   return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader">
-      {categories.map((category) => (
-        // Se crea un componente CategoryItem para cada categoría para poder manejar la apertura y cierre propia de cada botón
-        // padding agrega una sangría para diferenciar categorías de subcategorías
-        <CategoryItem key={category.id} category={category} padding={2} />
-      ))}
-    </List>
+    <div style={{ paddingTop: "30px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "right",
+          paddingRight: "20px",
+        }}
+      >
+        <IconButton
+          color="primary"
+          aria-label="add"
+          // onClick={() => {
+          //   setOpenModal(true);
+          // }}
+        >
+          <AddIcon />
+        </IconButton>
+      </div>
+      {!loading && Array.isArray(categories) && categories.length > 0 ? (
+        <List
+          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+        >
+          {categories.map((category) => (
+            <CategoryItem key={category.id} category={category} padding={2} />
+          ))}
+        </List>
+      ) : (
+        <p>No hay categorías disponibles.</p>
+      )}
+    </div>
   );
 }

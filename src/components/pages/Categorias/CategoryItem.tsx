@@ -1,55 +1,65 @@
-import React from 'react';
-import { ICategories } from '../../../types/ICategories';
-
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Collapse from '@mui/material/Collapse';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
-import { List } from '@mui/material';
+import React from "react";
+import { ICategories } from "../../../types/ICategories";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Collapse from "@mui/material/Collapse";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
+import { IconButton, List } from "@mui/material";
+import { EditRounded } from "@mui/icons-material";
+import { SwitchButton } from "../../ui/ButtonsTable/Switch";
 import "./category.css";
 
 interface CategoryItemProps {
-    category: ICategories,
-    padding: number,
+  category: ICategories;
+  padding: number;
 }
 
-export const CategoryItem: React.FC<CategoryItemProps> = ({ category, padding }) => {
-    const [open, setOpen] = React.useState(false);
-    const handleClick = () => setOpen(!open);
+export const CategoryItem: React.FC<CategoryItemProps> = ({
+  category,
+  padding,
+}) => {
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => setOpen(!open);
 
-    return (
+  return (
+    <div>
+      <ListItemButton sx={{ pl: padding }} onClick={handleClick}>
+        <ListItemIcon>
+          <GridViewOutlinedIcon />
+        </ListItemIcon>
+        <ListItemText primary={category.name} />
+        <div style={{ padding: "10px" }}>
+          <IconButton color="primary">
+            <EditRounded />
+          </IconButton>
+          <SwitchButton id={category.id} currentState={category.active} />
+        </div>
+        {category.subcategories && category.subcategories.length > 0 ? (
+          open ? (
+            <ExpandLess />
+          ) : (
+            <ExpandMore />
+          )
+        ) : null}
+      </ListItemButton>
+      {category.subcategories && category.subcategories.length > 0 && (
         <>
-            {/* ListItemButton es un botón común que puede tener o no flecha de subcategorías */}
-            <ListItemButton sx={{ pl: padding }} onClick={handleClick}>
-                <ListItemIcon>
-                    <GridViewOutlinedIcon />
-                </ListItemIcon>
-                <ListItemText primary={category.name} />
-                {/* Si existe subcategoría, agrega un icono de flecha de subcategorías */}
-                {category.subcategories && category.subcategories.length > 0
-                    ? open ? <ExpandLess /> : <ExpandMore /> : null
-                }
-            </ListItemButton>
-            {/* Si existe subcategoría, agrega el componente colapsable con las subcategorías basado en el botón de arriba */}
-            {category.subcategories && category.subcategories.length > 0 && (
-                <>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            {category.subcategories.map((subcategory) => (
-                                // Vuelve a llamar al componente recursivamente en caso de que existan subcategorías en subcategorías
-                                <CategoryItem
-                                    key={subcategory.id}
-                                    category={subcategory}
-                                    padding={padding ? padding + 4 : 4}
-                                />
-                            ))}
-                        </List>
-                    </Collapse>
-                </>
-            )}
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {category.subcategories.map((subcategory) => (
+                <CategoryItem
+                  key={subcategory.id}
+                  category={subcategory}
+                  padding={padding ? padding + 4 : 4}
+                />
+              ))}
+            </List>
+          </Collapse>
         </>
-    );
+      )}
+    </div>
+  );
 };
