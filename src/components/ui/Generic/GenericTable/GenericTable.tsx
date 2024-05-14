@@ -179,7 +179,7 @@ export const GenericTable = <T extends { id: number }>({
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index: number) => {
                   return (
-                    <TableRow>
+                    <TableRow key={index}>
                       {columns.map((column, i: number) => {
                         return (
                           <TableCell key={i} align={"center"}>
