@@ -1,3 +1,5 @@
+import { IBaseEntity } from "./IBaseEntity";
+
 export interface IManufacturado extends IBaseEntity {
     price: number;
     description: string;

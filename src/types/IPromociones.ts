@@ -1,3 +1,5 @@
+import { IBaseEntity } from "./IBaseEntity";
+
 export interface IPromocion extends IBaseEntity {
     image: string;
     since: string;
