@@ -6,8 +6,11 @@ import {
   Card,
   CardActions,
   CardContent,
+  Switch,
   Typography,
 } from "@mui/material";
+import { ButtonsTable } from "../../ButtonsTable/ButtonsTable";
+import { SwitchButton } from "../../ButtonsTable/Switch";
 
 interface IGenericAtribute<T> {
   label: string;
@@ -35,6 +38,7 @@ export const GenericCards = <T extends { id: number }>({
             <Typography variant="h5" component="h2" gutterBottom>
               {item.name}
             </Typography>
+            <SwitchButton id={item.id} currentState={item.active} />
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
               <img src="https://via.placeholder.com/150" alt="Imagen" style={{ width: '100px', height: '100px', marginRight: '20px' }} />
               <div>
@@ -53,6 +57,7 @@ export const GenericCards = <T extends { id: number }>({
           </CardContent>
           <CardActions>
             <Button size="small" onClick={() => handleClick(item.id)}>Ver más</Button>
+            <ButtonsTable el={item} handleDelete={handleDelete} setOpenModal={setOpenModal} />
           </CardActions>
         </Card>
       ))}
