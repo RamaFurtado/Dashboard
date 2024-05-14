@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { Loader } from "../../ui/Loader/Loader";
 import { GenericCards } from "../../ui/Generic/GenericCards/GenericCard";
 import { useNavigate } from "react-router-dom";
+import { ModalEmpresa } from "../../ui/modals/ModalEmpresa/ModalEmpresa";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
