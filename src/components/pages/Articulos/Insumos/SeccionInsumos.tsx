@@ -6,8 +6,6 @@ import { IInsumo } from "../../../../types/IInsumo";
 import Swal from "sweetalert2";
 import GenericTable from "../../../ui/Generic/GenericTable/GenericTable";
 import { Loader } from "../../../ui/Loader/Loader";
-import { GenericModal } from "../../../ui/modals/GenericModal";
-// import { ModalInsumo } from "../../ui/modals/ModalInsumo/ModalInsumo";
 
 import "./insumos.css";
 import { ModalInsumo } from "../../../ui/modals/ModalArticulos/ModalInsumos";

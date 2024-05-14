@@ -214,11 +214,9 @@ export const SeccionInicio = ({ setSection }: ISeccionInicio) => {
         </h2>
         <List dense={dense}>
           {" "}
-          {/* Aca tira un warnign el navegador */}
-          {productos.map(({ nombre, descripcion }) => {
-            // Remove duplicate identifier 'string'
+          {productos.map(({ nombre, descripcion }, index) => {
             return (
-              <ListItem
+              <ListItem key={index}
                 secondaryAction={
                   <IconButton
                     onClick={() => handleSectionChange("Productos")}

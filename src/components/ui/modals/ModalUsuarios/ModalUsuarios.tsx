@@ -43,7 +43,7 @@ export const ModalUsuarios = ({ getUsuarios, openModal, setOpenModal }: IModalUs
             getItems={getUsuarios}
             openModal={openModal}
             setOpenModal={setOpenModal}
-            route="usuario"
+            route="users"
             formDetails={formDetails} />
     )
 }

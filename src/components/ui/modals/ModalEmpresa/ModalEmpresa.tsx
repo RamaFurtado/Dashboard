@@ -56,7 +56,7 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
             getItems={getEmpresa}
             openModal={openModal}
             setOpenModal={setOpenModal}
-            route="empresa"
+            route="company"
             formDetails={formDetails} />
     )
 }

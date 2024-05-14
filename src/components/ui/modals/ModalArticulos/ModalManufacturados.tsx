@@ -62,7 +62,7 @@ export const ModalManufacturado = ({
       getItems={getManufacturados}
       openModal={openModal}
       setOpenModal={setOpenModal}
-      route="manufacturado"
+      route="manufactured"
       formDetails={formDetails} />
   )
 }

@@ -1,6 +1,6 @@
-export interface IEmpresa {
-    id: number;
-    name: string;
+import { IBaseEntity } from "./IBaseEntity";
+
+export interface IEmpresa extends IBaseEntity {
     description: string;
     cuit: number;
     image: string;

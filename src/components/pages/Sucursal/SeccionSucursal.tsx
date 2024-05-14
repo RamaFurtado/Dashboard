@@ -5,14 +5,14 @@ import { useAppDispatch } from "../../../hooks/redux";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { Loader } from "../../ui/Loader/Loader";
 import { GenericCards } from "../../ui/Generic/GenericCards/GenericCard";
-import { ISucursales } from "../../../types/ISucursal";
+import { ISucursal } from "../../../types/ISucursal";
 import { useNavigate } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 const SeccionSucursal = () => {
 
   const navigate = useNavigate();
-  
+
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
@@ -69,7 +69,7 @@ const SeccionSucursal = () => {
           <Loader />
         ) : (
           // Mostrar la tabla de personas una vez que los datos se han cargado
-          <GenericCards<ISucursales>
+          <GenericCards<ISucursal>
             handleClick={handleClick}
             handleDelete={handleDelete}
             setOpenModal={setOpenModal}

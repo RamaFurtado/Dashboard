@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { removeElementActive } from "../../../redux/slices/TablaReducer";
 import { FactoryService } from "../../../services/FactoryService";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
-
+import { Entidades } from "../../../types/IBaseEntity";
 import { Modal, Button, Form } from "react-bootstrap";
 import "./modal.css";
 
-interface IModalProps<T extends { id: number }> {
+interface IModalProps<T extends Entidades> {
   modalTitle: string;
   formDetails: {
     initialValues: T;
@@ -22,18 +22,19 @@ interface IModalProps<T extends { id: number }> {
   getItems: () => void;
 }
 
-export const GenericModal = <T extends { id: number }>({
+export const GenericModal = <T extends Entidades>({
   modalTitle,
   formDetails,
   openModal,
   setOpenModal,
   route,
-  getItems,
+  getItems
 }: IModalProps<T>) => {
   const handleClose = () => {
     setOpenModal(false);
     dispatch(removeElementActive());
   };
+  const [values, setValues] = useState<T>(formDetails.initialValues);
 
   const elementActive = useAppSelector(
     (state) => state.tableReducer.elementActive
@@ -42,7 +43,8 @@ export const GenericModal = <T extends { id: number }>({
   // Invoca al servicio correspondiente según la ruta pasada por parámetro
   const itemService = FactoryService.createService(route);
 
-  const handleSubmit = async (values: T) => {
+  const handleSubmit = async (values: any) => {
+    console.log(values)
     if (elementActive) {
       await itemService.put(elementActive.id, values);
     } else {
@@ -54,6 +56,19 @@ export const GenericModal = <T extends { id: number }>({
 
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    async function fetchData() {
+      // let result: T | undefined;
+      // if (elementActive) {
+      //   result = await itemService.getById(elementActive.element) as T;
+      //   if (result) {
+      //     setValues(result);
+      //   }
+      // }
+      console.log(elementActive.element)
+    }
+    fetchData();
+  }, []);
   // const values = { valores de prueba
   //     name: 'text',
   //     price: 5,
@@ -94,14 +109,20 @@ export const GenericModal = <T extends { id: number }>({
                       (key: string) =>
                         key !== "id" &&
                         key !== "active" &&
-                        key !== "actions" && (
+                        key !== "actions" &&
+                        (
                           <Field
                             key={key}
                             label={key}
                             name={key}
                             type={formDetails.formInputType[key]}
                             placeholder={formDetails.translatedPlaceholder[key]}
-                          // value={values[key]} En caso de tener que cargar los valores para editar, usamos value
+                            value={
+                              formDetails.formInputType[key] !== "file"
+                                ? elementActive.element
+                                  ? elementActive.element[key as keyof Entidades]
+                                  : undefined
+                                : undefined}
                           />
                         )
                     )}

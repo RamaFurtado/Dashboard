@@ -1,6 +1,6 @@
-export interface ICategories {
-    id: number;
-    name: string;
-    subcategories?: ICategories[];
-    active: boolean;
-  }
+import { IBaseEntity } from "./IBaseEntity";
+
+export interface ICategories extends IBaseEntity {
+  subcategories?: ICategories[];
+  active: boolean;
+}

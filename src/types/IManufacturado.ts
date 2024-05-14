@@ -1,6 +1,6 @@
-export interface IManufacturado {
-    id: number;
-    name: string;
+import { IBaseEntity } from "./IBaseEntity";
+
+export interface IManufacturado extends IBaseEntity {
     price: number;
     description: string;
     category: string;
