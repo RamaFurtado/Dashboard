@@ -1,6 +1,4 @@
-export interface IUsuario {
-    id: number;
-    name: string;
+export interface IUsuario extends IBaseEntity {
     actions: string;
     active: boolean;
 }

@@ -1,7 +1,5 @@
-export interface IPromocion{
-    id: number;
+export interface IPromocion extends IBaseEntity {
     image: string;
-    name: string;
     since: string;
     until: string;
     description: string;

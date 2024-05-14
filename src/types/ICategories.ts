@@ -1,5 +1,3 @@
-export interface ICategories {
-    id: number;
-    name: string;
-    subcategories?: ICategories[];
-  }
+export interface ICategories extends IBaseEntity {
+  subcategories?: ICategories[];
+}

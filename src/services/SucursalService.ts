@@ -1,4 +1,4 @@
-import { ISucursales } from "../types/ISucursal";
+import { ISucursal } from "../types/ISucursal";
 import { BackendClient } from "./BackendClient";
 
-export class SucursalService extends BackendClient<ISucursales> {}
+export class SucursalService extends BackendClient<ISucursal> { }

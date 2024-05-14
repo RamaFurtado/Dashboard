@@ -1,6 +1,4 @@
-export interface IInsumo {
-    id: number;
-    name: string;
+export interface IInsumo extends IBaseEntity {
     price: number;
     description: string;
     category: string;

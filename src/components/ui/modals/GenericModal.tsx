@@ -4,11 +4,11 @@ import { removeElementActive } from "../../../redux/slices/TablaReducer";
 import { FactoryService } from "../../../services/FactoryService";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
-
+import { Entidades } from "../../../types/IBaseEntity";
 import { Modal, Button, Form } from "react-bootstrap";
 import "./modal.css";
 
-interface IModalProps<T extends { id: number }> {
+interface IModalProps<T extends Entidades> {
   modalTitle: string;
   formDetails: {
     initialValues: T;
@@ -22,7 +22,7 @@ interface IModalProps<T extends { id: number }> {
   getItems: () => void;
 }
 
-export const GenericModal = <T extends { id: number }>({
+export const GenericModal = <T extends Entidades>({
   modalTitle,
   formDetails,
   openModal,
@@ -42,7 +42,8 @@ export const GenericModal = <T extends { id: number }>({
   // Invoca al servicio correspondiente según la ruta pasada por parámetro
   const itemService = FactoryService.createService(route);
 
-  const handleSubmit = async (values: T) => {
+  const handleSubmit = async (values: any) => {
+    console.log(values)
     if (elementActive) {
       await itemService.put(elementActive.id, values);
     } else {

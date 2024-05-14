@@ -10,17 +10,17 @@ const API_URL = import.meta.env.VITE_API_URL;
 const getServiceClass = (route: string) => {
   switch (route) {
     case "empresa":
-      return EmpresaService;
+      return EmpresaService as typeof EmpresaService;
     case "sucursal":
-      return SucursalService;
+      return SucursalService as typeof SucursalService;
     case "manufacturado":
-      return ManufacturadoService;
+      return ManufacturadoService as typeof ManufacturadoService;
     case "insumo":
-      return InsumoService;
+      return InsumoService as typeof InsumoService;
     case "promocion":
-      return PromocionService;
+      return PromocionService as typeof PromocionService;
     case "usuario":
-      return UsuarioService;
+      return UsuarioService as typeof UsuarioService;
     default:
       throw new Error(`Ruta no válida: ${route}`);
   }

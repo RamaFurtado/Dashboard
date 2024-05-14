@@ -1,6 +1,4 @@
-export interface ISucursales {
-    id: number;
-    name: string;
+export interface ISucursal extends IBaseEntity {
     address: string;
     image: string;
     active: boolean;
