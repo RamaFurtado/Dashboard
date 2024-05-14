@@ -7,8 +7,8 @@ import { Loader } from "../../ui/Loader/Loader";
 import { GenericCards } from "../../ui/Generic/GenericCards/GenericCard";
 import { ISucursal } from "../../../types/ISucursal";
 import { useNavigate } from "react-router-dom";
+import { FactoryService } from "../../../services/FactoryService";
 
-const API_URL = import.meta.env.VITE_API_URL;
 const SeccionSucursal = () => {
 
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const SeccionSucursal = () => {
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  const sucursalSevice = new SucursalService(API_URL + "/branch");
+  const sucursalSevice = FactoryService.createService("branch");
   const dispatch = useAppDispatch();
 
   const handleClick = () => {

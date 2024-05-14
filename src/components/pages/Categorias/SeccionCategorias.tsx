@@ -14,7 +14,7 @@ export function SeccionCategorias() {
   const [categories, setCategories] = useState<ICategories[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const categoriaService = new CategoriaService(API_URL + "/category");
+  const categoriaService = new CategoriaService(API_URL + "/categories");
 
   const getCategoria = async () => {
     try {
