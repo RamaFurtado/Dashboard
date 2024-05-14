@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { removeElementActive } from "../../../redux/slices/TablaReducer";
 import { FactoryService } from "../../../services/FactoryService";
@@ -20,7 +20,6 @@ interface IModalProps<T extends Entidades> {
   setOpenModal: (state: boolean) => void;
   route: string;
   getItems: () => void;
-  elementId?: number;
 }
 
 export const GenericModal = <T extends Entidades>({
@@ -29,13 +28,13 @@ export const GenericModal = <T extends Entidades>({
   openModal,
   setOpenModal,
   route,
-  getItems,
-  elementId
+  getItems
 }: IModalProps<T>) => {
   const handleClose = () => {
     setOpenModal(false);
     dispatch(removeElementActive());
   };
+  const [values, setValues] = useState<T>(formDetails.initialValues);
 
   const elementActive = useAppSelector(
     (state) => state.tableReducer.elementActive
@@ -57,17 +56,19 @@ export const GenericModal = <T extends Entidades>({
 
   const dispatch = useAppDispatch();
 
-  const element = useRef<any>(null);
-
   useEffect(() => {
     async function fetchData() {
-      if (elementId) {
-        element.current = await itemService.getById(elementId);
-      }
-      console.log(element.current)
+      // let result: T | undefined;
+      // if (elementActive) {
+      //   result = await itemService.getById(elementActive.element) as T;
+      //   if (result) {
+      //     setValues(result);
+      //   }
+      // }
+      console.log(elementActive.element)
     }
     fetchData();
-  }, [elementId, itemService]);
+  }, []);
   // const values = { valores de prueba
   //     name: 'text',
   //     price: 5,
@@ -116,7 +117,12 @@ export const GenericModal = <T extends Entidades>({
                             name={key}
                             type={formDetails.formInputType[key]}
                             placeholder={formDetails.translatedPlaceholder[key]}
-                            value={element.current ? Object.keys(element.current).includes(key) ? element.current[key] : undefined : undefined}
+                            value={
+                              formDetails.formInputType[key] !== "file"
+                                ? elementActive.element
+                                  ? elementActive.element[key as keyof Entidades]
+                                  : undefined
+                                : undefined}
                           />
                         )
                     )}

@@ -64,6 +64,7 @@ export const ModalPromocion = ({ getPromociones, openModal, setOpenModal }: IMod
             modalTitle="Promoción"
             formDetails={formDetails}
             route="sales"
-            getItems={getPromociones} />
+            getItems={getPromociones}
+        />
     )
 }

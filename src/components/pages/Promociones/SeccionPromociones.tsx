@@ -116,7 +116,8 @@ export const SeccionPromociones = () => {
       <ModalPromocion
         openModal={openModal}
         setOpenModal={setOpenModal}
-        getPromociones={getPromocion} />
+        getPromociones={getPromocion}
+      />
     </>
   );
 };
