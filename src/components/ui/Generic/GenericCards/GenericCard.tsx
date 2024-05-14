@@ -28,7 +28,7 @@ export const GenericCards = <T extends { id: number }>({
   const dataCard = useAppSelector((state) => state.tableReducer.dataTable);
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '24px', gap: '16px' }}>
       {dataCard.map((item) => (
         <Card key={item.id} sx={{ width: 'calc(33.33% - 20px)', marginBottom: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', '&:hover': { boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)' } }}>
           <CardContent>
