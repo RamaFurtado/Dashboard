@@ -4,7 +4,7 @@ import { ManufacturadoService } from "./ManufacturadoService";
 import { PromocionService } from "./PromocionService";
 import { SucursalService } from "./SucursalService";
 import { UsuarioService } from "./UsuarioService";
-import { CategoryService } from "./CategoryService.tsx";
+import { CategoriaService } from "./CategoriaService";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -23,7 +23,7 @@ const getServiceClass = (route: string) => {
     case "users":
       return UsuarioService as typeof UsuarioService;
     case "categories":
-      return CategoryService as typeof CategoryService;
+      return CategoriaService as typeof CategoriaService;
     default:
       throw new Error(`Ruta no válida: ${route}`);
   }
