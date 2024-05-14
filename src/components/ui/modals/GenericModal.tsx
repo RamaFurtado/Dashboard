@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { removeElementActive } from "../../../redux/slices/TablaReducer";
+import { removeElementActive, setElementActive } from "../../../redux/slices/TablaReducer";
 import { FactoryService } from "../../../services/FactoryService";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
@@ -34,7 +34,6 @@ export const GenericModal = <T extends Entidades>({
     setOpenModal(false);
     dispatch(removeElementActive());
   };
-  const [values, setValues] = useState<T>(formDetails.initialValues);
 
   const elementActive = useAppSelector(
     (state) => state.tableReducer.elementActive
@@ -45,38 +44,16 @@ export const GenericModal = <T extends Entidades>({
 
   const handleSubmit = async (values: any) => {
     console.log(values)
-    if (elementActive) {
-      await itemService.put(elementActive.id, values);
+    if (elementActive.element) {
+      await itemService.put(elementActive.element.id, values);
     } else {
       await itemService.post(values);
     }
-    // recarga la tabla con los cambios realizados
     getItems();
   };
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    async function fetchData() {
-      // let result: T | undefined;
-      // if (elementActive) {
-      //   result = await itemService.getById(elementActive.element) as T;
-      //   if (result) {
-      //     setValues(result);
-      //   }
-      // }
-      console.log(elementActive.element)
-    }
-    fetchData();
-  }, []);
-  // const values = { valores de prueba
-  //     name: 'text',
-  //     price: 5,
-  //     description: 'text',
-  //     category: 'text',
-  //     image: null,
-  //     stock: 5,
-  // }
   return (
     <div>
       <Modal
@@ -104,13 +81,12 @@ export const GenericModal = <T extends Entidades>({
               <>
                 <Form autoComplete="off" className="form-obraAlta">
                   <div className="container_Form_Ingredientes">
-                    {/* Campos del formulario */}
+                    /* Campos del formulario */
                     {Object.keys(formDetails.initialValues).map(
                       (key: string) =>
                         key !== "id" &&
                         key !== "active" &&
-                        key !== "actions" &&
-                        (
+                        key !== "actions" && (
                           <Field
                             key={key}
                             label={key}
@@ -119,10 +95,16 @@ export const GenericModal = <T extends Entidades>({
                             placeholder={formDetails.translatedPlaceholder[key]}
                             value={
                               formDetails.formInputType[key] !== "file"
-                                ? elementActive.element
-                                  ? elementActive.element[key as keyof Entidades]
+                                ? elementActive
+                                  ? elementActive.element[key as keyof T]
                                   : undefined
-                                : undefined}
+                                : undefined
+                            }
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                              // Despachar una acción de Redux para actualizar el valor del input
+                              const newValue = e.target.value;
+                              dispatch(setElementActive({ element: { ...elementActive.element, [key]: newValue } }));
+                            }}
                           />
                         )
                     )}
