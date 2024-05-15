@@ -16,7 +16,7 @@ const SeccionSucursal = () => {
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  const sucursalSevice = FactoryService.createService("branch");
+  const sucursalSevice = FactoryService.createService("sucursal");
   const dispatch = useAppDispatch();
 
   const handleClick = () => {

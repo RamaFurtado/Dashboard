@@ -22,7 +22,7 @@ export const SeccionEmpresa = () => {
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    navigate('/empresa/branches')
+    navigate('/empresa/sucursal')
   }
 
   const handleDelete = async (id: number) => {
