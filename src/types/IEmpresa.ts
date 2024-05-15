@@ -1,9 +1,14 @@
 import { IBaseEntity } from "./IBaseEntity";
 
 export interface IEmpresa extends IBaseEntity {
-    description: string;
-    cuit: number;
-    image: string;
+    nombre: string;
+    razonSocial: string;
+    cuil: number;
     actions: string;
-    active: boolean;
 }
+// ASI LO RETORNA EL JSON DESDE JAVA
+//         "id": 1,
+//         "eliminado": false,
+//         "nombre": "A",
+//         "razonSocial": "A",
+//         "cuil": 24234432344

@@ -10,7 +10,7 @@ const Login = () => {
 
   const handleLogin = () => {
     
-    navigate('/companies');
+    navigate('/empresa');
   };
 
   return (
