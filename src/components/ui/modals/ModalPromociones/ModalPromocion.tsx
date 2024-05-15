@@ -58,7 +58,7 @@ export const ModalPromocion = ({ getPromociones, openModal, setOpenModal }: IMod
         translatedPlaceholder: translatedPlaceholder,
         formInputType: {
             name: 'text',
-            image: 'file',
+            image: 'text',
             since: 'date',
             until: 'date',
             description: 'text',

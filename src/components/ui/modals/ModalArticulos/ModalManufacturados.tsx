@@ -59,7 +59,7 @@ export const ModalManufacturado = ({
       price: 'number',
       description: 'text',
       category: 'text',
-      image: 'file',
+      image: 'text',
       stock: 'number'
     },
   }
