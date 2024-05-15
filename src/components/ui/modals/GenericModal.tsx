@@ -113,7 +113,7 @@ export const GenericModal = <T extends Entidades>({
                     )
                 )}
                 {/* Botón para enviar el formulario */}
-                <button type="submit">Enviar</button>
+                <button type="submit" onClick={handleClose}>Enviar</button>
               </Form>)}
           </Formik>
         </Modal.Body>
