@@ -3,8 +3,24 @@ import path from "path";
 import cors from "cors";
 
 const server = jsonServer.create();
+server.use(cors());
+
 const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
+
+const domainList = ["http://localhost:5173/"];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (domainList.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+server.use(cors(corsOptions));
 
 server.get("/", (req, res) => {
   res.sendFile(path.resolve("db.json"));
