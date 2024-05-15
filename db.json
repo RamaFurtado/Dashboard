@@ -156,6 +156,17 @@
       "description": "¡Disfruta de un combo especial de pizza!",
       "price": 3000,
       "active": true
+    },
+    {
+      "id": 3,
+      "image": "asdfasdfasdfasdf",
+      "name": "Agustín Mandolesi",
+      "since": "1999-01-19",
+      "until": "2000-02-28",
+      "description": "asdf",
+      "price": "123",
+      "actions": "",
+      "active": true
     }
   ],
   "company": [

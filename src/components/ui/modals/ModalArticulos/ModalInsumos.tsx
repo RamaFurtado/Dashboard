@@ -61,7 +61,7 @@ export const ModalInsumo = ({
       description: 'text',
       category: 'text',
       isIngredient: 'checkbox',
-      image: 'file',
+      image: 'text',
       stock: 'number',
     },
   }
