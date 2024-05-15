@@ -20,21 +20,23 @@ interface IGenericAtribute<T> {
   render?: (item: T) => ReactNode;
 }
 export interface ICardProps<T> {
+  items: any[];
   handleClick: (id: number) => void;
   handleDelete: (id: number) => void;
   setOpenModal: (state: boolean) => void;
 }
 
 export const GenericCards = <T extends { id: number }>({
+  items,
   handleClick,
   handleDelete,
   setOpenModal,
 }: ICardProps<T>) => {
   const dataCard = useAppSelector((state) => state.tableReducer.dataTable);
-  if (dataCard && dataCard.length > 0) {
+  if (items && items.length > 0) {
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '24px', gap: '16px' }}>
-        {dataCard.map((item) => (
+        {items.map((item) => (
           <>
           <Card key={item.id} sx={{ width: 'calc(33.33% - 20px)', marginBottom: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', '&:hover': { boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)' } }}>
             <CardContent>

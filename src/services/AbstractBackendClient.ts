@@ -14,4 +14,5 @@ export abstract class AbstractBackendClient<T> {
   
     // Método abstracto para eliminar un elemento por su ID
     abstract delete(id: number): Promise<void>;
+
 }
