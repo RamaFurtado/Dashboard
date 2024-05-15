@@ -1,11 +1,11 @@
 
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { removeElementActive, setElementActive } from "../../../redux/slices/TablaReducer";
+import { removeElementActive, setDataTable, setElementActive } from "../../../redux/slices/TablaReducer";
 import { FactoryService } from "../../../services/FactoryService";
-import { Formik, Field } from "formik";
+import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { Entidades } from "../../../types/IBaseEntity";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import "./modal.css";
 
 interface IModalProps<T extends Entidades> {
@@ -39,15 +39,19 @@ export const GenericModal = <T extends Entidades>({
     (state) => state.tableReducer.elementActive
   );
 
+
+
   // Invoca al servicio correspondiente según la ruta pasada por parámetro
   const itemService = FactoryService.createService(route);
 
   const handleSubmit = async (values: any) => {
-    console.log(values)
+    handleClose();
     if (elementActive.element) {
       await itemService.put(elementActive.element.id, values);
+      dispatch(setDataTable(await itemService.getAll()))
     } else {
       await itemService.post(values);
+      dispatch(setDataTable(await itemService.getAll()))
     }
     getItems();
   };
@@ -62,7 +66,7 @@ export const GenericModal = <T extends Entidades>({
         onHide={handleClose}
         size={"lg"}
         backdrop="static"
-        keyboard={false}
+        keyboard={true}
       >
         <Modal.Header closeButton>
           <Modal.Title>{modalTitle}</Modal.Title>
@@ -74,53 +78,46 @@ export const GenericModal = <T extends Entidades>({
             enableReinitialize={true}
             onSubmit={async (values) => {
               await handleSubmit(values);
-              handleClose();
             }}
           >
-            {() => (
-              <>
-                <Form autoComplete="off" className="form-obraAlta">
-                  <div className="container_Form_Ingredientes">
-                    /* Campos del formulario */
-                    {Object.keys(formDetails.initialValues).map(
-                      (key: string) =>
-                        key !== "id" &&
-                        key !== "active" &&
-                        key !== "actions" && (
-                          <Field
-                            key={key}
-                            label={key}
-                            name={key}
-                            type={formDetails.formInputType[key]}
-                            placeholder={formDetails.translatedPlaceholder[key]}
-                            value={
-                              formDetails.formInputType[key] !== "file"
-                                ? elementActive
-                                  ? elementActive.element[key as keyof T]
-                                  : undefined
-                                : undefined
-                            }
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                              // Despachar una acción de Redux para actualizar el valor del input
-                              const newValue = e.target.value;
-                              dispatch(setElementActive({ element: { ...elementActive.element, [key]: newValue } }));
-                            }}
-                          />
-                        )
-                    )}
-                    {/* Botón para enviar el formulario */}
-                    <div className="d-flex justify-content-end">
-                      <Button variant="success" type="submit">
-                        Enviar
-                      </Button>
-                    </div>
-                  </div>
-                </Form>
-              </>
-            )}
+            {({ setFieldValue }) => (
+              <Form >
+                {/* Campos del formulario */}
+                {Object.keys(formDetails.initialValues).map(
+                  (key: string) =>
+                    key !== "id" &&
+                    key !== "active" &&
+                    key !== "actions" && (
+                      <Field
+                        key={key}
+                        label={key}
+                        name={key}
+                        type={formDetails.formInputType[key]}
+                        placeholder={formDetails.translatedPlaceholder[key]}
+                        // value={formDetails.formInputType[key] !== 'file'
+                        //   ? elementActive?.element[key] || ''
+                        //   : undefined
+                        // }
+                        // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        //   // Despachar una acción de Redux para actualizar el valor del input
+                        //   const newValue = e.target.value;
+                        //   dispatch(setElementActive({ element: { ...elementActive.element, [key]: newValue } }));
+                        // }}
+                        value={formDetails.formInputType[key] == 'file' ? undefined : elementActive?.element[key]}
+                        onChange={(e) => {
+                          setFieldValue(key, e.target.value);
+                          dispatch(setElementActive({ element: { ...elementActive.element, [key]: e.target.value } }));
+
+                        }}
+                      />
+                    )
+                )}
+                {/* Botón para enviar el formulario */}
+                <button type="submit">Enviar</button>
+              </Form>)}
           </Formik>
         </Modal.Body>
       </Modal>
-    </div>
+    </div >
   );
 };

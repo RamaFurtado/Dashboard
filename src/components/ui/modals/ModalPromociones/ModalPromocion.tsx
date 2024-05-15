@@ -2,6 +2,7 @@
 import * as Yup from "yup";
 import { GenericModal } from "../GenericModal";
 import { IPromocion } from "../../../../types/IPromociones";
+import { useAppSelector } from "../../../../hooks/redux";
 
 interface IModalPromocion {
     getPromociones: () => void; // Función para obtener las promociones
@@ -10,8 +11,15 @@ interface IModalPromocion {
 }
 
 export const ModalPromocion = ({ getPromociones, openModal, setOpenModal }: IModalPromocion) => {
+
+    const elementActive = useAppSelector(
+        (state) => state.tableReducer.elementActive
+    );
+
+    console.log(elementActive)
+
     // Necesario para el modal genérico con insumos
-    const initialValues: IPromocion = {
+    const initialValues: IPromocion = elementActive?.element || {
         id: 0,
         image: '',
         name: '',

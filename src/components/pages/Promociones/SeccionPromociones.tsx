@@ -78,11 +78,11 @@ export const SeccionPromociones = () => {
   };
 
   const getPromocion = async () => {
-    await promocionService.getAll().then((promocionData) => {
-      dispatch(setDataTable(promocionData));
-      setLoading(false);
-    });
+    const promocionData = await promocionService.getAll()
+    dispatch(setDataTable(promocionData));
+    setLoading(false);
   };
+
 
   useEffect(() => {
     setLoading(true);
