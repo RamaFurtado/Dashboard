@@ -3,13 +3,6 @@ import path from "path";
 // cors policy
 import cors from "cors";
 
-const corsOptions = {
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  credentials: true,
-};
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
@@ -20,7 +13,7 @@ server.get("/", (req, res) => {
 
 server.use(middlewares);
 server.use(router);
-server.use(cors(corsOptions));
+server.use(cors({ origin: "http://localhost:5173" }));
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
