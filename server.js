@@ -1,6 +1,5 @@
 import jsonServer from "json-server";
 import path from "path";
-// cors policy
 import cors from "cors";
 
 const server = jsonServer.create();
@@ -15,8 +14,9 @@ server.use(middlewares);
 server.use(router);
 server.use(
   cors({
-    origin: "http://localhost:5173",
-    allowedHeaders: "Content-Type,Authorization",
+    origin: "*",
+    headers: ["Content-Type"],
+    credentials: true,
   })
 );
 
