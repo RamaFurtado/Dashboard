@@ -33,7 +33,6 @@ export const GenericCards = <T extends { id: number }>({
   handleDelete,
   setOpenModal,
 }: ICardProps<T>) => {
-  const dataCard = useAppSelector((state) => state.tableReducer.dataTable);
   if (items && items.length > 0) {
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '24px', gap: '16px' }}>
@@ -61,7 +60,7 @@ export const GenericCards = <T extends { id: number }>({
                 </div>
               </CardContent>
               <CardActions>
-                <Button size="small" onClick={() => { handleClick(item.id); dispatch(setCurrentSucursal(`sucursal${item.id}`)); }}>Ver más</Button>
+                <Button size="small" onClick={() => { handleClick(item.id) }}>Ver más</Button>
                 <ButtonsTable el={item} handleDelete={handleDelete} setOpenModal={setOpenModal} />
               </CardActions>
             </Card>
