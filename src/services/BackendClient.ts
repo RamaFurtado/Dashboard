@@ -33,10 +33,12 @@ export abstract class BackendClient<T> extends AbstractBackendClient<T> {
   }
 
   async put(id: number, data: T): Promise<T> {
+    console.log(this.baseUrl)
     const response = await fetch(`${this.baseUrl}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "no-cors",
       },
       body: JSON.stringify(data),
     });

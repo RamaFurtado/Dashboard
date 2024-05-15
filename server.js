@@ -13,7 +13,12 @@ server.get("/", (req, res) => {
 
 server.use(middlewares);
 server.use(router);
-server.use(cors({ origin: "http://localhost:5173" }));
+server.use(
+  cors({
+    origin: "http://localhost:5173",
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
