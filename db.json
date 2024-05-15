@@ -144,7 +144,7 @@
       "since": "2024-02-13",
       "until": "2024-02-15",
       "description": "El descuento que se hace por San Valentín, un día antes y un día después",
-      "price": 2000,
+      "price": "200",
       "active": true
     },
     {
