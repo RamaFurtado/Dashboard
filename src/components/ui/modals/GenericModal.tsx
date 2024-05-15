@@ -46,14 +46,10 @@ export const GenericModal = <T extends Entidades>({
 
   const handleSubmit = async (values: any) => {
     handleClose();
-    if (elementActive.element) {
+    if (elementActive) {
       await itemService.put(elementActive.element.id, values);
-      // const datos = await itemService.getAll()
-      // dispatch(setDataTable(datos))
     } else {
       await itemService.post(values);
-      // const datos = await itemService.getAll()
-      // dispatch(setDataTable(datos))
     }
     getItems();
   };
@@ -96,19 +92,12 @@ export const GenericModal = <T extends Entidades>({
                         name={key}
                         type={formDetails.formInputType[key]}
                         placeholder={formDetails.translatedPlaceholder[key]}
-                        // value={formDetails.formInputType[key] !== 'file'
-                        //   ? elementActive?.element[key] || ''
-                        //   : undefined
-                        // }
-                        // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        //   // Despachar una acción de Redux para actualizar el valor del input
-                        //   const newValue = e.target.value;
-                        //   dispatch(setElementActive({ element: { ...elementActive.element, [key]: newValue } }));
-                        // }}
                         value={formDetails.formInputType[key] == 'file' ? '' : elementActive?.element[key]}
                         onChange={(e: any) => {
                           setFieldValue(key, e.target.value);
-                          dispatch(setElementActive({ element: { ...elementActive.element, [key]: e.target.value } }));
+                          if (elementActive) {
+                            dispatch(setElementActive({ element: { ...elementActive.element, [key]: e.target.value } }));
+                          }
 
                         }}
                       />
