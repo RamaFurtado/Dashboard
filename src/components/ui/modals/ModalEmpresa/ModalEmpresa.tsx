@@ -3,6 +3,7 @@
 import * as Yup from "yup";
 import { GenericModal } from "../GenericModal";
 import { IEmpresa } from "../../../../types/IEmpresa";
+import { useAppSelector } from "../../../../hooks/redux";
 
 interface IModalEmpresa {
     getEmpresa: () => void; // Función para obtener las empresas
@@ -11,8 +12,13 @@ interface IModalEmpresa {
 }
 
 export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpresa) => {
+
+    const elementActive = useAppSelector(
+        (state) => state.tableReducer.elementActive
+    );
+
     // Necesario para el modal genérico con insumos
-    const initialValues: IEmpresa = {
+    const initialValues: IEmpresa = elementActive?.element || {
         id: 0,
         name: '',
         description: '',

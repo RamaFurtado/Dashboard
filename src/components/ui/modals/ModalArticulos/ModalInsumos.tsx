@@ -2,6 +2,7 @@ import React from 'react';
 import { IInsumo } from '../../../../types/IInsumo';
 import * as Yup from 'yup';
 import { GenericModal } from '../GenericModal';
+import { useAppSelector } from '../../../../hooks/redux';
 
 interface IModalInsumo {
   getInsumos: () => void; // Función para obtener los insumos
@@ -14,8 +15,13 @@ export const ModalInsumo = ({
   openModal,
   setOpenModal,
 }: IModalInsumo) => {
+
+  const elementActive = useAppSelector(
+    (state) => state.tableReducer.elementActive
+  );
+
   // Necesario para el modal genérico con insumos
-  const initialValues: IInsumo = {
+  const initialValues: IInsumo = elementActive?.element || {
     id: 0,
     name: '',
     price: 0,

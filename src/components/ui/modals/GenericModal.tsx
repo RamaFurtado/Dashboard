@@ -81,7 +81,7 @@ export const GenericModal = <T extends Entidades>({
             }}
           >
             {({ setFieldValue }) => (
-              <Form >
+              <Form className="container_Form_Ingredientes">
                 {/* Campos del formulario */}
                 {Object.keys(formDetails.initialValues).map(
                   (key: string) =>
@@ -103,7 +103,7 @@ export const GenericModal = <T extends Entidades>({
                         //   const newValue = e.target.value;
                         //   dispatch(setElementActive({ element: { ...elementActive.element, [key]: newValue } }));
                         // }}
-                        value={formDetails.formInputType[key] == 'file' ? undefined : elementActive?.element[key]}
+                        value={formDetails.formInputType[key] == 'file' ? '' : elementActive?.element[key]}
                         onChange={(e) => {
                           setFieldValue(key, e.target.value);
                           dispatch(setElementActive({ element: { ...elementActive.element, [key]: e.target.value } }));

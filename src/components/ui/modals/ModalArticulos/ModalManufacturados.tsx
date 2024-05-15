@@ -2,6 +2,7 @@ import React from 'react';
 import { IManufacturado } from '../../../../types/IManufacturado';
 import * as Yup from 'yup';
 import { GenericModal } from '../GenericModal';
+import { useAppSelector } from '../../../../hooks/redux';
 
 interface IModalManufacturado {
   getManufacturados: () => void; // Función para obtener los manufacturados
@@ -14,8 +15,14 @@ export const ModalManufacturado = ({
   openModal,
   setOpenModal,
 }: IModalManufacturado) => {
+
+  const elementActive = useAppSelector(
+    (state) => state.tableReducer.elementActive
+  );
+
+
   // Necesario para el modal genérico con manufacturados
-  const initialValues: IManufacturado = {
+  const initialValues: IManufacturado = elementActive?.element || {
     id: 0,
     name: '',
     price: 0,

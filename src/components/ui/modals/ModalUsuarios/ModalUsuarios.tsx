@@ -2,6 +2,7 @@
 import * as Yup from "yup";
 import { GenericModal } from "../GenericModal";
 import { IUsuario } from "../../../../types/IUsuario";
+import { useAppSelector } from "../../../../hooks/redux";
 
 interface IModalUsuario {
     getUsuarios: () => void; // Función para obtener las promociones
@@ -10,8 +11,12 @@ interface IModalUsuario {
 }
 export const ModalUsuarios = ({ getUsuarios, openModal, setOpenModal }: IModalUsuario) => {
 
+    const elementActive = useAppSelector(
+        (state) => state.tableReducer.elementActive
+    );
+
     // Necesario para el modal genérico con insumos
-    const initialValues: IUsuario = {
+    const initialValues: IUsuario = elementActive?.element || {
         id: 0,
         name: '',
         actions: '',

@@ -55,7 +55,6 @@ export const SeccionUsuarios = () => {
     await usuarioService.getAll().then((usuarioData) => {
       dispatch(setDataTable(usuarioData));
       setLoading(false);
-      console.log(usuarioData);
     });
   };
 

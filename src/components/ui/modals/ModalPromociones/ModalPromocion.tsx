@@ -16,7 +16,7 @@ export const ModalPromocion = ({ getPromociones, openModal, setOpenModal }: IMod
         (state) => state.tableReducer.elementActive
     );
 
-    console.log(elementActive)
+    // console.log(elementActive)
 
     // Necesario para el modal genérico con insumos
     const initialValues: IPromocion = elementActive?.element || {
