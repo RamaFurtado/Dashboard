@@ -104,7 +104,7 @@ export const GenericModal = <T extends Entidades>({
                         //   dispatch(setElementActive({ element: { ...elementActive.element, [key]: newValue } }));
                         // }}
                         value={formDetails.formInputType[key] == 'file' ? '' : elementActive?.element[key]}
-                        onChange={(e) => {
+                        onChange={(e : any) => {
                           setFieldValue(key, e.target.value);
                           dispatch(setElementActive({ element: { ...elementActive.element, [key]: e.target.value } }));
 
