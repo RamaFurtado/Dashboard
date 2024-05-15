@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { SucursalService } from "../../../services/SucursalService";
-import { useAppDispatch } from "../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { Loader } from "../../ui/Loader/Loader";
 import { GenericCards } from "../../ui/Generic/GenericCards/GenericCard";
@@ -15,9 +15,13 @@ const SeccionSucursal = () => {
 
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [sucursal, setSucursal] = useState("sucursal1");
 
   const sucursalSevice = FactoryService.createService("branch");
   const dispatch = useAppDispatch();
+  const sucursalActive = useAppSelector(
+    (state) => state.sucursalReducer.sucursalActual
+  );
 
   const handleClick = () => {
     navigate('/app')
@@ -51,7 +55,8 @@ const SeccionSucursal = () => {
   useEffect(() => {
     setLoading(true);
     getSucursal();
-  }, []);
+    setSucursal(sucursalActive);
+  }, [sucursalActive]);
 
   return (
     <>

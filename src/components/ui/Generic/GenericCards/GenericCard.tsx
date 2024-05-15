@@ -1,5 +1,5 @@
 import { ReactNode, useEffect } from "react";
-import { useAppSelector } from "../../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
 import {
   Box,
   Button,
@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { ButtonsTable } from "../../ButtonsTable/ButtonsTable";
 import { SwitchButton } from "../../ButtonsTable/Switch";
+import { setCurrentSucursal } from "../../../../redux/slices/SucursalReducer";
 
 interface IGenericAtribute<T> {
   label: string;
@@ -29,6 +30,12 @@ export const GenericCards = <T extends { id: number }>({
   setOpenModal,
 }: ICardProps<T>) => {
   const dataCard = useAppSelector((state) => state.tableReducer.dataTable);
+
+  const sucursalActive = useAppSelector(
+    (state) => state.sucursalReducer.sucursalActual
+  );
+
+  const dispatch = useAppDispatch();
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '24px', gap: '16px' }}>
@@ -56,11 +63,12 @@ export const GenericCards = <T extends { id: number }>({
             </div>
           </CardContent>
           <CardActions>
-            <Button size="small" onClick={() => handleClick(item.id)}>Ver más</Button>
+            <Button size="small" onClick={() => { handleClick(item.id); dispatch(setCurrentSucursal(`sucursal${item.id}`)); }}>Ver más</Button>
             <ButtonsTable el={item} handleDelete={handleDelete} setOpenModal={setOpenModal} />
           </CardActions>
         </Card>
-      ))}
-    </div>
+      ))
+      }
+    </div >
   );
 };

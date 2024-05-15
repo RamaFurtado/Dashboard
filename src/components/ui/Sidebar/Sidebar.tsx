@@ -215,8 +215,10 @@ export default function PersistentDrawerLeft() {
   };
 
   // Estado y manejo de la selección de sucursal (menú desplegable)
-
-  const [branch, setBranch] = React.useState("");
+  const sucursalActive = useAppSelector(
+    (state) => state.sucursalReducer.sucursalActual
+  );
+  const [branch, setBranch] = React.useState(sucursalActive);
 
   const handleChange = (event: SelectChangeEvent) => {
     setBranch(event.target.value as string);
@@ -303,8 +305,8 @@ export default function PersistentDrawerLeft() {
               label="Branch"
               onChange={handleChange}
             >
-              <MenuItem value={10}>Sucursal 1</MenuItem> {/* TODO: Renderizar sucursales */}
-              <MenuItem value={20}>Sucursal 2</MenuItem>
+              <MenuItem value={"sucursal1"}>Sucursal 1</MenuItem> {/* TODO: Renderizar sucursales */}
+              <MenuItem value={"sucursal2"}>Sucursal 2</MenuItem>
             </Select>
           </FormControl>
         </div>
