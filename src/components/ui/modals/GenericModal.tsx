@@ -48,10 +48,12 @@ export const GenericModal = <T extends Entidades>({
     handleClose();
     if (elementActive.element) {
       await itemService.put(elementActive.element.id, values);
-      dispatch(setDataTable(await itemService.getAll()))
+      // const datos = await itemService.getAll()
+      // dispatch(setDataTable(datos))
     } else {
       await itemService.post(values);
-      dispatch(setDataTable(await itemService.getAll()))
+      // const datos = await itemService.getAll()
+      // dispatch(setDataTable(datos))
     }
     getItems();
   };
@@ -104,7 +106,7 @@ export const GenericModal = <T extends Entidades>({
                         //   dispatch(setElementActive({ element: { ...elementActive.element, [key]: newValue } }));
                         // }}
                         value={formDetails.formInputType[key] == 'file' ? '' : elementActive?.element[key]}
-                        onChange={(e : any) => {
+                        onChange={(e: any) => {
                           setFieldValue(key, e.target.value);
                           dispatch(setElementActive({ element: { ...elementActive.element, [key]: e.target.value } }));
 
@@ -113,7 +115,7 @@ export const GenericModal = <T extends Entidades>({
                     )
                 )}
                 {/* Botón para enviar el formulario */}
-                <button type="submit" onClick={handleClose}>Enviar</button>
+                <button type="submit" >Enviar</button>
               </Form>)}
           </Formik>
         </Modal.Body>
