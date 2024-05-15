@@ -7,8 +7,9 @@ import { SeccionInsumos } from "../../pages/Articulos/Insumos/SeccionInsumos";
 import { SeccionManufacturados } from "../../pages/Articulos/Manufacturados/SeccionManufacturados";
 import { SeccionCategorias } from "../../pages/Categorias/SeccionCategorias";
 import { SeccionPromociones } from "../../pages/Promociones/SeccionPromociones";
-import { SeccionEmpresa } from "../../pages/Empresa/SeccionEmpresa";
+// import { SeccionEmpresa } from "../../pages/Empresa/SeccionEmpresa";
 import { SeccionUsuarios } from "../../pages/Usuarios/SeccionUsuarios";
+import SeccionSucursal from "../../pages/Sucursal/SeccionSucursal";
 
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -31,7 +32,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import CategoryIcon from "@mui/icons-material/Category";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
-import DomainIcon from "@mui/icons-material/Domain";
+// import DomainIcon from "@mui/icons-material/Domain";
+import StoreIcon from '@mui/icons-material/Store';
 import GroupIcon from "@mui/icons-material/Group";
 import { AccountCircle, ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
@@ -42,7 +44,6 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-// import SeccionSucursal from "../../pages/Sucursal/SeccionSucursal";
 
 const drawerWidth = 240;
 
@@ -137,9 +138,13 @@ const dashboardItems: IDashboard = {
       text: "Promociones",
       icon: <LocalOfferIcon />,
     },
+    // {
+    //   text: "Empresa",
+    //   icon: <DomainIcon />,
+    // },
     {
-      text: "Empresa",
-      icon: <DomainIcon />,
+      text: "Sucursales",
+      icon: <StoreIcon />
     },
     {
       text: "Usuarios",
@@ -200,8 +205,10 @@ export default function PersistentDrawerLeft() {
         return <SeccionCategorias />;
       case "Promociones":
         return <SeccionPromociones />;
-      case "Empresa":
-        return <SeccionEmpresa />;
+      // case "Empresa":
+      //   return <SeccionEmpresa />;
+      case "Sucursales":
+        return <SeccionSucursal />;
       case "Usuarios":
         return <SeccionUsuarios />;
     }
