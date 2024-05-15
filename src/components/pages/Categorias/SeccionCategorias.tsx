@@ -5,7 +5,7 @@ import { ICategories } from "../../../types/ICategories";
 import List from "@mui/material/List";
 import { IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-// import { Loader } from "../../ui/Loader/Loader";
+import { Loader } from "../../ui/Loader/Loader";
 import { CategoriaService } from "../../../services/CategoriaService";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -61,7 +61,7 @@ export function SeccionCategorias() {
           ))}
         </List>
       ) : (
-        <p>No hay categorías disponibles.</p>
+        <Loader />
       )}
     </div>
   );
