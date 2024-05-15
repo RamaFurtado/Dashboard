@@ -44,6 +44,7 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -176,6 +177,7 @@ export default function PersistentDrawerLeft() {
     (state) => state.sectionReducer.sectionActual
   );
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [section, setSection] = React.useState<string>("Inicio");
 
@@ -187,174 +189,203 @@ export default function PersistentDrawerLeft() {
   const handleSectionChange = (newSection: string) => {
     setSection(newSection);
     dispatch(setCurrentSection(newSection));
-  };
-
-  // Función para renderizar la sección correspondiente en función del estado actual
-  const dashboardSection = (seccionActual: string) => {
-    switch (seccionActual) {
+    switch (newSection) {
       case "Inicio":
-        return <SeccionInicio setSection={setSection} />;
+        navigate("/inicio");
+        break;
       case "Artículos":
-        return <h2>Artículos</h2>;
-      // TODO: Renderizar dos botones que redirijan a las secciones Manufacturados e Insumos, o no renderizar nada.
+        navigate("/articulos");
+        break;
       case "Manufacturados":
-        return <SeccionManufacturados />;
+        navigate("/articulos/manufacturados");
+        break;
       case "Insumos":
-        return <SeccionInsumos />;
+        navigate("/articulos/insumos");
+        break;
       case "Categorías":
-        return <SeccionCategorias />;
+        navigate("/categorias");
+        break;
       case "Promociones":
-        return <SeccionPromociones />;
-      // case "Empresa":
-      //   return <SeccionEmpresa />;
+        navigate("/promociones");
+        break;
       case "Sucursales":
-        return <SeccionSucursal />;
+        navigate("/sucursales");
+        break;
       case "Usuarios":
-        return <SeccionUsuarios />;
-    }
-  };
+        navigate("/usuarios");
+        break;
+      default:
+        navigate("/inicio");
+    };
 
-  // Estado y manejo de la selección de sucursal (menú desplegable)
+    // Función para renderizar la sección correspondiente en función del estado actual
+    const dashboardSection = (seccionActual: string) => {
+      switch (seccionActual) {
+        case "Inicio":
+          return <SeccionInicio setSection={setSection} />;
+        case "Artículos":
+          return <h2>Artículos</h2>;
+        case "Manufacturados":
+          return <SeccionManufacturados />;
+        case "Insumos":
+          return <SeccionInsumos />;
+        case "Categorías":
+          return <SeccionCategorias />;
+        case "Promociones":
+          return <SeccionPromociones />;
+        // case "Empresa":
+        //   return <SeccionEmpresa />;
+        case "Sucursales":
+          return <SeccionSucursal />;
+        case "Usuarios":
+          return <SeccionUsuarios />;
+      }
+    };
 
-  const [branch, setBranch] = React.useState("");
+    // Estado y manejo de la selección de sucursal (menú desplegable)
+    const sucursalActive = useAppSelector(
+      (state) => state.sucursalReducer.sucursalActual
+    );
+    const [branch, setBranch] = React.useState(sucursalActive);
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setBranch(event.target.value as string);
-  };
-  // -----------------------------------------------------
+    const handleChange = (event: SelectChangeEvent) => {
+      setBranch(event.target.value as string);
+    };
+    // -----------------------------------------------------
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+    const handleDrawerOpen = () => {
+      setOpen(true);
+    };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+    const handleDrawerClose = () => {
+      setOpen(false);
+    };
 
-  return (
-    <Box sx={{ display: "flex", width: "100vw", height: "100vh" }}>
-      <CssBaseline />
-      <AppBar style={{ zIndex: 1000 }} position="fixed" open={open}>
-        {/* Navbar */}
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Dashboard
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      {/* Sidebar */}
-      <Drawer
-        style={{ zIndex: 100 }}
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
+    return (
+      <Box sx={{ display: "flex", width: "100vw", height: "100vh" }}>
+        <CssBaseline />
+        <AppBar style={{ zIndex: 1000 }} position="fixed" open={open}>
+          {/* Navbar */}
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{ mr: 2, ...(open && { display: "none" }) }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              Dashboard
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        {/* Sidebar */}
+        <Drawer
+          style={{ zIndex: 100 }}
+          sx={{
             width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        {/* Usuario y selección de sucursal */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "1rem",
-            justifyContent: "center",
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
           }}
+          variant="persistent"
+          anchor="left"
+          open={open}
         >
-          <IconButton
-            aria-label="user"
-            color="primary"
-            onClick={() => {
-              handleSectionChange("Usuarios");
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "ltr" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          {/* Usuario y selección de sucursal */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "1rem",
+              justifyContent: "center",
             }}
           >
-            <AccountCircle fontSize="large" />
-          </IconButton>
-          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabel id="demo-select-small-label">Sucursal</InputLabel>
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={branch}
-              label="Branch"
-              onChange={handleChange}
+            <IconButton
+              aria-label="user"
+              color="primary"
+              onClick={() => {
+                handleSectionChange("Usuarios");
+              }}
             >
-              <MenuItem value={10}>Sucursal 1</MenuItem> {/* TODO: Renderizar sucursales */}
-              <MenuItem value={20}>Sucursal 2</MenuItem>
-            </Select>
-          </FormControl>
-        </div>
-        <Divider />
-        <List>
-          {/* recorre y renderiza la lista de secciones */}
-          {dashboardItems.list.map(({ text, icon, subItems }, index) => (
-            <div key={index}>
-              <ListItem
-                onClick={() => {
-                  handleSectionChange(text);
-                  if (subItems) {
-                    handleSubMenuClick(text);
-                  }
-                }}
-                disablePadding
+              <AccountCircle fontSize="large" />
+            </IconButton>
+            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+              <InputLabel id="demo-select-small-label">Sucursal</InputLabel>
+              <Select
+                labelId="demo-select-small-label"
+                id="demo-select-small"
+                value={branch}
+                label="Branch"
+                onChange={handleChange}
               >
-                <ListItemButton>
-                  <ListItemIcon>{icon}</ListItemIcon>
-                  <ListItemText primary={text} />
-                  {subItems &&
-                    (openSubMenu[text] ? <ExpandLess /> : <ExpandMore />)}
-                </ListItemButton>
-              </ListItem>
-              {subItems && (
-                <Collapse in={openSubMenu[text]} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    {subItems.map((subItem, subIndex) => (
-                      <ListItem
-                        key={`${index}-${subIndex}`}
-                        onClick={() => handleSectionChange(subItem.text)}
-                        disablePadding
-                        sx={{ pl: 4 }}
-                      >
-                        <ListItemButton>
-                          <ListItemIcon>{subItem.icon}</ListItemIcon>
-                          <ListItemText primary={subItem.text} />
-                        </ListItemButton>
-                      </ListItem>
-                    ))}
-                  </List>
-                </Collapse>
-              )}
-            </div>
-          ))}
-        </List>
-      </Drawer>
-      <Main style={{ marginTop: "36px" }} open={open}>
-        {dashboardSection(section)}
-      </Main>
-    </Box>
-  );
+                <MenuItem value={"sucursal1"}>Sucursal 1</MenuItem> {/* TODO: Renderizar sucursales disponibles según la empresa */}
+                <MenuItem value={"sucursal2"}>Sucursal 2</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <Divider />
+          <List>
+            {/* recorre y renderiza la lista de secciones */}
+            {dashboardItems.list.map(({ text, icon, subItems }, index) => (
+              <div key={index}>
+                <ListItem
+                  onClick={() => {
+                    handleSectionChange(text);
+                    if (subItems) {
+                      handleSubMenuClick(text);
+                    }
+                  }}
+                  disablePadding
+                >
+                  <ListItemButton>
+                    <ListItemIcon>{icon}</ListItemIcon>
+                    <ListItemText primary={text} />
+                    {subItems &&
+                      (openSubMenu[text] ? <ExpandLess /> : <ExpandMore />)}
+                  </ListItemButton>
+                </ListItem>
+                {subItems && (
+                  <Collapse in={openSubMenu[text]} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      {subItems.map((subItem, subIndex) => (
+                        <ListItem
+                          key={`${index}-${subIndex}`}
+                          onClick={() => handleSectionChange(subItem.text)}
+                          disablePadding
+                          sx={{ pl: 4 }}
+                        >
+                          <ListItemButton>
+                            <ListItemIcon>{subItem.icon}</ListItemIcon>
+                            <ListItemText primary={subItem.text} />
+                          </ListItemButton>
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Collapse>
+                )}
+              </div>
+            ))}
+          </List>
+        </Drawer>
+        <Main style={{ marginTop: "36px" }} open={open}>
+          {dashboardSection(section)}
+        </Main>
+      </Box>
+    );
+  }
 }

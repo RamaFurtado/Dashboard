@@ -47,6 +47,11 @@ export const ModalManufacturado = ({
   // Traducción de los placeholders del formulario de manufacturados
   const translatedPlaceholder = {
     name: 'Nombre',
+    price: 'Precio',
+    description: 'Descripción',
+    category: 'Categoría',
+    image: 'Imagen',
+    stock: 'Stock',
   }
 
   // Englobamos todas las props referidas al formulario que vamos a pasarle al Modal genérico
@@ -65,7 +70,7 @@ export const ModalManufacturado = ({
   }
   return (
     <GenericModal<IManufacturado>
-      modalTitle="Manufacturado"
+      modalTitle="Producto Manufacturado"
       getItems={getManufacturados}
       openModal={openModal}
       setOpenModal={setOpenModal}

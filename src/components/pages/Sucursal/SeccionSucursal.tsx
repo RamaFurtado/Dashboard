@@ -18,6 +18,7 @@ const SeccionSucursal = () => {
 
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [sucursal, setSucursal] = useState("sucursal1");
 
   const empresaService = new EmpresaService(API_URL + "/empresa");
   const sucursalSevice = FactoryService.createService("sucursal");
@@ -29,6 +30,9 @@ const SeccionSucursal = () => {
 
 
   const dispatch = useAppDispatch();
+  const sucursalActive = useAppSelector(
+    (state) => state.sucursalReducer.sucursalActual
+  );
 
   const handleClick = () => {
     navigate('/app')
@@ -62,7 +66,8 @@ const SeccionSucursal = () => {
   useEffect(() => {
     setLoading(true);
     getSucursal();
-  }, []);
+    setSucursal(sucursalActive);
+  }, [sucursalActive]);
 
   return (
     <>
