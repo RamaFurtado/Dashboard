@@ -17,7 +17,7 @@ const SeccionSucursal = () => {
   const [openModal, setOpenModal] = useState(false);
   const [sucursal, setSucursal] = useState("sucursal1");
 
-  const sucursalSevice = FactoryService.createService("branch");
+  const sucursalSevice = FactoryService.createService("sucursal");
   const dispatch = useAppDispatch();
   const sucursalActive = useAppSelector(
     (state) => state.sucursalReducer.sucursalActual

@@ -12,7 +12,7 @@ const getServiceClass = (route: string) => {
   switch (route) {
     case "company":
       return EmpresaService as typeof EmpresaService;
-    case "branch":
+    case "sucursal":
       return SucursalService as typeof SucursalService;
     case "manufactured":
       return ManufacturadoService as typeof ManufacturadoService;

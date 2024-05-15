@@ -26,7 +26,7 @@ export const CategoryItem: React.FC<CategoryItemProps> = ({
 
   return (
     <div>
-      <ListItemButton sx={{ pl: padding }} onClick={handleClick}>
+      <ListItemButton sx={{ pl: padding }}>
         <ListItemIcon>
           <GridViewOutlinedIcon />
         </ListItemIcon>
@@ -39,9 +39,9 @@ export const CategoryItem: React.FC<CategoryItemProps> = ({
         </div>
         {category.subcategories && category.subcategories.length > 0 ? (
           open ? (
-            <ExpandLess />
+            <ExpandLess onClick={handleClick} />
           ) : (
-            <ExpandMore />
+            <ExpandMore onClick={handleClick} />
           )
         ) : null}
       </ListItemButton>

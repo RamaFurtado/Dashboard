@@ -18,11 +18,11 @@ export const SeccionEmpresa = () => {
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  const empresaService = new EmpresaService(API_URL + "/company");
+  const empresaService = new EmpresaService(API_URL + "/empresa");
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    navigate('/companies/branches')
+    navigate('/empresa/sucursal')
   }
 
   const handleDelete = async (id: number) => {
