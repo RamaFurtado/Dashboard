@@ -58,11 +58,11 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
     }
     return (
         <GenericModal<IEmpresa>
-            modalTitle="Empresas"
-            getItems={getEmpresa}
             openModal={openModal}
             setOpenModal={setOpenModal}
-            route="company"
-            formDetails={formDetails} />
+            modalTitle="Empresas"
+            formDetails={formDetails}
+            route="empresa"
+            getItems={getEmpresa}/>
     )
 }

@@ -10,7 +10,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const getServiceClass = (route: string) => {
   switch (route) {
-    case "company":
+    case "empresa":
       return EmpresaService as typeof EmpresaService;
     case "sucursal":
       return SucursalService as typeof SucursalService;
