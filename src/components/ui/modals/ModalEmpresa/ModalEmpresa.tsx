@@ -20,10 +20,9 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
     // Necesario para el modal genérico con insumos
     const initialValues: IEmpresa = elementActive?.element || {
         id: 0,
-        name: '',
-        description: '',
-        cuit: 0,
-        image: '',
+        nombre: '',
+        razonSocial: '',
+        cuil: 0,
         actions: '',
         active: true,
     };
@@ -38,10 +37,9 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
 
     // Traducción de los placeholders del formulario de insumos
     const translatedPlaceholder = {
-        name: 'Nombre',
-        description: 'Descripción',
-        cuit: 'Cuit',
-        image: 'Imagen',
+        nombre: 'Nombre',
+        razonSocial: 'Razon Social',
+        cuil: 'Cuil',
     }
 
     // Englobamos todas las props referidas al formulario que vamos a pasarle al Modal genérico
@@ -50,10 +48,9 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
         initialValues: initialValues,
         translatedPlaceholder: translatedPlaceholder,
         formInputType: {
-            name: 'text',
-            description: 'text',
-            cuit: 'number',
-            image: 'text',
+            nombre: 'text',
+            razonSocial: 'text',
+            cuil: 'number',
         },
     }
     return (
