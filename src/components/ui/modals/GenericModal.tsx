@@ -46,7 +46,7 @@ export const GenericModal = <T extends Entidades>({
 
   const handleSubmit = async (values: any) => {
     handleClose();
-    if (elementActive) {
+    if (elementActive?.element) {
       await itemService.put(elementActive.element.id, values);
     } else {
       await itemService.post(values);

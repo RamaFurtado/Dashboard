@@ -24,14 +24,14 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
         razonSocial: '',
         cuil: 0,
         actions: '',
-        active: true,
+        eliminado: true,
     };
 
     //validación del formulario específico para insumos
     const validationSchema = Yup.object({
         name: Yup.string().required('Campo requerido'),
         description: Yup.string().required('Campo requerido'),
-        cuit: Yup.number().required('Campo requerido'),
+        cuil: Yup.number().required('Campo requerido'),
         image: Yup.string().required('Campo requerido'),
     }) as Yup.ObjectSchema<object>;
 
@@ -55,11 +55,11 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
     }
     return (
         <GenericModal<IEmpresa>
-            modalTitle="Empresas"
-            getItems={getEmpresa}
             openModal={openModal}
             setOpenModal={setOpenModal}
-            route="company"
-            formDetails={formDetails} />
+            modalTitle="Empresas"
+            formDetails={formDetails}
+            route="empresa"
+            getItems={getEmpresa}/>
     )
 }
