@@ -10,7 +10,7 @@ export const AppRouter = () => {
     <div>
       <Routes>
         <Route index element={<Login />} />
-        <Route path="/companies" element={<SeccionEmpresa/>} />
+        <Route path="/empresa" element={<SeccionEmpresa/>} />
         <Route path="/app"
           element={
             <Box sx={{ display: "flex" }}>

@@ -22,7 +22,7 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
         id: 0,
         name: '',
         description: '',
-        cuit: 0,
+        cuil: 0,
         image: '',
         actions: '',
         active: true,
@@ -32,7 +32,7 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
     const validationSchema = Yup.object({
         name: Yup.string().required('Campo requerido'),
         description: Yup.string().required('Campo requerido'),
-        cuit: Yup.number().required('Campo requerido'),
+        cuil: Yup.number().required('Campo requerido'),
         image: Yup.string().required('Campo requerido'),
     }) as Yup.ObjectSchema<object>;
 
@@ -40,7 +40,7 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
     const translatedPlaceholder = {
         name: 'Nombre',
         description: 'Descripción',
-        cuit: 'Cuit',
+        cuil: 'cuil',
         image: 'Imagen',
     }
 
@@ -52,7 +52,7 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
         formInputType: {
             name: 'text',
             description: 'text',
-            cuit: 'number',
+            cuil: 'number',
             image: 'text',
         },
     }
