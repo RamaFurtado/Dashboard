@@ -29,10 +29,9 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
 
     //validación del formulario específico para insumos
     const validationSchema = Yup.object({
-        name: Yup.string().required('Campo requerido'),
-        description: Yup.string().required('Campo requerido'),
+        nombre: Yup.string().required('Campo requerido'),
+        razonSocial: Yup.string().required('Campo requerido'),
         cuil: Yup.number().required('Campo requerido'),
-        image: Yup.string().required('Campo requerido'),
     }) as Yup.ObjectSchema<object>;
 
     // Traducción de los placeholders del formulario de insumos
