@@ -44,7 +44,6 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -177,7 +176,6 @@ export default function PersistentDrawerLeft() {
     (state) => state.sectionReducer.sectionActual
   );
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const [section, setSection] = React.useState<string>("Inicio");
 
@@ -189,35 +187,8 @@ export default function PersistentDrawerLeft() {
   const handleSectionChange = (newSection: string) => {
     setSection(newSection);
     dispatch(setCurrentSection(newSection));
-    switch (newSection) {
-      case "Inicio":
-        navigate("/inicio");
-        break;
-      case "Artículos":
-        navigate("/articulos");
-        break;
-      case "Manufacturados":
-        navigate("/articulos/manufacturados");
-        break;
-      case "Insumos":
-        navigate("/articulos/insumos");
-        break;
-      case "Categorías":
-        navigate("/categorias");
-        break;
-      case "Promociones":
-        navigate("/promociones");
-        break;
-      case "Sucursales":
-        navigate("/sucursales");
-        break;
-      case "Usuarios":
-        navigate("/usuarios");
-        break;
-      default:
-        navigate("/inicio");
-    }
   }
+
   // Función para renderizar la sección correspondiente en función del estado actual
   const dashboardSection = (seccionActual: string) => {
     switch (seccionActual) {
