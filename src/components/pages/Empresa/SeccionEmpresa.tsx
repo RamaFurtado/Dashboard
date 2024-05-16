@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { EmpresaService } from "../../../services/EmpresaService";
-import { useAppDispatch } from "../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { IEmpresa } from "../../../types/IEmpresa";
 import Swal from "sweetalert2";
@@ -13,6 +13,7 @@ import { ModalEmpresa } from "../../ui/modals/ModalEmpresa/ModalEmpresa";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const SeccionEmpresa = () => {
+  const dataCard = useAppSelector((state) => state.tableReducer.dataTable);
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -21,8 +22,9 @@ export const SeccionEmpresa = () => {
   const empresaService = new EmpresaService(API_URL + "/empresa");
   const dispatch = useAppDispatch();
 
-  const handleClick = () => {
-    navigate('/empresa/sucursal')
+  const handleClick = (id: number) => {
+    console.log("Aca esta el id ",id)
+    navigate(`/empresa/${id}/sucursal`);
   }
 
   const handleDelete = async (id: number) => {
@@ -56,7 +58,10 @@ export const SeccionEmpresa = () => {
     getEmpresa();
   }, []);
 
+  
+
   return (
+    
     <>
       <div>
         <div
@@ -75,6 +80,7 @@ export const SeccionEmpresa = () => {
         ) : (
           // Mostrar la tabla de personas una vez que los datos se han cargado
           <GenericCards<IEmpresa>
+            items={dataCard}
             handleClick={handleClick}
             handleDelete={handleDelete}
             setOpenModal={setOpenModal}

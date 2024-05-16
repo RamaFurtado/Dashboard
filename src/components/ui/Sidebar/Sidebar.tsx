@@ -187,7 +187,7 @@ export default function PersistentDrawerLeft() {
   const handleSectionChange = (newSection: string) => {
     setSection(newSection);
     dispatch(setCurrentSection(newSection));
-  };
+  }
 
   // Función para renderizar la sección correspondiente en función del estado actual
   const dashboardSection = (seccionActual: string) => {
@@ -196,7 +196,6 @@ export default function PersistentDrawerLeft() {
         return <SeccionInicio setSection={setSection} />;
       case "Artículos":
         return <h2>Artículos</h2>;
-      // TODO: Renderizar dos botones que redirijan a las secciones Manufacturados e Insumos, o no renderizar nada.
       case "Manufacturados":
         return <SeccionManufacturados />;
       case "Insumos":
@@ -215,8 +214,10 @@ export default function PersistentDrawerLeft() {
   };
 
   // Estado y manejo de la selección de sucursal (menú desplegable)
-
-  const [branch, setBranch] = React.useState("");
+  const sucursalActive = useAppSelector(
+    (state) => state.sucursalReducer.sucursalActual
+  );
+  const [branch, setBranch] = React.useState(sucursalActive);
 
   const handleChange = (event: SelectChangeEvent) => {
     setBranch(event.target.value as string);
@@ -303,8 +304,8 @@ export default function PersistentDrawerLeft() {
               label="Branch"
               onChange={handleChange}
             >
-              <MenuItem value={10}>Sucursal 1</MenuItem> {/* TODO: Renderizar sucursales */}
-              <MenuItem value={20}>Sucursal 2</MenuItem>
+              <MenuItem value={"sucursal1"}>Sucursal 1</MenuItem> {/* TODO: Renderizar sucursales disponibles según la empresa */}
+              <MenuItem value={"sucursal2"}>Sucursal 2</MenuItem>
             </Select>
           </FormControl>
         </div>

@@ -48,6 +48,12 @@ export const ModalInsumo = ({
   // Traducción de los placeholders del formulario de insumos
   const translatedPlaceholder = {
     name: 'Nombre',
+    price: 'Precio',
+    description: 'Descripción',
+    category: 'Categoría',
+    isIngredient: 'Es ingrediente',
+    image: 'Imagen',
+    stock: 'Stock',
   }
 
   // Englobamos todas las props referidas al formulario que vamos a pasarle al Modal genérico

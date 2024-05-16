@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import GenericTable from "../../../ui/Generic/GenericTable/GenericTable";
 import { Loader } from "../../../ui/Loader/Loader";
 import { GenericModal } from "../../../ui/modals/GenericModal";
-// import { ModalManufacturado } from "../../ui/modals/ModalManufacturado/ModalManufacturado";
+import { ModalManufacturado } from "../../../ui/modals/ModalArticulos/ModalManufacturados";
 
 import "./manufacturados.css";
 
@@ -49,54 +49,6 @@ export const SeccionManufacturados = () => {
     },
     { label: "Estado", key: "active" },
   ];
-
-  // Necesario para el modal genérico con manufacturados
-  const initialValues: IManufacturado = {
-    id: 0,
-    name: '',
-    price: 0,
-    description: '',
-    category: '',
-    image: '',
-    stock: 0,
-    actions: '',
-    active: true,
-  };
-
-  //validación del formulario específico para manufacturados
-  const validationSchema = Yup.object({
-    name: Yup.string().required('Campo requerido'),
-    price: Yup.number().required('Campo requerido').min(0, 'El precio debe ser mayor o igual a 0'),
-    description: Yup.string().required('Campo requerido'),
-    category: Yup.string().required('Campo requerido'),
-    image: Yup.string().required('Campo requerido'),
-    stock: Yup.number().required('Campo requerido').min(0, 'El stock debe ser mayor o igual a 0'),
-  }) as Yup.ObjectSchema<object>;
-
-  // Traducción de los placeholders del formulario de manufacturados
-  const translatedPlaceholder = {
-    name: 'Nombre',
-    price: 'Precio',
-    description: 'Descripción',
-    category: 'Categoría',
-    image: 'Imagen',
-    stock: 'Stock',
-  }
-
-  // Englobamos todas las props referidas al formulario que vamos a pasarle al Modal genérico
-  const formDetails = {
-    validationSchema: validationSchema,
-    initialValues: initialValues,
-    translatedPlaceholder: translatedPlaceholder,
-    formInputType: {
-      name: 'text',
-      price: 'number',
-      description: 'text',
-      category: 'text',
-      image: 'file',
-      stock: 'number',
-    },
-  }
 
   const handleDelete = async (id: number) => {
     Swal.fire({
@@ -145,19 +97,12 @@ export const SeccionManufacturados = () => {
           />
         </div>
       )}
-      <GenericModal
-        modalTitle={"Manufacturado"}
-        formDetails={formDetails}
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-        route="manufactured"
-        getItems={getManufacturado} />
 
-      {/* <ModalManufacturado Modal individual de manufacturados
+      <ModalManufacturado
         getManufacturados={getManufacturado}
         openModal={openModal}
         setOpenModal={setOpenModal}
-      /> */}
+      />
     </>
   );
 };

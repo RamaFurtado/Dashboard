@@ -2,11 +2,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import SectionReducer from "./slices/SectionReducer";
 import TableReducer from "./slices/TablaReducer";
+import SucursalReducer from "./slices/SucursalReducer";
 
 export const store = configureStore({
   reducer: {
     sectionReducer: SectionReducer,
     tableReducer: TableReducer,
+    sucursalReducer: SucursalReducer,
   },
 });
 

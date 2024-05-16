@@ -7,7 +7,7 @@
       "description": "Clásica pizza de muzzarella",
       "category": 2,
       "image": "https://pizzafactory.com.ar/wp-content/uploads/2023/01/CLAS-005.jpg",
-      "stock": 5,
+      "stock": "5",
       "active": true
     },
     {
@@ -60,7 +60,7 @@
       "category": 4,
       "isIngredient": false,
       "image": "https://i5.walmartimages.com/seo/Coca-Cola-Soda-Pop-2-Liters-Bottle_276fc3fd-fb2b-4c06-a277-5960a7e56495.c49f20b917881d57ead19e24bbad7b23.jpeg",
-      "stock": 10,
+      "stock": "9",
       "active": true
     },
     {
@@ -144,7 +144,7 @@
       "since": "2024-02-13",
       "until": "2024-02-15",
       "description": "El descuento que se hace por San Valentín, un día antes y un día después",
-      "price": "2000",
+      "price": "2500",
       "active": true
     },
     {
