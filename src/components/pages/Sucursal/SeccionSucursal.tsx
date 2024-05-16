@@ -9,6 +9,7 @@ import { ISucursal } from "../../../types/ISucursal";
 import { useNavigate, useParams } from "react-router-dom";
 import { FactoryService } from "../../../services/FactoryService";
 import { EmpresaService } from "../../../services/EmpresaService";
+import { ModalSucursal } from "../../ui/modals/ModalSucursal/ModalSucursal";
 
 const API_URL = import.meta.env.VITE_API_URL;
 const SeccionSucursal = () => {
@@ -56,6 +57,12 @@ const SeccionSucursal = () => {
     });
   };
 
+  const handleSubmit = async (sucursal: any) => {
+    await sucursalSevice.put(sucursal.id, sucursal).then(() => {
+      getSucursal();
+    });
+  };
+
   const getSucursal = async () => {
     await sucursalSevice.getAll().then((sucursalData) => {
       dispatch(setDataTable(sucursalData));
@@ -93,6 +100,11 @@ const SeccionSucursal = () => {
           />
         )}
       </div>
+      <ModalSucursal
+        show={openModal}
+        handleClose={() => setOpenModal(false)}
+        handleSubmit={ handleSubmit }
+      />
     </>
   );
 };

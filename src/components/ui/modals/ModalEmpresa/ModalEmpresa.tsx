@@ -27,7 +27,7 @@ export const ModalEmpresa = ({ getEmpresa, openModal, setOpenModal }: IModalEmpr
         eliminado: true,
     };
 
-    //validación del formulario específico para insumos
+    //validación del formulario 
     const validationSchema = Yup.object({
         nombre: Yup.string().required('Campo requerido'),
         razonSocial: Yup.string().required('Campo requerido'),
