@@ -43,7 +43,7 @@ export const GenericCards = <T extends { id: number }>({
                 <Typography variant="h5" component="h2" gutterBottom>
                   {item.nombre}
                 </Typography>
-                <SwitchButton id={item.id} currentState={item.eliminado} />
+                <SwitchButton id={item.id} currentState={item.eliminado} route="sucursal" />
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                   <div>
                     {item.razonSocial && (
@@ -68,14 +68,14 @@ export const GenericCards = <T extends { id: number }>({
         ))
         }
         <IconButton
-              color="primary"
-              aria-label="add"
-              onClick={() => {
-                setOpenModal(true);
-              }}
-            >
-              <AddIcon />
-            </IconButton>
+          color="primary"
+          aria-label="add"
+          onClick={() => {
+            setOpenModal(true);
+          }}
+        >
+          <AddIcon />
+        </IconButton>
       </div >
     );
   } else {

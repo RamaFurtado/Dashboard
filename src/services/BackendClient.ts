@@ -63,4 +63,13 @@ export abstract class BackendClient<T> extends AbstractBackendClient<T> {
       throw new Error(`Error al eliminar el elemento con ID ${id}`);
     }
   }
+
+  // Método para dada de baja lógica de un elemento por su ID
+  async logicDelete(id: number): Promise<void> {
+    const element = await this.getById(id);
+    if (element) {
+      (element as any).active = !element;
+      await this.put(id, element);
+    }
+  }
 }

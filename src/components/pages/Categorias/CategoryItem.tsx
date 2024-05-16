@@ -35,7 +35,7 @@ export const CategoryItem: React.FC<CategoryItemProps> = ({
           <IconButton color="primary">
             <EditRounded />
           </IconButton>
-          <SwitchButton id={category.id} currentState={category.active} />
+          <SwitchButton id={category.id} currentState={category.active} route="category" />
         </div>
         {category.subcategories && category.subcategories.length > 0 ? (
           open ? (
