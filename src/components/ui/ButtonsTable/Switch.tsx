@@ -9,23 +9,23 @@ import { FactoryService } from "../../../services/FactoryService";
 interface ISwitchButton {
   id: number;
   currentState: boolean;
-  route: string;
+  // route: string;
 }
 
-export const SwitchButton = ({ id, currentState, route }: ISwitchButton) => {
+export const SwitchButton = ({ id, currentState }: ISwitchButton) => {
   const [active, setActive] = React.useState<boolean>(currentState);
   const [message, setMessage] = React.useState<string>(
     currentState ? "Activo" : "Inactivo"
   );
   const [loader, setLoader] = React.useState<boolean>(false);
 
-  const genericService = FactoryService.createService(route);
+  // const genericService = FactoryService.createService(route);
 
   const handleClick = async () => {
     setLoader(true); // Activar el loader antes de las operaciones asincrónicas
     setMessage("");
     try {
-      genericService.logicDelete(id);
+      // genericService.logicDelete(id);
       console.log(active ? "Activado" : "Desactivado");
       setActive(!active);
     } catch (error) {

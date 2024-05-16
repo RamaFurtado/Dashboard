@@ -43,7 +43,7 @@ export const GenericCards = <T extends { id: number }>({
                 <Typography variant="h5" component="h2" gutterBottom>
                   {item.nombre}
                 </Typography>
-                <SwitchButton id={item.id} currentState={item.eliminado} route="sucursal" />
+                <SwitchButton id={item.id} currentState={item.eliminado} />
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                   <div>
                     {item.razonSocial && (
