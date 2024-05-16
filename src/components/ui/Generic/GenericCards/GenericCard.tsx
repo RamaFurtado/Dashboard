@@ -64,7 +64,10 @@ export const GenericCards = <T extends { id: number }>({
                 <ButtonsTable el={item} handleDelete={handleDelete} setOpenModal={setOpenModal} />
               </CardActions>
             </Card>
-            <IconButton
+          </>
+        ))
+        }
+        <IconButton
               color="primary"
               aria-label="add"
               onClick={() => {
@@ -73,9 +76,6 @@ export const GenericCards = <T extends { id: number }>({
             >
               <AddIcon />
             </IconButton>
-          </>
-        ))
-        }
       </div >
     );
   } else {
