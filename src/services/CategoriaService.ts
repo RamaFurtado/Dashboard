@@ -1,6 +1,6 @@
-import { ICategories } from "../types/ICategories";
+import { ICategoria } from "../types/ICategoria";
 import { BackendClient } from "./BackendClient";
 
 
-export class CategoriaService extends BackendClient<ICategories> {
+export class CategoriaService extends BackendClient<ICategoria> {
 }

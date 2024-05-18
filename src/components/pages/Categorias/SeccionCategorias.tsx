@@ -1,25 +1,27 @@
 import * as React from "react";
 import { CategoryItem } from "./CategoryItem";
 import { useEffect, useState } from "react";
-import { ICategories } from "../../../types/ICategories";
+import { ICategoria } from "../../../types/ICategoria";
 import List from "@mui/material/List";
 import { IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { Loader } from "../../ui/Loader/Loader";
 import { CategoriaService } from "../../../services/CategoriaService";
-
+import { ModalCategorias } from "../../ui/modals/ModalCategorias/ModalCategorias";
+ 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export function SeccionCategorias() {
-  const [categories, setCategories] = useState<ICategories[]>([]);
+  const [Categoria, setCategoria] = useState<ICategoria[]>([]);
   const [loading, setLoading] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
-  const categoriaService = new CategoriaService(API_URL + "/categories");
+  const categoriaService = new CategoriaService(API_URL + "/Categoria");
 
   const getCategoria = async () => {
     try {
       const categoriaData = await categoriaService.getAll();
-      setCategories(categoriaData);
+      setCategoria(categoriaData);
       setLoading(false);
     } catch (error) {
       console.error("Error al obtener las categorías:", error);
@@ -43,20 +45,20 @@ export function SeccionCategorias() {
         <IconButton
           color="primary"
           aria-label="add"
-          // onClick={() => {
-          //   setOpenModal(true);
-          // }}
+          onClick={() => {
+            setOpenModal(true);
+          }}
         >
           <AddIcon />
         </IconButton>
       </div>
-      {!loading && Array.isArray(categories) && categories.length > 0 ? (
+      {!loading && Array.isArray(Categoria) && Categoria.length > 0 ? (
         <List
           sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
           component="nav"
           aria-labelledby="nested-list-subheader"
         >
-          {categories.map((category) => (
+          {Categoria.map((category) => (
             <CategoryItem key={category.id} category={category} padding={2} />
           ))}
         </List>

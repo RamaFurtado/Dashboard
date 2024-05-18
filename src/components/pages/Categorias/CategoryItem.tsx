@@ -1,5 +1,5 @@
 import React from "react";
-import { ICategories } from "../../../types/ICategories";
+import { ICategoria } from "../../../types/ICategoria";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
@@ -13,7 +13,7 @@ import { SwitchButton } from "../../ui/ButtonsTable/Switch";
 import "./category.css";
 
 interface CategoryItemProps {
-  category: ICategories;
+  category: ICategoria;
   padding: number;
 }
 
@@ -37,7 +37,7 @@ export const CategoryItem: React.FC<CategoryItemProps> = ({
           </IconButton>
           <SwitchButton id={category.id} currentState={category.active} route="category" />
         </div>
-        {category.subcategories && category.subcategories.length > 0 ? (
+        {category.subCategoria && category.subCategoria.length > 0 ? (
           open ? (
             <ExpandLess onClick={handleClick} />
           ) : (
@@ -45,11 +45,11 @@ export const CategoryItem: React.FC<CategoryItemProps> = ({
           )
         ) : null}
       </ListItemButton>
-      {category.subcategories && category.subcategories.length > 0 && (
+      {category.subCategoria && category.subCategoria.length > 0 && (
         <>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {category.subcategories.map((subcategory) => (
+              {category.subCategoria.map((subcategory) => (
                 <CategoryItem
                   key={subcategory.id}
                   category={subcategory}

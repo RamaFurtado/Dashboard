@@ -5,7 +5,7 @@ import { IUsuario } from "../../../../types/IUsuario";
 import { useAppSelector } from "../../../../hooks/redux";
 
 interface IModalUsuario {
-    getUsuarios: () => void; // Función para obtener las promociones
+    getUsuarios: () => void; // Función para obtener las Promocion
     openModal: boolean;
     setOpenModal: (state: boolean) => void;
 }

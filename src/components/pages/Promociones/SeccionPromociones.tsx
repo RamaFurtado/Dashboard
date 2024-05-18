@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { PromocionService } from "../../../services/PromocionService";
-import { IPromocion } from "../../../types/IPromociones";
+import { IPromocion } from "../../../types/IPromocion";
 import { setDataTable } from "../../../redux/slices/TablaReducer";
 import { useAppDispatch } from "../../../hooks/redux";
 import Swal from "sweetalert2";
@@ -10,7 +10,7 @@ import { ModalPromocion } from "../../ui/modals/ModalPromociones/ModalPromocion"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const SeccionPromociones = () => {
+export const SeccionPromocion = () => {
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
@@ -116,7 +116,7 @@ export const SeccionPromociones = () => {
       <ModalPromocion
         openModal={openModal}
         setOpenModal={setOpenModal}
-        getPromociones={getPromocion}
+        getPromocion={getPromocion}
       />
     </>
   );

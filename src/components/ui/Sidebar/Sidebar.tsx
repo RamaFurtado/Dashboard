@@ -6,7 +6,7 @@ import { SeccionInicio } from "../../pages/Inicio/SeccionInicio";
 import { SeccionInsumos } from "../../pages/Articulos/Insumos/SeccionInsumos";
 import { SeccionManufacturados } from "../../pages/Articulos/Manufacturados/SeccionManufacturados";
 import { SeccionCategorias } from "../../pages/Categorias/SeccionCategorias";
-import { SeccionPromociones } from "../../pages/Promociones/SeccionPromociones";
+import { SeccionPromocion } from "../../pages/Promociones/SeccionPromociones";
 // import { SeccionEmpresa } from "../../pages/Empresa/SeccionEmpresa";
 import { SeccionUsuarios } from "../../pages/Usuarios/SeccionUsuarios";
 import SeccionSucursal from "../../pages/Sucursal/SeccionSucursal";
@@ -135,7 +135,7 @@ const dashboardItems: IDashboard = {
       icon: <CategoryIcon />,
     },
     {
-      text: "Promociones",
+      text: "Promocion",
       icon: <LocalOfferIcon />,
     },
     // {
@@ -202,8 +202,8 @@ export default function PersistentDrawerLeft() {
         return <SeccionInsumos />;
       case "Categorías":
         return <SeccionCategorias />;
-      case "Promociones":
-        return <SeccionPromociones />;
+      case "Promocion":
+        return <SeccionPromocion />;
       // case "Empresa":
       //   return <SeccionEmpresa />;
       case "Sucursales":

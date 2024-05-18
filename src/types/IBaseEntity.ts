@@ -1,5 +1,5 @@
 import { IEmpresa } from './IEmpresa';
-import { IPromocion } from './IPromociones';
+import { IPromocion } from './IPromocion';
 import { ISucursal } from './ISucursal';
 import { IUsuario } from './IUsuario';
 

@@ -22,7 +22,7 @@ const getServiceClass = (route: string) => {
       return PromocionService as typeof PromocionService;
     case "users":
       return UsuarioService as typeof UsuarioService;
-    case "categories":
+    case "Categoria":
       return CategoriaService as typeof CategoriaService;
     default:
       throw new Error(`Ruta no válida: ${route}`);
