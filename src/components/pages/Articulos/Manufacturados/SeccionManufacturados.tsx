@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 import * as Yup from 'yup';
 import GenericTable from "../../../ui/Generic/GenericTable/GenericTable";
 import { Loader } from "../../../ui/Loader/Loader";
-import { GenericModal } from "../../../ui/modals/GenericModal";
 import { ModalManufacturado } from "../../../ui/modals/ModalArticulos/ModalManufacturados";
 
 import "./manufacturados.css";
